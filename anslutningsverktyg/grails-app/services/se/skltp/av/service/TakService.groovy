@@ -1,4 +1,4 @@
-package se.skltp.av
+package se.skltp.av.service
 
 import grails.transaction.Transactional
 
