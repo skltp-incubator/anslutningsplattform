@@ -1,6 +1,6 @@
 package se.skltp.av
 
-class ServiceProducerConnectionController {
+class ProducentAnslutningController {
 
 	static scaffold = true
 }

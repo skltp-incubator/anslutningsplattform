@@ -1,6 +1,6 @@
 package se.skltp.av
 
-class OrderHistoryController {
+class TjansteproducentController {
 
     static scaffold = true
 }

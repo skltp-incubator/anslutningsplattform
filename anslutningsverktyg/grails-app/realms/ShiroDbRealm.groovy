@@ -4,7 +4,7 @@ import org.apache.shiro.authc.UnknownAccountException
 import org.apache.shiro.authc.SimpleAccount
 import org.apache.shiro.authz.permission.WildcardPermission
 
-import se.skltp.av.User
+import se.skltp.av.Anvandare
 
 class ShiroDbRealm {
     static authTokenClass = org.apache.shiro.authc.UsernamePasswordToken
@@ -24,7 +24,7 @@ class ShiroDbRealm {
         // Get the user with the given username. If the user is not
         // found, then they don't have an account and we throw an
         // exception.
-        def user = User.findByUsername(username)
+        def user = Anvandare.findByUsername(username)
         if (!user) {
             throw new UnknownAccountException("No account found for user [${username}]")
         }
@@ -43,7 +43,7 @@ class ShiroDbRealm {
     }
 
     def hasRole(principal, roleName) {
-        def roles = User.withCriteria {
+        def roles = Anvandare.withCriteria {
             roles {
                 eq("name", roleName)
             }
@@ -54,7 +54,7 @@ class ShiroDbRealm {
     }
 
     def hasAllRoles(principal, roles) {
-        def r = User.withCriteria {
+        def r = Anvandare.withCriteria {
             roles {
                 'in'("name", roles)
             }
@@ -70,7 +70,7 @@ class ShiroDbRealm {
         //
         // First find all the permissions that the user has that match
         // the required permission's type and project code.
-        def user = User.findByUsername(principal)
+        def user = Anvandare.findByUsername(principal)
         def permissions = user.permissions
 
         // Try each of the permissions found and see whether any of
@@ -99,7 +99,7 @@ class ShiroDbRealm {
         // If not, does he gain it through a role?
         //
         // Get the permissions from the roles that the user does have.
-        def results = User.executeQuery("select distinct p from User as user join user.roles as role join role.permissions as p where user.username = '$principal'")
+        def results = Anvandare.executeQuery("select distinct p from Anvandare as user join user.roles as role join role.permissions as p where user.username = '$principal'")
 
         // There may be some duplicate entries in the results, but
         // at this stage it is not worth trying to remove them. Now,

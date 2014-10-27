@@ -1,6 +1,6 @@
 package se.skltp.av
 
-class UserController {
+class ProducentBestallningController {
 
     static scaffold = true
 }

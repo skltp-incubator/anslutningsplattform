@@ -1,10 +1,10 @@
 package se.skltp.av
 
-class Role {
+class Roll {
     String name
 
-    static hasMany = [ users: User, permissions: String ]
-    static belongsTo = User
+    static hasMany = [ anvandare: Anvandare, permissions: String ]
+    static belongsTo = Anvandare
 
     static constraints = {
         name(nullable: false, blank: false, unique: true)

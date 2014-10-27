@@ -1,6 +1,6 @@
 package se.skltp.av
 
-class ServiceProducerController {
+class BestallningsHistorikController {
 
     static scaffold = true
 }

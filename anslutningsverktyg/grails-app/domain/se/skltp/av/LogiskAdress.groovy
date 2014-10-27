@@ -1,6 +1,6 @@
 package se.skltp.av
 
-class LogicalAddress {
+class LogiskAdress {
 	
 	String hsaId
 

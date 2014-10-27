@@ -1,12 +1,12 @@
 package se.skltp.av
 
-class OrderHistory {
+class BestallningsHistorik {
 	
 	String status
-	Date date
-	String lastUpdatedBy
+	Date datum
+	String senastUppdateradAv
 	
-	static belongsTo = [serviceProducerOrder: ServiceProducerOrder]
+	static belongsTo = [producentBestallning: ProducentBestallning]
 
     static constraints = {
     }

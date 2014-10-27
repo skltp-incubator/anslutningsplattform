@@ -1,6 +1,6 @@
 package se.skltp.av
 
-class ServiceProducerOrderController {
+class AnvandareController {
 
     static scaffold = true
 }
