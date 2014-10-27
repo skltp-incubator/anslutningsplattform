@@ -1,6 +1,6 @@
 package se.skltp.av
 
-class AnvandareController {
+class UserController {
 
     static scaffold = true
 }

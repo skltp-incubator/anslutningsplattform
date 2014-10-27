@@ -1,10 +1,14 @@
 package se.skltp.av
 
-class Roll {
+/**
+ * Currently named Role instead of Roll to map with ShiroDbRealm
+ * 
+ */
+class Role {
     String name
 
-    static hasMany = [ anvandare: Anvandare, permissions: String ]
-    static belongsTo = Anvandare
+    static hasMany = [ anvandare: User, permissions: String ]
+    static belongsTo = User
 
     static constraints = {
         name(nullable: false, blank: false, unique: true)

@@ -1,13 +1,17 @@
 package se.skltp.av
 
-class Anvandare {
+/**
+ * Currently named User instead of Anvandare to map with ShiroDbRealm
+ *
+ */
+class User {
     String username
     String passwordHash
     String epost
     Date datumSkapad
     Date datumUppdaterad
 
-    static hasMany = [ roles: Roll, permissions: String, tjanstekomponenter: Tjansteproducent ]
+    static hasMany = [ roles: Role, permissions: String, tjanstekomponenter: Tjansteproducent ]
 
     static constraints = {
         username(nullable: false, blank: false, unique: true)

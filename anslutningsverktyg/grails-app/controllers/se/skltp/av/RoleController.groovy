@@ -1,6 +1,6 @@
 package se.skltp.av
 
-class RollController {
+class RoleController {
 
     static scaffold = true
 }

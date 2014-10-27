@@ -1,6 +1,6 @@
-import se.skltp.av.Roll;
+import se.skltp.av.Role;
 import se.skltp.av.Tjansteproducent;
-import se.skltp.av.Anvandare;
+import se.skltp.av.User;
 
 import org.apache.shiro.crypto.hash.Sha256Hash
 
@@ -9,32 +9,30 @@ class BootStrap {
    def init = { servletContext ->
 	   
 	   	//Roles
-        def adminRole = new Roll(name: 'ADMINISTRATÖR')
+        def adminRole = new Role(name: 'ADMINISTRATÖR')
         adminRole.addToPermissions("User:*")
         adminRole.addToPermissions("Role:*")
         adminRole.addToPermissions("ServiceProducer:index")
         adminRole.addToPermissions("ServiceProducer:list")
         adminRole.addToPermissions("ServiceProducer:show")
-		adminRole.addToPermissions("Environment:*")
         adminRole.save()
 
-        def tkResponsibleUserRole = new Roll(name:"TJÄNSTEKOMPONENTANSVARIG")
-        tkResponsibleUserRole.addToPermissions("ServiceProducer:*")
-		tkResponsibleUserRole.addToPermissions("ServiceProducerOrder:*")
-		tkResponsibleUserRole.addToPermissions("ServiceProducerConnection:*")
-		tkResponsibleUserRole.addToPermissions("OrderHistory:*")
-		tkResponsibleUserRole.addToPermissions("Environment:*")
+        def tkResponsibleUserRole = new Role(name:"TJÄNSTEKOMPONENTANSVARIG")
+        tkResponsibleUserRole.addToPermissions("TjansteProducent:*")
+		tkResponsibleUserRole.addToPermissions("ProducentBestallning:*")
+		tkResponsibleUserRole.addToPermissions("ProducentAnslutning:*")
+		tkResponsibleUserRole.addToPermissions("BestallningsHistorik:*")
         tkResponsibleUserRole.save()
 
 		//Users
-        def adminUser = new Anvandare(
+        def adminUser = new User(
           username: "admin",
           epost: "admin@lorumipsum.nu",
           passwordHash: new Sha256Hash("password").toHex())
         adminUser.addToRoles(adminRole)
         adminUser.save()
 
-        def tkResponsible = new Anvandare(
+        def tkResponsible = new User(
           username: "kallekula",
           epost: "kallekula@lorumipsum.nu" ,
           passwordHash: new Sha256Hash("password").toHex())

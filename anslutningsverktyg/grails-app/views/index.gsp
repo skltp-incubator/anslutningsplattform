@@ -96,8 +96,8 @@
 					<li class="controller"><g:link controller="auth" action="index">Logga in</g:link></li>
 
 					<shiro:hasRole name="ADMINISTRATÖR">
-						<li class="controller"><g:link controller="anvandare" action="index">Användare</g:link></li>
-						<li class="controller"><g:link controller="roll" action="index">Roller</g:link></li>
+						<li class="controller"><g:link controller="user" action="index">Användare</g:link></li>
+						<li class="controller"><g:link controller="role" action="index">Roller</g:link></li>
 						<li class="controller"><g:link controller="tjansteproducent" action="index">Registrera tjänsteproducent</g:link></li>
 					</shiro:hasRole>
 

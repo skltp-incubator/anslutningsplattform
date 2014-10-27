@@ -7,7 +7,7 @@ class Tjansteproducent {
     String kontaktEpost
     String kontaktTelefon
 
-    static belongsTo = [user: Anvandare]
+    static belongsTo = [user: User]
 	
     static constraints = {
       hsaId blank: false, unique: true
