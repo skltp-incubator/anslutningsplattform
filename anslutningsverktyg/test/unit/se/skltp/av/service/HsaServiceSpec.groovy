@@ -1,6 +1,7 @@
-package se.skltp.av
+package se.skltp.av.service
 
 import grails.test.mixin.TestFor
+import se.skltp.av.service.HsaService;
 import spock.lang.Specification
 
 /**
