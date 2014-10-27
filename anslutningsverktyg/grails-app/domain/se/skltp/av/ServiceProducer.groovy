@@ -1,6 +1,6 @@
 package se.skltp.av
 
-class Tjanstekomponent {
+class ServiceProducer {
 
     String hsaId
     String contactName
@@ -8,7 +8,7 @@ class Tjanstekomponent {
     String contactPhone
 
     static belongsTo = [user: User]
-
+	
     static constraints = {
       hsaId blank: false, unique: true
       contactEmail email: true, blank: false

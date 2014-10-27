@@ -1,6 +1,6 @@
 package se.skltp.av
 
-class TjanstekomponentController {
+class ServiceProducerController {
 
     static scaffold = true
 }

@@ -7,7 +7,7 @@ class User {
     Date dateCreated
     Date lastUpdated
 
-    static hasMany = [ roles: Role, permissions: String, tjanstekomponenter: Tjanstekomponent ]
+    static hasMany = [ roles: Role, permissions: String, tjanstekomponenter: ServiceProducer ]
 
     static constraints = {
         username(nullable: false, blank: false, unique: true)
