@@ -88,21 +88,31 @@
 		<div id="page-body" role="main">
 			<h1>Anslutningsverktyg</h1>
 			<p>Lorum ipsum Lorum ipsum Lorum ipsum Lorum ipsum Lorum ipsum Lorum ipsum Lorum ipsum</p>
+			
+			<div id="controller-list" role="navigation">
+				<h2>Logga in</h2>
+				<ul>
+
+					<li class="controller"><g:link controller="auth" action="index">Logga in</g:link></li>
+
+				</ul>
+			</div>
 
 			<div id="controller-list" role="navigation">
 				<h2>Tillgängliga val:</h2>
 				<ul>
 
-					<li class="controller"><g:link controller="auth" action="index">Logga in</g:link></li>
-
 					<shiro:hasRole name="ADMINISTRATÖR">
 						<li class="controller"><g:link controller="user" action="index">Användare</g:link></li>
 						<li class="controller"><g:link controller="role" action="index">Roller</g:link></li>
-						<li class="controller"><g:link controller="tjanstekomponent" action="index">Tjänstekomponenter</g:link></li>
+						<li class="controller"><g:link controller="tjansteproducent" action="index">Registrera tjänsteproducent</g:link></li>
 					</shiro:hasRole>
 
 					<shiro:hasRole name="TJÄNSTEKOMPONENTANSVARIG">
-						<li class="controller"><g:link controller="tjanstekomponent" action="index">Tjänstekomponenter</g:link></li>
+						<li class="controller"><g:link controller="tjansteproducent" action="create">Registrera ny tjänsteproducent</g:link></li>
+						<li class="controller"><g:link controller="tjansteproducent" action="index">Titta på redan registrerade tjänsteproducenter</g:link></li>
+						<li class="controller"><g:link controller="producentBestallning" action="create">Beställ ny anslutning av tjänsteproducent</g:link></li>
+						<li class="controller"><g:link controller="producentBestallning" action="index">Titta på mina redan beställda anslutningar</g:link></li>
 					</shiro:hasRole>
 
 				</ul>
