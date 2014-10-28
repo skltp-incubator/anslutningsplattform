@@ -16,12 +16,18 @@
     <description>anslutningsverktyg</description>
 
     <properties>
+		<tak.version>1.4.2-SNAPSHOT</tak.version>
     	<vp.version>2.2.9-SNAPSHOT</vp.version>
         <grails.version>2.4.3</grails.version>
         <h2.version>1.3.170</h2.version>
     </properties>
 
     <dependencies>
+        <dependency>
+			<groupId>se.skltp.tk</groupId>
+			<artifactId>tp-vagval-admin-schemas</artifactId>
+			<version>${tak.version}</version>
+        </dependency>
 
         <dependency>
 			<groupId>se.skltp.vp</groupId>
