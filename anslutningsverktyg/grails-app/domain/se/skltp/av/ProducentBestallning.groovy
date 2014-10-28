@@ -6,7 +6,7 @@ class ProducentBestallning {
 	
 	String defaultRivTaProfile
 	
-	Tjansteproducent tjansteproducent
+	static belongsTo = [tjansteproducent: Tjansteproducent]
 		
 	static hasMany = [bestallningsHistorik: BestallningsHistorik, producentAnslutning: ProducentAnslutning, defaultLogiskAdress: LogiskAdress]
 	

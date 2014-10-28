@@ -6,6 +6,7 @@ class BestallningsHistorik {
 	Date datum
 	String senastUppdateradAv
 	
+	//To cascade deletes when ProducentBestallning is removed
 	static belongsTo = [producentBestallning: ProducentBestallning]
 
     static constraints = {

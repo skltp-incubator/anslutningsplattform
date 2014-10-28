@@ -8,6 +8,7 @@ class ProducentAnslutning {
 	Date validFromTime
 	Date validToTime
 	
+	//To cascade deletes when ProducentBestallning is removed
 	static belongsTo = [producentBestallning: ProducentBestallning]
 	
 	static hasMany = [logiskAdresser: LogiskAdress]

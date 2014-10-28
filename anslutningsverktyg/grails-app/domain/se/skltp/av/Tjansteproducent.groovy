@@ -9,12 +9,14 @@ class Tjansteproducent {
 
     static belongsTo = [user: User]
 	
+	static hasMany = [producentBestallningar: ProducentBestallning]
+	
     static constraints = {
       hsaId blank: false, unique: true
       kontaktEpost email: true, blank: false
     }
 
     String toString(){
-      return "HSA ID: $hsaId, Kontakt: $kontaktEpost"
+      return "$hsaId"
     }
 }
