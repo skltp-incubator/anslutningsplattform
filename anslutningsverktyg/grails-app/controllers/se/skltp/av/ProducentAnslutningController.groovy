@@ -4,9 +4,12 @@ package se.skltp.av
 
 import static org.springframework.http.HttpStatus.*
 import grails.transaction.Transactional
+import se.skltp.av.service.HsaService
 
 @Transactional(readOnly = true)
 class ProducentAnslutningController {
+	
+	def hsaService
 	
 	static scaffold = true
 
