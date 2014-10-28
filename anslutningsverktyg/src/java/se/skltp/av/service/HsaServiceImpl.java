@@ -28,7 +28,7 @@ public class HsaServiceImpl {
 	
 	public List<HsaNode> freeTextSearch(String searchText, int maxNoOfHits) {
 		List<HsaNodeInfo> resultFromCache = hsaCache.freeTextSearch(searchText, maxNoOfHits);
-		List<HsaNode> result = new ArrayList<>(); 
+		List<HsaNode> result = new ArrayList(); 
 		
 		if (resultFromCache == null) return result;
 		
