@@ -6,7 +6,11 @@ class ShiroSecurityFilters {
 
     def publicActions = [
       signup: ['index','register'],
-      auth: ['*']
+      auth: ['*'],
+	  //TAK services public for poc
+	  tak: ['*'],
+	  //HSA services public for poc
+	  hsa: ['*']
     ]
 
     private boolean findAction(controllerName, actionName){
