@@ -22,6 +22,9 @@ class BootStrap {
 		tkResponsibleUserRole.addToPermissions("ProducentBestallning:*")
 		tkResponsibleUserRole.addToPermissions("ProducentAnslutning:*")
 		tkResponsibleUserRole.addToPermissions("BestallningsHistorik:*")
+		tkResponsibleUserRole.addToPermissions("BekraftaProducentBestallning:*")
+		tkResponsibleUserRole.addToPermissions("RegistreraLogiskAdress:*")
+		tkResponsibleUserRole.addToPermissions("RegistreraTjansteKontrakt:*")
         tkResponsibleUserRole.save()
 
 		//Users
