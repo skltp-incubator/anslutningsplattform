@@ -4,8 +4,14 @@ import grails.transaction.Transactional
 
 @Transactional
 class TakService {
+	
+	TakServiceImpl takServiceImpl = new TakServiceImpl()
 
-    def serviceMethod() {
-
+    def getAllTjanstekontrakt() {
+		takServiceImpl.getAllTjanstekontrakt()
     }
+	
+	def getAllProducentAnslutningar(String id){
+		takServiceImpl.getAllProducentAnslutningar(id)
+	}
 }

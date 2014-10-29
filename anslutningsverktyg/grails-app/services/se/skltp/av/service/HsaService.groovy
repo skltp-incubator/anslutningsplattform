@@ -5,12 +5,13 @@ import grails.transaction.Transactional
 
 @Transactional
 class HsaService {
+	
+	HsaServiceImpl hsaServiceImpl = new HsaServiceImpl()
 
     def getHsaInformation(String searchParams) {
-		
-		HsaDTO hsa123 = new HsaDTO(hsaId: 'HSASERVICES-123Q')
-		HsaDTO hsa456 = new HsaDTO(hsaId: 'HSASERVICES-456Q')
-		
-		return [hsa213, hsa456]
+			
+		return hsaServiceImpl.freeTextSearch(searchParams,-1);
     }
+	
+	
 }

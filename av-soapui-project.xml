@@ -1,0 +1,402 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project name="anslutningsverktyg" resourceRoot="" soapui-version="4.6.4" abortOnError="false" runType="SEQUENTIAL" activeEnvironment="Default" xmlns:con="http://eviware.com/soapui/config"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.actions.iface.tools.soapui.TestRunnerAction@values-local"><![CDATA[<xml-fragment xmlns:con="http://eviware.com/soapui/config">
+  <con:entry key="Global Properties" value=""/>
+  <con:entry key="TestSuite" value="TestSuite skltp-box"/>
+  <con:entry key="Report to Generate" value=""/>
+  <con:entry key="Password" value=""/>
+  <con:entry key="soapui-setings.xml Password" value=""/>
+  <con:entry key="TestRunner Path" value=""/>
+  <con:entry key="Tool Args" value=""/>
+  <con:entry key="Ignore Errors" value="false"/>
+  <con:entry key="Host:Port" value=""/>
+  <con:entry key="WSS Password Type" value=""/>
+  <con:entry key="Save Project" value="false"/>
+  <con:entry key="Enable UI" value="false"/>
+  <con:entry key="System Properties" value=""/>
+  <con:entry key="Domain" value=""/>
+  <con:entry key="Coverage Report" value="false"/>
+  <con:entry key="Export JUnit Results" value="false"/>
+  <con:entry key="Open Report" value="false"/>
+  <con:entry key="Project Properties" value=""/>
+  <con:entry key="Project Password" value=""/>
+  <con:entry key="Export All" value="false"/>
+  <con:entry key="Report Format(s)" value=""/>
+  <con:entry key="TestCase" value="&lt;all>"/>
+  <con:entry key="Print Report" value="false"/>
+  <con:entry key="Username" value=""/>
+  <con:entry key="Root Folder" value=""/>
+  <con:entry key="Save After" value="false"/>
+  <con:entry key="Add Settings" value="false"/>
+  <con:entry key="Endpoint" value=""/>
+</xml-fragment>]]></con:setting></con:settings><con:interface xsi:type="con:WsdlInterface" wsaVersion="NONE" name="SokVagvalsServiceSoap11LitDocServiceSoapBinding" type="wsdl" bindingName="{urn:skl:tp:vagvalsinfo:v2}SokVagvalsServiceSoap11LitDocServiceSoapBinding" soapVersion="1_1" anonymous="optional" definition="http://33.33.33.33:8080/tp-vagval-admin-services/SokVagvalsInfo/v2?wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://33.33.33.33:8080/tp-vagval-admin-services/SokVagvalsInfo/v2?wsdl"><con:part><con:url>http://33.33.33.33:8080/tp-vagval-admin-services/SokVagvalsInfo/v2?wsdl</con:url><con:content><![CDATA[<wsdl:definitions name="SokVagvalsServiceSoap11LitDocService" targetNamespace="urn:skl:tp:vagvalsinfo:v2" xmlns:ns1="http://schemas.xmlsoap.org/soap/http" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="urn:skl:tp:vagvalsinfo:v2" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <wsdl:types>
+    <xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="urn:skl:tp:vagvalsinfo:v2" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:element name="virtualiseringsInfo" type="tns:virtualiseringsInfoType"/>
+      <xs:complexType name="hamtaAllaTjanstekontraktResponseType">
+        <xs:sequence>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="tjanstekontraktInfo" nillable="true" type="tns:tjanstekontraktInfoType"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="tjanstekontraktInfoType">
+        <xs:sequence>
+          <xs:element name="namnrymd" type="xs:string"/>
+          <xs:element name="version" type="xs:string"/>
+          <xs:element name="beskrivning" type="xs:string"/>
+          <xs:any maxOccurs="unbounded" minOccurs="0" namespace="##other" processContents="lax"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="virtualiseringsInfoType">
+        <xs:sequence>
+          <xs:element name="virtualiseringsInfoId" type="tns:virtualiseringsInfoIdType"/>
+          <xs:element name="receiverId" type="xs:string"/>
+          <xs:element name="rivProfil" type="xs:NCName"/>
+          <xs:element name="tjansteKontrakt" type="xs:NCName"/>
+          <xs:element name="fromTidpunkt" type="xs:dateTime"/>
+          <xs:element name="tomTidpunkt" type="xs:dateTime"/>
+          <xs:element name="adress" type="xs:string"/>
+          <xs:any maxOccurs="unbounded" minOccurs="0" namespace="##other" processContents="lax"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:simpleType name="virtualiseringsInfoIdType">
+        <xs:restriction base="xs:string"/>
+      </xs:simpleType>
+      <xs:complexType name="hamtaAllaAnropsBehorigheterResponseType">
+        <xs:sequence>
+          <xs:element maxOccurs="unbounded" name="anropsBehorighetsInfo" type="tns:anropsBehorighetsInfoType"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="anropsBehorighetsInfoType">
+        <xs:sequence>
+          <xs:element name="anropsBehorighetsInfoId" type="tns:anropsBehorighetsInfoIdType"/>
+          <xs:element name="receiverId" type="xs:string"/>
+          <xs:element name="senderId" type="xs:string"/>
+          <xs:element name="tjansteKontrakt" type="xs:NCName"/>
+          <xs:element name="fromTidpunkt" type="xs:dateTime"/>
+          <xs:element name="tomTidpunkt" type="xs:dateTime"/>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="filterInfo" nillable="true" type="tns:filterInfoType"/>
+          <xs:any maxOccurs="unbounded" minOccurs="0" namespace="##other" processContents="lax"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:simpleType name="anropsBehorighetsInfoIdType">
+        <xs:restriction base="xs:string"/>
+      </xs:simpleType>
+      <xs:complexType name="filterInfoType">
+        <xs:sequence>
+          <xs:element name="serviceDomain" type="xs:anyURI"/>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="categorization" nillable="true" type="xs:string"/>
+          <xs:any maxOccurs="unbounded" minOccurs="0" namespace="##other" processContents="lax"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="hamtaAllaVirtualiseringarResponseType">
+        <xs:sequence>
+          <xs:element maxOccurs="unbounded" minOccurs="0" name="virtualiseringsInfo" nillable="true" type="tns:virtualiseringsInfoType"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="hamtaAllaTjanstekontrakt" nillable="true" type="xs:anyType"/>
+      <xs:element name="hamtaAllaTjanstekontraktResponse" nillable="true" type="tns:hamtaAllaTjanstekontraktResponseType"/>
+      <xs:element name="hamtaAllaAnropsBehorigheter" nillable="true" type="xs:anyType"/>
+      <xs:element name="hamtaAllaAnropsBehorigheterResponse" nillable="true" type="tns:hamtaAllaAnropsBehorigheterResponseType"/>
+      <xs:element name="hamtaAllaVirtualiseringar" nillable="true" type="xs:anyType"/>
+      <xs:element name="hamtaAllaVirtualiseringarResponse" nillable="true" type="tns:hamtaAllaVirtualiseringarResponseType"/>
+    </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="hamtaAllaVirtualiseringarResponse">
+    <wsdl:part element="tns:hamtaAllaVirtualiseringarResponse" name="response"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="hamtaAllaAnropsBehorigheterResponse">
+    <wsdl:part element="tns:hamtaAllaAnropsBehorigheterResponse" name="response"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="hamtaAllaVirtualiseringar">
+    <wsdl:part element="tns:hamtaAllaVirtualiseringar" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="hamtaAllaTjanstekontrakt">
+    <wsdl:part element="tns:hamtaAllaTjanstekontrakt" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="hamtaAllaTjanstekontraktResponse">
+    <wsdl:part element="tns:hamtaAllaTjanstekontraktResponse" name="response"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="hamtaAllaAnropsBehorigheter">
+    <wsdl:part element="tns:hamtaAllaAnropsBehorigheter" name="parameters"></wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="SokVagvalsInfoInterface">
+    <wsdl:operation name="hamtaAllaTjanstekontrakt">
+      <wsdl:input message="tns:hamtaAllaTjanstekontrakt" name="hamtaAllaTjanstekontrakt"></wsdl:input>
+      <wsdl:output message="tns:hamtaAllaTjanstekontraktResponse" name="hamtaAllaTjanstekontraktResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="hamtaAllaAnropsBehorigheter">
+      <wsdl:input message="tns:hamtaAllaAnropsBehorigheter" name="hamtaAllaAnropsBehorigheter"></wsdl:input>
+      <wsdl:output message="tns:hamtaAllaAnropsBehorigheterResponse" name="hamtaAllaAnropsBehorigheterResponse"></wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="hamtaAllaVirtualiseringar">
+      <wsdl:input message="tns:hamtaAllaVirtualiseringar" name="hamtaAllaVirtualiseringar"></wsdl:input>
+      <wsdl:output message="tns:hamtaAllaVirtualiseringarResponse" name="hamtaAllaVirtualiseringarResponse"></wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="SokVagvalsServiceSoap11LitDocServiceSoapBinding" type="tns:SokVagvalsInfoInterface">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="hamtaAllaTjanstekontrakt">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="hamtaAllaTjanstekontrakt">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="hamtaAllaTjanstekontraktResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="hamtaAllaAnropsBehorigheter">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="hamtaAllaAnropsBehorigheter">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="hamtaAllaAnropsBehorigheterResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="hamtaAllaVirtualiseringar">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="hamtaAllaVirtualiseringar">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="hamtaAllaVirtualiseringarResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="SokVagvalsServiceSoap11LitDocService">
+    <wsdl:port binding="tns:SokVagvalsServiceSoap11LitDocServiceSoapBinding" name="SokVagvalsSoap11LitDocPort">
+      <soap:address location="http://33.33.33.33:8080/tp-vagval-admin-services/SokVagvalsInfo/v2"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://33.33.33.33:8080/tp-vagval-admin-services/SokVagvalsInfo/v2</con:endpoint><con:endpoint>http://localhost:8080/tp-vagval-admin-services/SokVagvalsInfo/v2</con:endpoint></con:endpoints><con:operation isOneWay="false" action="" name="hamtaAllaAnropsBehorigheter" bindingOperationName="hamtaAllaAnropsBehorigheter" type="Request-Response" outputName="hamtaAllaAnropsBehorigheterResponse" inputName="hamtaAllaAnropsBehorigheter" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://33.33.33.33:8080/tp-vagval-admin-services/SokVagvalsInfo/v2</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:skl:tp:vagvalsinfo:v2">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <urn:hamtaAllaAnropsBehorigheter>?</urn:hamtaAllaAnropsBehorigheter>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:skl:tp:vagvalsinfo:v2/SokVagvalsInfoInterface/hamtaAllaAnropsBehorigheter"/></con:call></con:operation><con:operation isOneWay="false" action="" name="hamtaAllaTjanstekontrakt" bindingOperationName="hamtaAllaTjanstekontrakt" type="Request-Response" outputName="hamtaAllaTjanstekontraktResponse" inputName="hamtaAllaTjanstekontrakt" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/tp-vagval-admin-services/SokVagvalsInfo/v2</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:skl:tp:vagvalsinfo:v2">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <urn:hamtaAllaTjanstekontrakt>?</urn:hamtaAllaTjanstekontrakt>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:skl:tp:vagvalsinfo:v2/SokVagvalsInfoInterface/hamtaAllaTjanstekontrakt"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation isOneWay="false" action="" name="hamtaAllaVirtualiseringar" bindingOperationName="hamtaAllaVirtualiseringar" type="Request-Response" outputName="hamtaAllaVirtualiseringarResponse" inputName="hamtaAllaVirtualiseringar" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://33.33.33.33:8080/tp-vagval-admin-services/SokVagvalsInfo/v2</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:skl:tp:vagvalsinfo:v2" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<soapenv:Header/>
+<soapenv:Body>
+<urn:hamtaAllaVirtualiseringar xsi:nil="true"/>
+</soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:skl:tp:vagvalsinfo:v2/SokVagvalsInfoInterface/hamtaAllaVirtualiseringar"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:testSuite name="TestSuite skltp-box"><con:settings/><con:runType>SEQUENTIAL</con:runType><con:testCase failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="TestCase - EHR CheckConsent" searchProperties="true" id="5afb0ccd-e4f5-49aa-9d03-88ca49c7e951" disabled="true"><con:settings/><con:loadTest name="LoadTest - EHR CheckConsent"><con:settings><con:setting id="HttpSettings@close-connections">false</con:setting></con:settings><con:threadCount>60</con:threadCount><con:startDelay>0</con:startDelay><con:sampleInterval>250</con:sampleInterval><con:calculateTPSOnTimePassed>true</con:calculateTPSOnTimePassed><con:resetStatisticsOnThreadCountChange>true</con:resetStatisticsOnThreadCountChange><con:historyLimit>-1</con:historyLimit><con:testLimit>60</con:testLimit><con:limitType>TIME</con:limitType><con:loadStrategy><con:type>Simple</con:type><con:config><testDelay>10</testDelay><randomFactor>0.5</randomFactor></con:config></con:loadStrategy><con:assertion type="Step Status" name="Step Status"/><con:maxAssertionErrors>100</con:maxAssertionErrors><con:cancelExcessiveThreads>true</con:cancelExcessiveThreads><con:strategyInterval>500</con:strategyInterval></con:loadTest><con:properties/></con:testCase><con:testCase failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="TestCase - CRM GetSubjectOfCare" searchProperties="true" id="653a1660-5306-43d0-859b-a918c85d34f4"><con:settings/><con:properties/></con:testCase><con:testCase failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="TestCase - EI - FindContent" searchProperties="true" id="db3051ad-9112-46e1-9d41-33866108c62a"><con:settings/><con:properties/></con:testCase><con:testCase failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="TestCase - PingForConfiguration" searchProperties="true" id="54e3f254-74cb-4f77-8540-865936a993f9"><con:settings/><con:properties/></con:testCase><con:properties/></con:testSuite><con:mockService port="8090" path="/" host="HTs-MacBook-Pro.local" name="SokVagvalsInfoV2" bindToHostOnly="false" docroot=""><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.mock.WsdlMockService@require-soap-action">false</con:setting></con:settings><con:mockOperation name="hamtaAllaTjanstekontrakt" interface="SokVagvalsServiceSoap11LitDocServiceSoapBinding" operation="hamtaAllaTjanstekontrakt"><con:settings/><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:defaultResponse>Response 1</con:defaultResponse><con:response name="Response 1" encoding="UTF-8"><con:settings/><con:responseContent><![CDATA[<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+   <soap:Body>
+      <hamtaAllaTjanstekontraktResponse xmlns="urn:skl:tp:vagvalsinfo:v2">
+         <tjanstekontraktInfo>
+            <namnrymd>urn:riv:crm:scheduling:GetSubjectOfCareSchedule:1:rivtabp21</namnrymd>
+            <version>0</version>
+            <beskrivning>Tidbokning - GetSubjectOfCareSchedule</beskrivning>
+         </tjanstekontraktInfo>
+         <tjanstekontraktInfo>
+            <namnrymd>urn:riv:itinfra:tp:Ping:1:rivtabp20</namnrymd>
+            <version>0</version>
+            <beskrivning>Ping</beskrivning>
+         </tjanstekontraktInfo>
+         <tjanstekontraktInfo>
+            <namnrymd>urn:riv:itintegration:registry:GetLogicalAddresseesByServiceContract:1:rivtabp21</namnrymd>
+            <version>0</version>
+            <beskrivning>Stödtjänst VP</beskrivning>
+         </tjanstekontraktInfo>
+         <tjanstekontraktInfo>
+            <namnrymd>urn:riv:itintegration:registry:GetSupportedServiceContracts:1:rivtabp21</namnrymd>
+            <version>0</version>
+            <beskrivning>Stödtjänst VP</beskrivning>
+         </tjanstekontraktInfo>
+         <tjanstekontraktInfo>
+            <namnrymd>urn:riv:itintegration:engagementindex:FindContent:1:rivtabp21</namnrymd>
+            <version>0</version>
+            <beskrivning>Engagemangsindex - Findcontent</beskrivning>
+         </tjanstekontraktInfo>
+         <tjanstekontraktInfo>
+            <namnrymd>urn:riv:itintegration:engagementindex:ProcessNotification:1:rivtabp21</namnrymd>
+            <version>0</version>
+            <beskrivning>Engagemangsindex - ProcessNotification</beskrivning>
+         </tjanstekontraktInfo>
+         <tjanstekontraktInfo>
+            <namnrymd>urn:riv:itintegration:engagementindex:Update:1:rivtabp21</namnrymd>
+            <version>0</version>
+            <beskrivning>Engagemangsindex - Update</beskrivning>
+         </tjanstekontraktInfo>
+         <tjanstekontraktInfo>
+            <namnrymd>urn:riv:itintegration:engagementindex:GetUpdates:1:rivtabp21</namnrymd>
+            <version>0</version>
+            <beskrivning>Engagemangsindex - GetUpdates</beskrivning>
+         </tjanstekontraktInfo>
+         <tjanstekontraktInfo>
+            <namnrymd>urn:riv:clinicalprocess:healthcond:basic:GetObservation:1:rivtabp21</namnrymd>
+            <version>0</version>
+            <beskrivning>Hantera hälsorelaterade tillstånd, basuppgifter - GetObservation</beskrivning>
+         </tjanstekontraktInfo>
+      </hamtaAllaTjanstekontraktResponse>
+   </soap:Body>
+</soap:Envelope>]]></con:responseContent><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:skl:tp:vagvalsinfo:v2/SokVagvalsInfoInterface/hamtaAllaTjanstekontraktResponse"/></con:response><con:dispatchConfig/></con:mockOperation><con:mockOperation name="hamtaAllaVirtualiseringar" interface="SokVagvalsServiceSoap11LitDocServiceSoapBinding" operation="hamtaAllaVirtualiseringar"><con:settings/><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:defaultResponse>Response 1</con:defaultResponse><con:response name="Response 1" encoding="UTF-8"><con:settings/><con:responseContent><![CDATA[<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+   <soap:Body>
+      <hamtaAllaVirtualiseringarResponse xmlns="urn:skl:tp:vagvalsinfo:v2">
+         <virtualiseringsInfo>
+            <virtualiseringsInfoId>1</virtualiseringsInfoId>
+            <receiverId>HSA-VKK123</receiverId>
+            <rivProfil>RIVTABP21</rivProfil>
+            <tjansteKontrakt>urn:riv:crm:scheduling:GetSubjectOfCareSchedule:1:rivtabp21</tjansteKontrakt>
+            <fromTidpunkt>2013-05-24T00:00:00.000</fromTidpunkt>
+            <tomTidpunkt>2113-05-24T00:00:00.000</tomTidpunkt>
+            <adress>http://33.33.33.33:8080/Schedulr-0.5/ws/GetSubjectOfCareSchedule/1</adress>
+         </virtualiseringsInfo>
+         <virtualiseringsInfo>
+            <virtualiseringsInfoId>2</virtualiseringsInfoId>
+            <receiverId>HSA-VKM345</receiverId>
+            <rivProfil>RIVTABP21</rivProfil>
+            <tjansteKontrakt>urn:riv:crm:scheduling:GetSubjectOfCareSchedule:1:rivtabp21</tjansteKontrakt>
+            <fromTidpunkt>2013-05-24T00:00:00.000</fromTidpunkt>
+            <tomTidpunkt>2113-05-24T00:00:00.000</tomTidpunkt>
+            <adress>http://33.33.33.33:8080/Schedulr-0.5/ws/GetSubjectOfCareSchedule/1</adress>
+         </virtualiseringsInfo>
+         <virtualiseringsInfo>
+            <virtualiseringsInfoId>3</virtualiseringsInfoId>
+            <receiverId>HSA-VKY567</receiverId>
+            <rivProfil>RIVTABP21</rivProfil>
+            <tjansteKontrakt>urn:riv:crm:scheduling:GetSubjectOfCareSchedule:1:rivtabp21</tjansteKontrakt>
+            <fromTidpunkt>2013-05-24T00:00:00.000</fromTidpunkt>
+            <tomTidpunkt>2113-05-24T00:00:00.000</tomTidpunkt>
+            <adress>http://33.33.33.33:8080/Schedulr-0.5/ws/GetSubjectOfCareSchedule/1</adress>
+         </virtualiseringsInfo>
+         <virtualiseringsInfo>
+            <virtualiseringsInfoId>4</virtualiseringsInfoId>
+            <receiverId>Ping</receiverId>
+            <rivProfil>RIVTABP20</rivProfil>
+            <tjansteKontrakt>urn:riv:itinfra:tp:Ping:1:rivtabp20</tjansteKontrakt>
+            <fromTidpunkt>2013-05-28T00:00:00.000</fromTidpunkt>
+            <tomTidpunkt>2113-05-28T00:00:00.000</tomTidpunkt>
+            <adress>http://localhost:10000/test/Ping_Service</adress>
+         </virtualiseringsInfo>
+         <virtualiseringsInfo>
+            <virtualiseringsInfoId>5</virtualiseringsInfoId>
+            <receiverId>5565594230</receiverId>
+            <rivProfil>RIVTABP21</rivProfil>
+            <tjansteKontrakt>urn:riv:itintegration:registry:GetLogicalAddresseesByServiceContract:1:rivtabp21</tjansteKontrakt>
+            <fromTidpunkt>2013-08-24T00:00:00.000</fromTidpunkt>
+            <tomTidpunkt>2113-08-24T00:00:00.000</tomTidpunkt>
+            <adress>https://localhost:23001/vp/GetLogicalAddresseesByServiceContract/1/rivtabp21</adress>
+         </virtualiseringsInfo>
+         <virtualiseringsInfo>
+            <virtualiseringsInfoId>6</virtualiseringsInfoId>
+            <receiverId>5565594230</receiverId>
+            <rivProfil>RIVTABP21</rivProfil>
+            <tjansteKontrakt>urn:riv:itintegration:engagementindex:FindContent:1:rivtabp21</tjansteKontrakt>
+            <fromTidpunkt>2013-08-24T00:00:00.000</fromTidpunkt>
+            <tomTidpunkt>2113-08-24T00:00:00.000</tomTidpunkt>
+            <adress>http://localhost:8082/skltp-ei/find-content-service/v1</adress>
+         </virtualiseringsInfo>
+         <virtualiseringsInfo>
+            <virtualiseringsInfoId>7</virtualiseringsInfoId>
+            <receiverId>5565594230</receiverId>
+            <rivProfil>RIVTABP21</rivProfil>
+            <tjansteKontrakt>urn:riv:itintegration:engagementindex:ProcessNotification:1:rivtabp21</tjansteKontrakt>
+            <fromTidpunkt>2013-08-24T00:00:00.000</fromTidpunkt>
+            <tomTidpunkt>2113-08-24T00:00:00.000</tomTidpunkt>
+            <adress>http://localhost:8081/skltp-ei/notification-service/v1</adress>
+         </virtualiseringsInfo>
+         <virtualiseringsInfo>
+            <virtualiseringsInfoId>8</virtualiseringsInfoId>
+            <receiverId>5565594230</receiverId>
+            <rivProfil>RIVTABP21</rivProfil>
+            <tjansteKontrakt>urn:riv:itintegration:engagementindex:Update:1:rivtabp21</tjansteKontrakt>
+            <fromTidpunkt>2013-08-24T00:00:00.000</fromTidpunkt>
+            <tomTidpunkt>2113-08-24T00:00:00.000</tomTidpunkt>
+            <adress>http://localhost:8081/skltp-ei/update-service/v1</adress>
+         </virtualiseringsInfo>
+         <virtualiseringsInfo>
+            <virtualiseringsInfoId>9</virtualiseringsInfoId>
+            <receiverId>5565594230</receiverId>
+            <rivProfil>RIVTABP21</rivProfil>
+            <tjansteKontrakt>urn:riv:crm:scheduling:GetSubjectOfCareSchedule:1:rivtabp21</tjansteKontrakt>
+            <fromTidpunkt>2013-08-24T00:00:00.000</fromTidpunkt>
+            <tomTidpunkt>2113-08-24T00:00:00.000</tomTidpunkt>
+            <adress>http://localhost:8083/GetAggregatedSubjectOfCareSchedule/service/v1</adress>
+         </virtualiseringsInfo>
+         <virtualiseringsInfo>
+            <virtualiseringsInfoId>10</virtualiseringsInfoId>
+            <receiverId>demo-ei-notify-publisher</receiverId>
+            <rivProfil>RIVTABP21</rivProfil>
+            <tjansteKontrakt>urn:riv:itintegration:engagementindex:ProcessNotification:1:rivtabp21</tjansteKontrakt>
+            <fromTidpunkt>2013-09-16T00:00:00.000</fromTidpunkt>
+            <tomTidpunkt>2113-09-16T00:00:00.000</tomTidpunkt>
+            <adress>http://33.33.33.33:10000/test/demo_ei_notify_service</adress>
+         </virtualiseringsInfo>
+         <virtualiseringsInfo>
+            <virtualiseringsInfoId>11</virtualiseringsInfoId>
+            <receiverId>5565594230</receiverId>
+            <rivProfil>RIVTABP21</rivProfil>
+            <tjansteKontrakt>urn:riv:clinicalprocess:healthcond:basic:GetObservation:1:rivtabp21</tjansteKontrakt>
+            <fromTidpunkt>2013-10-07T00:00:00.000</fromTidpunkt>
+            <tomTidpunkt>2113-10-07T00:00:00.000</tomTidpunkt>
+            <adress>http://localhost:9010/GetAggregatedObservation/service/v1</adress>
+         </virtualiseringsInfo>
+         <virtualiseringsInfo>
+            <virtualiseringsInfoId>19</virtualiseringsInfoId>
+            <receiverId>HSA-ID-1</receiverId>
+            <rivProfil>RIVTABP21</rivProfil>
+            <tjansteKontrakt>urn:riv:clinicalprocess:healthcond:basic:GetObservation:1:rivtabp21</tjansteKontrakt>
+            <fromTidpunkt>2013-10-07T00:00:00.000</fromTidpunkt>
+            <tomTidpunkt>2113-10-07T00:00:00.000</tomTidpunkt>
+            <adress>http://localhost:9110/GetObservation/service/teststub/v1</adress>
+         </virtualiseringsInfo>
+         <virtualiseringsInfo>
+            <virtualiseringsInfoId>20</virtualiseringsInfoId>
+            <receiverId>HSA-ID-2</receiverId>
+            <rivProfil>RIVTABP21</rivProfil>
+            <tjansteKontrakt>urn:riv:clinicalprocess:healthcond:basic:GetObservation:1:rivtabp21</tjansteKontrakt>
+            <fromTidpunkt>2013-10-07T00:00:00.000</fromTidpunkt>
+            <tomTidpunkt>2113-10-07T00:00:00.000</tomTidpunkt>
+            <adress>http://localhost:9110/GetObservation/service/teststub/v1</adress>
+         </virtualiseringsInfo>
+         <virtualiseringsInfo>
+            <virtualiseringsInfoId>21</virtualiseringsInfoId>
+            <receiverId>HSA-ID-3</receiverId>
+            <rivProfil>RIVTABP21</rivProfil>
+            <tjansteKontrakt>urn:riv:clinicalprocess:healthcond:basic:GetObservation:1:rivtabp21</tjansteKontrakt>
+            <fromTidpunkt>2013-10-07T00:00:00.000</fromTidpunkt>
+            <tomTidpunkt>2113-10-07T00:00:00.000</tomTidpunkt>
+            <adress>http://localhost:9110/GetObservation/service/teststub/v1</adress>
+         </virtualiseringsInfo>
+         <virtualiseringsInfo>
+            <virtualiseringsInfoId>22</virtualiseringsInfoId>
+            <receiverId>HSA-ID-4</receiverId>
+            <rivProfil>RIVTABP21</rivProfil>
+            <tjansteKontrakt>urn:riv:clinicalprocess:healthcond:basic:GetObservation:1:rivtabp21</tjansteKontrakt>
+            <fromTidpunkt>2013-10-07T00:00:00.000</fromTidpunkt>
+            <tomTidpunkt>2113-10-07T00:00:00.000</tomTidpunkt>
+            <adress>http://localhost:9110/GetObservation/service/teststub/v1</adress>
+         </virtualiseringsInfo>
+         <virtualiseringsInfo>
+            <virtualiseringsInfoId>23</virtualiseringsInfoId>
+            <receiverId>HSA-ID-5</receiverId>
+            <rivProfil>RIVTABP21</rivProfil>
+            <tjansteKontrakt>urn:riv:clinicalprocess:healthcond:basic:GetObservation:1:rivtabp21</tjansteKontrakt>
+            <fromTidpunkt>2013-10-07T00:00:00.000</fromTidpunkt>
+            <tomTidpunkt>2113-10-07T00:00:00.000</tomTidpunkt>
+            <adress>http://localhost:9110/GetObservation/service/teststub/v1</adress>
+         </virtualiseringsInfo>
+         <virtualiseringsInfo>
+            <virtualiseringsInfoId>24</virtualiseringsInfoId>
+            <receiverId>HSA-ID-6</receiverId>
+            <rivProfil>RIVTABP21</rivProfil>
+            <tjansteKontrakt>urn:riv:clinicalprocess:healthcond:basic:GetObservation:1:rivtabp21</tjansteKontrakt>
+            <fromTidpunkt>2013-10-07T00:00:00.000</fromTidpunkt>
+            <tomTidpunkt>2113-10-07T00:00:00.000</tomTidpunkt>
+            <adress>http://localhost:9110/GetObservation/service/teststub/v1</adress>
+         </virtualiseringsInfo>
+         <virtualiseringsInfo>
+            <virtualiseringsInfoId>25</virtualiseringsInfoId>
+            <receiverId>HSA-ID-7</receiverId>
+            <rivProfil>RIVTABP21</rivProfil>
+            <tjansteKontrakt>urn:riv:clinicalprocess:healthcond:basic:GetObservation:1:rivtabp21</tjansteKontrakt>
+            <fromTidpunkt>2013-10-07T00:00:00.000</fromTidpunkt>
+            <tomTidpunkt>2113-10-07T00:00:00.000</tomTidpunkt>
+            <adress>http://localhost:9110/GetObservation/service/teststub/v1</adress>
+         </virtualiseringsInfo>
+      </hamtaAllaVirtualiseringarResponse>
+   </soap:Body>
+</soap:Envelope>]]></con:responseContent><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:skl:tp:vagvalsinfo:v2/SokVagvalsInfoInterface/hamtaAllaVirtualiseringarResponse"/></con:response><con:dispatchConfig/></con:mockOperation><con:properties/></con:mockService><con:properties/><con:wssContainer/><con:sensitiveInformation/></con:soapui-project>
