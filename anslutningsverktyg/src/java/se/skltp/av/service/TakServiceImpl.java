@@ -48,6 +48,18 @@ public class TakServiceImpl {
 		}
 		return result;
 	}
+	
+	public List<Tjanstekontrakt> getAllTjanstekontrakt(String tjansteDoman) {
+
+		List<Tjanstekontrakt> result = new ArrayList<>();
+
+		for (final Tjanstekontrakt tk: getAllTjanstekontrakt()) {
+			if(tk.getNamnrymd().contains(tjansteDoman)){
+				result.add(tk);
+			}
+		}
+		return result;
+	}
 
 	public List<ProducentAnslutning> getAllProducentAnslutningar(String id) {
 
