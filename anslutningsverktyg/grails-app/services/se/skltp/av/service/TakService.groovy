@@ -7,8 +7,11 @@ class TakService {
 	
 	TakServiceImpl takServiceImpl = new TakServiceImpl()
 
-    def getAllTjanstekontrakt() {
-		takServiceImpl.getAllTjanstekontrakt()
+    def getAllTjanstekontrakt(String tjansteDoman) {
+		if(tjansteDoman){
+			return takServiceImpl.getAllTjanstekontrakt(tjansteDoman)
+		}
+		return takServiceImpl.getAllTjanstekontrakt()
     }
 	
 	def getAllProducentAnslutningar(String id){
