@@ -13,7 +13,7 @@ public class TestTakService {
 
 	@BeforeClass
 	static public void setup() {
-		service = new TakServiceImpl();
+		service = new TakServiceImpl("http://localhost:8090/tp-vagval-admin-services/SokVagvalsInfo/v2?wsdl");
 	}
 
     @Test

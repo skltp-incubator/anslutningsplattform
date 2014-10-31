@@ -16,19 +16,14 @@ public class HsaServiceImpl {
 	private Logger log = LoggerFactory.getLogger(HsaServiceImpl.class);
 	private HsaCache hsaCache;
 	
-	public HsaServiceImpl() {
-		
-		// FIXME: To be placed in configuration files
-		String dir = "grails-app/conf/";
-		String[] hsaFiles = new String[] {dir + "hsacache.xml", dir + "hsacachecomplementary.xml"};
-		
+	public HsaServiceImpl(String... hsaFiles) {
 		log.info("Creates a HsaService based on the files: {}",StringUtils.join(hsaFiles, ", "));
 		hsaCache = new HsaCacheImpl(hsaFiles);
 	}
 	
 	public List<HsaNode> freeTextSearch(String searchText, int maxNoOfHits) {
 		List<HsaNodeInfo> resultFromCache = hsaCache.freeTextSearch(searchText, maxNoOfHits);
-		List<HsaNode> result = new ArrayList(); 
+		List<HsaNode> result = new ArrayList<>(); 
 		
 		if (resultFromCache == null) return result;
 		

@@ -6,12 +6,21 @@ import grails.transaction.Transactional
 @Transactional
 class HsaService {
 	
-	HsaServiceImpl hsaServiceImpl = new HsaServiceImpl()
+	def grailsApplication
+	
+	def hsaServiceImpl
 
     def freeTextSearch(String searchParams, int maxNoOfHits) {
-			
-		return hsaServiceImpl.freeTextSearch(searchParams, maxNoOfHits);
+		return getHsaService().freeTextSearch(searchParams, maxNoOfHits);
     }
+	
+	def getHsaService(){
+		if(!hsaServiceImpl){
+			def hsaFiles = grailsApplication.config.hsa.hsacache.files
+			hsaServiceImpl = new HsaServiceImpl(hsaFiles as String[])
+		}
+		return hsaServiceImpl
+	}
 	
 	
 }

@@ -18,10 +18,7 @@ public class TakServiceImpl {
 	private Logger log = LoggerFactory.getLogger(TakServiceImpl.class);
 	private SokVagvalsInfoInterface webServiceProxy;
 
-	public TakServiceImpl() {
-
-		// FIXME: To be placed in configuration files
-		String url = "http://localhost:8090/tp-vagval-admin-services/SokVagvalsInfo/v2?wsdl";
+	public TakServiceImpl(String url) {
 
 		log.info("Creates a TakService based on the TAK-URL: {}", url);
 		try {

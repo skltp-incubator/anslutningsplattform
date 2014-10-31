@@ -5,16 +5,26 @@ import grails.transaction.Transactional
 @Transactional
 class TakService {
 	
-	TakServiceImpl takServiceImpl = new TakServiceImpl()
+	def grailsApplication
+	
+	def takServiceImpl
 
     def getAllTjanstekontrakt(String tjansteDoman) {
 		if(tjansteDoman){
-			return takServiceImpl.getAllTjanstekontrakt(tjansteDoman)
+			return getTakServiceImpl().getAllTjanstekontrakt(tjansteDoman)
 		}
-		return takServiceImpl.getAllTjanstekontrakt()
+		return getTakServiceImpl().getAllTjanstekontrakt()
     }
 	
 	def getAllProducentAnslutningar(String id){
-		takServiceImpl.getAllProducentAnslutningar(id)
+		getTakServiceImpl().getAllProducentAnslutningar(id)
+	}
+	
+	def getTakServiceImpl(){
+		if(!takServiceImpl){
+			def takUrl = grailsApplication.config.tak.sokvagvalsinfo.url
+			takServiceImpl = new TakServiceImpl(takUrl)
+		}
+		return takServiceImpl
 	}
 }

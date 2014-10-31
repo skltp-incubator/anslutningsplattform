@@ -14,7 +14,10 @@ public class TestHsaService {
 
 	@BeforeClass
 	static public void setup() {
-		service = new HsaServiceImpl();
+		
+		String dir = "grails-app/conf/";
+		String[] hsaFiles = new String[] {dir + "hsacache.xml", dir + "hsacachecomplementary.xml"};
+		service = new HsaServiceImpl(hsaFiles);
 	}
 
 	/**
