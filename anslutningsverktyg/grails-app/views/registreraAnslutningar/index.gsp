@@ -139,7 +139,7 @@
 								<td>${fieldValue(bean: anslutning, field: "tjansteKontrakt").split(':')[-3]}</td>
 								<td><g:select name="rivTaProfile" required="" from="${['RIVTABP20', 'RIVTABP21']}"  valueMessagePrefix="rivTaProfile" value="${producentBestallningInstance?.defaultRivTaProfile}"/></td>
 								<td><g:actionSubmit name="show" class="edit" value="Ändra logiska adresser" action="show" controller="registreraLogiskAdress" disabled="true"/></td>
-								<td><g:textField name="${fieldValue(bean: anslutning, field: "tjansteKontrakt")}" value="${fieldValue(bean: anslutning, field: "url")}"/></td>
+								<td><input name="${fieldValue(bean: anslutning, field: "tjansteKontrakt")}" type="text" value="${fieldValue(bean: anslutning, field: "url")}"/></td>
 							</tr>
 						</g:each>
 						</tbody>

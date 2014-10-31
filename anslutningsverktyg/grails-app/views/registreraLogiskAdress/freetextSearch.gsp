@@ -81,6 +81,18 @@
 				}
 			}
 		</style>
+		
+		<script type="text/javascript"> 
+
+			function stopRKey(evt) { 
+			  var evt = (evt) ? evt : ((event) ? event : null); 
+			  var node = (evt.target) ? evt.target : ((evt.srcElement) ? evt.srcElement : null); 
+			  if ((evt.keyCode == 13) && (node.type=="text"))  {return false;} 
+			} 
+
+			document.onkeypress = stopRKey; 
+
+		</script>
 	</head>
 	<body>
 	
@@ -124,15 +136,14 @@
 					</g:if>
 				
 				<fieldset class="form">
-				    <g:form action="freetextSearch" method="GET">
+				    <g:form action="freetextSearch" controller="registreraLogiskAdress" method="POST">
 				    	 <div class="fieldcontain">
 				    	 	<label for="query">Tjänsteproducent</label>	
 				            <label for="query">${fieldValue(bean: producentBestallningInstance, field: "tjansteproducent.hsaId")}</label>	
 				        </div>
 				        <div class="fieldcontain">
 				            <label for="query">Sök logiska adresser</label>
-				            
-				            <g:textField name="query" value="${params.query}"/>
+				            <input name="query" type="text" value="${params.query}"/>
 				            <g:submitToRemote url="[controller: 'registreraLogiskAdress' ,action: 'freetextSearch']" value="Sök" update="searchresults" />	
 				        </div>
 				    </g:form>

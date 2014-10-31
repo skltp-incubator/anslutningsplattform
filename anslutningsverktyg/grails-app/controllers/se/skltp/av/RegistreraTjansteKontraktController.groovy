@@ -114,7 +114,7 @@ class RegistreraTjansteKontraktController {
 			
 		request.withFormat {
 			form multipartForm {
-				flash.message = message(code: 'default.created.message', args: [message(code: 'producentBestallning.label', default: 'RegistreraTjansteKontrakt'), producentBestallningInstance.id])
+				flash.message = message(code: 'default.created.message', args: [message(code: 'producentBestallning.label', default: 'RegistreraTjansteKontrakt'), producentBestallningInstance])
 				//redirect producentBestallningInstance
 				redirect(controller: "registreraLogiskAdress", action: "show", id: producentBestallningInstance.id, params: [producentBestallningInstance: producentBestallningInstance])
 			}
@@ -172,7 +172,7 @@ class RegistreraTjansteKontraktController {
 
 		request.withFormat {
 			form multipartForm {
-				flash.message = message(code: 'default.updated.message', args: [message(code: 'ProducentBestallning.label', default: 'RegistreraTjansteKontrakt'), producentBestallningInstance.id])
+				flash.message = message(code: 'default.updated.message', args: [message(code: 'ProducentBestallning.label', default: 'RegistreraTjansteKontrakt'), producentBestallningInstance])
 				redirect producentBestallningInstance
 				redirect(controller: "registreraTjansteKontrakt", action: "edit", id: producentBestallningInstance.id, params: [producentBestallningInstance: producentBestallningInstance])
 			}
