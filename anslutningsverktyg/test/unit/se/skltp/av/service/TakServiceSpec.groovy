@@ -10,12 +10,13 @@ import spock.lang.Specification
 @TestFor(TakService)
 class TakServiceSpec extends Specification {
 
+    @spock.lang.Ignore
     def setup() {
     }
-
+	@spock.lang.Ignore
     def cleanup() {
     }
-
+	@spock.lang.Ignore
     void "test something"() {
     }
 }

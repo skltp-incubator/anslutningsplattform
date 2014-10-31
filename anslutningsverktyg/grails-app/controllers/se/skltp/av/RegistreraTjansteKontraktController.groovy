@@ -7,10 +7,15 @@ import se.skltp.av.service.TakService
 import se.skltp.av.ProducentBestallning
 import static org.springframework.http.HttpStatus.*
 import se.skltp.av.services.dto.TjanstekontraktDTO
+import groovy.time.TimeCategory
+import java.util.Date;
+import java.util.regex.Pattern
 
 import org.apache.shiro.SecurityUtils
 
 class RegistreraTjansteKontraktController {
+	
+	def pattern = ~/on/
 	
 	def takService
 
@@ -22,12 +27,7 @@ class RegistreraTjansteKontraktController {
 		render(contentType: "application/json") { takService.getAllProducentAnslutningar(params.id) }
 	}
 	
-	
 	static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
-	
-	enum Status {
-		NY, UPPDATERAD
-	}
 	
 	def searchTjansteKontrakt(String tjansteproducent, String miljo, String tjansteDoman){
 		
@@ -66,9 +66,7 @@ class RegistreraTjansteKontraktController {
 
 	@Transactional
 	def save(ProducentBestallning producentBestallningInstance) {
-		
-		println "Spara"
-		
+			
 		if (producentBestallningInstance == null) {
 			notFound()
 			return
@@ -78,22 +76,47 @@ class RegistreraTjansteKontraktController {
 			respond producentBestallningInstance.errors, view:'create'
 			return
 		}
-					
+		
+		def today = new Date()
+		def hundredYearsFromToday
+		
+		use (TimeCategory) {
+			hundredYearsFromToday = today + 100.years
+		}
+		
 		producentBestallningInstance.save flush:true
+		
+		params.each {		
+			if (it?.value instanceof String && it?.value?.matches(pattern)){
+				
+				def anslutning = new ProducentAnslutning(
+					rivTaProfile: producentBestallningInstance?.defaultRivTaProfile,
+					url:'https://path/to/service',
+					tjansteKontrakt: it.key,
+					validFromTime: today,
+					validToTime: hundredYearsFromToday,
+					producentBestallning: producentBestallningInstance
+					)
+				
+				producentBestallningInstance.addToProducentAnslutning(anslutning)
+			}
+		}
+					
+		
 		
 		//Create history post for the save
 		new BestallningsHistorik(
-			status: Status.NY,
+			status: Status.UPPDATERAD,
 			datum: new Date(),
 			producentBestallning: producentBestallningInstance,
 			senastUppdateradAv: SecurityUtils.subject.principal
 			).save()
-
-
+			
 		request.withFormat {
 			form multipartForm {
 				flash.message = message(code: 'default.created.message', args: [message(code: 'producentBestallning.label', default: 'RegistreraTjansteKontrakt'), producentBestallningInstance.id])
-				redirect producentBestallningInstance
+				//redirect producentBestallningInstance
+				redirect(controller: "registreraLogiskAdress", action: "show", id: producentBestallningInstance.id, params: [producentBestallningInstance: producentBestallningInstance])
 			}
 			'*' { respond producentBestallningInstance, [status: CREATED], view:'show' }
 		}
@@ -101,17 +124,43 @@ class RegistreraTjansteKontraktController {
 
 	@Transactional
 	def update(ProducentBestallning producentBestallningInstance) {
+		
+		println "spara update"
+		
 		if (producentBestallningInstance == null) {
 			notFound()
 			return
 		}
 
 		if (producentBestallningInstance.hasErrors()) {
-			respond producentBestallningInstance.errors, view:'edit'
+			respond producentBestallningInstance.errors, controller: "registreraTjansteKontrakt", view:'edit'
 			return
 		}
 
+		def today = new Date()
+		def hundredYearsFromToday
+		
+		use (TimeCategory) {
+			hundredYearsFromToday = today + 100.years
+		}
+		
 		producentBestallningInstance.save flush:true
+		
+		params.each {		
+			if (it?.value instanceof String && it?.value?.matches(pattern)){
+				
+				def anslutning = new ProducentAnslutning(
+					rivTaProfile: producentBestallningInstance?.defaultRivTaProfile,
+					url:'https://path/to/service',
+					tjansteKontrakt: it.key,
+					validFromTime: today,
+					validToTime: hundredYearsFromToday,
+					producentBestallning: producentBestallningInstance
+					)
+				
+				producentBestallningInstance.addToProducentAnslutning(anslutning)
+			}
+		}
 		
 		//Create history post for the update
 		new BestallningsHistorik(
@@ -125,31 +174,9 @@ class RegistreraTjansteKontraktController {
 			form multipartForm {
 				flash.message = message(code: 'default.updated.message', args: [message(code: 'ProducentBestallning.label', default: 'RegistreraTjansteKontrakt'), producentBestallningInstance.id])
 				redirect producentBestallningInstance
+				redirect(controller: "registreraTjansteKontrakt", action: "edit", id: producentBestallningInstance.id, params: [producentBestallningInstance: producentBestallningInstance])
 			}
 			'*'{ respond producentBestallningInstance, [status: OK] }
-		}
-	}
-
-	@Transactional
-	def delete(ProducentBestallning producentBestallningInstance) {
-
-		if (producentBestallningInstance == null) {
-			notFound()
-			return
-		}
-		
-		//Delete history and connections
-		
-		
-
-		producentBestallningInstance.delete flush:true
-
-		request.withFormat {
-			form multipartForm {
-				flash.message = message(code: 'default.deleted.message', args: [message(code: 'ProducentBestallning.label', default: 'RegistreraTjansteKontrakt'), producentBestallningInstance.id])
-				redirect action:"index", method:"GET"
-			}
-			'*'{ render status: NO_CONTENT }
 		}
 	}
 

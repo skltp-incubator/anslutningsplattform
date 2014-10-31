@@ -9,13 +9,13 @@ import spock.lang.Specification
  */
 @TestFor(HsaService)
 class HsaServiceSpec extends Specification {
-
-    def setup() {
-    }
-
-    def cleanup() {
-    }
-
-    void "test something"() {
-    }
+	@spock.lang.Ignore
+	def setup() {
+	}
+	@spock.lang.Ignore
+	def cleanup() {
+	}
+	@spock.lang.Ignore
+	void "test something"() {
+	}
 }

@@ -1,10 +1,12 @@
+
 <%@ page import="se.skltp.av.ProducentBestallning" %>
-<g:javascript library="jquery"/>
 <!DOCTYPE html>
 <html>
 	<head>
 		<meta name="layout" content="main">
-		<title>Välj logiska adresser</title>
+		<g:set var="entityName" value="${message(code: 'producentBestallning.label', default: 'ProducentBestallning')}" />
+		<title>Registrera anslutningar</title>
+		
 		<style type="text/css" media="screen">
 			#status {
 				background-color: #eee;
@@ -81,9 +83,9 @@
 				}
 			}
 		</style>
+		
 	</head>
 	<body>
-	
 		<div id="status" role="complementary">
 			<ul>
 				<li>Miljö:</li>
@@ -106,7 +108,7 @@
 				</g:each>
 			</ul>
 			<ul>
-				<li>Default logisk adress:</li>
+				<li>Default logiska adresser:</li>
 				<g:each in="${producentBestallningInstance.defaultLogiskAdress}" var="p">
 					<li>${p?.hsaId?.encodeAsHTML()}</li>
 				</g:each>
@@ -114,43 +116,44 @@
 		</div>
 		
 		<div id="page-body" role="main">
-	
-			<div id="create-producentBestallning" class="content scaffold-create" role="main">
-			
-				<h1><label for="query">Välj logiska adresser</label></h1>
-				
-				<g:if test="${flash.message}">
+		
+			<g:form action="update" controller="registreraAnslutningar" method="POST">
+		
+				<div id="list-producentBestallning" class="content scaffold-list" role="main">
+					<h1>Registrera anslutningar</h1>
+					<g:if test="${flash.message}">
 						<div class="message" role="status">${flash.message}</div>
 					</g:if>
+					<table>
+						<thead>
+							<tr>	
+								<th>Tjänstekontrakt</th>
+								<th>RIV TA profil</th>
+								<th>Logiska adresser</th>
+								<th>Url</th>
+							</tr>
+						</thead>
+						<tbody>
+						<g:each in="${producentBestallningInstance?.producentAnslutning}" status="i" var="anslutning">
+							<tr class="${(i % 2) == 0 ? 'even' : 'odd'}">
+								<td>${fieldValue(bean: anslutning, field: "tjansteKontrakt").split(':')[-3]}</td>
+								<td><g:select name="rivTaProfile" required="" from="${['RIVTABP20', 'RIVTABP21']}"  valueMessagePrefix="rivTaProfile" value="${producentBestallningInstance?.defaultRivTaProfile}"/></td>
+								<td><g:actionSubmit name="show" class="edit" value="Ändra logiska adresser" action="show" controller="registreraLogiskAdress" disabled="true"/></td>
+								<td><g:textField name="${fieldValue(bean: anslutning, field: "tjansteKontrakt")}" value="${fieldValue(bean: anslutning, field: "url")}"/></td>
+							</tr>
+						</g:each>
+						</tbody>
+					</table>
+					
+					<g:hiddenField name="producentBestallningId" value="${fieldValue(bean: producentBestallningInstance, field: "id")}"/>
+					
+					<fieldset class="buttons">
+						<g:actionSubmit name="update" class="edit" value="Spara" action="update" controller="registreraAnslutningar" disabled="false"/>
+						<g:actionSubmit name="create" class="save" value="Spara och gå vidare till bekräfta beställning" action="save" controller="registreraAnslutningar"/>
+					</fieldset>
+				</div>
 				
-				<fieldset class="form">
-				    <g:form action="freetextSearch" method="GET">
-				    	 <div class="fieldcontain">
-				    	 	<label for="query">Tjänsteproducent</label>	
-				            <label for="query">${fieldValue(bean: producentBestallningInstance, field: "tjansteproducent.hsaId")}</label>	
-				        </div>
-				        <div class="fieldcontain">
-				            <label for="query">Sök logiska adresser</label>
-				            
-				            <g:textField name="query" value="${params.query}"/>
-				            <g:submitToRemote url="[controller: 'registreraLogiskAdress' ,action: 'freetextSearch']" value="Sök" update="searchresults" />	
-				        </div>
-				    </g:form>
-				    	
-					<g:form action="save" controller="registreraLogiskAdress">
-						<g:hiddenField name="producentBestallningId" value="${fieldValue(bean: producentBestallningInstance, field: "id")}"/>
-						<fieldset class="form">
-							<g:render template="searchResults"/>
-						</fieldset>
-						<fieldset class="buttons">
-							<g:actionSubmit name="update" class="edit" value="Spara" action="update" controller="registreraLogiskAdress" disabled="false"/>
-							<g:actionSubmit name="create" class="save" value="Spara och gå vidare till nästa steg" action="save" controller="registreraLogiskAdress"/>
-						</fieldset>
-					</g:form>	
-			 	
-				</fieldset>
-			</div>
-			
+			</g:form>
 		</div>
 	</body>
 </html>

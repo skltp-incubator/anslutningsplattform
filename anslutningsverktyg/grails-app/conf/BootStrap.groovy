@@ -12,9 +12,6 @@ class BootStrap {
         def adminRole = new Role(name: 'ADMINISTRATÖR')
         adminRole.addToPermissions("User:*")
         adminRole.addToPermissions("Role:*")
-        adminRole.addToPermissions("ServiceProducer:index")
-        adminRole.addToPermissions("ServiceProducer:list")
-        adminRole.addToPermissions("ServiceProducer:show")
         adminRole.save()
 
         def tkResponsibleUserRole = new Role(name:"TJÄNSTEKOMPONENTANSVARIG")
@@ -25,6 +22,8 @@ class BootStrap {
 		tkResponsibleUserRole.addToPermissions("BekraftaProducentBestallning:*")
 		tkResponsibleUserRole.addToPermissions("RegistreraLogiskAdress:*")
 		tkResponsibleUserRole.addToPermissions("RegistreraTjansteKontrakt:*")
+		tkResponsibleUserRole.addToPermissions("RegistreraAnslutningar:*")
+		tkResponsibleUserRole.addToPermissions("LogiskAdress:*")
         tkResponsibleUserRole.save()
 
 		//Users

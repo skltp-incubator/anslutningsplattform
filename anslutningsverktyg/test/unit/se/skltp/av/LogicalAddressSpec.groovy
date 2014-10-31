@@ -9,12 +9,15 @@ import spock.lang.Specification
 @TestFor(LogiskAdress)
 class LogicalAddressSpec extends Specification {
 
+	@spock.lang.Ignore
     def setup() {
     }
-
+	
+	@spock.lang.Ignore
     def cleanup() {
     }
-
+	
+	@spock.lang.Ignore
     void "test something"() {
     }
 }

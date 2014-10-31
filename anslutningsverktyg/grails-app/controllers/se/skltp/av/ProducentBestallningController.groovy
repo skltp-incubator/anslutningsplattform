@@ -4,32 +4,27 @@ package se.skltp.av
 
 import static org.springframework.http.HttpStatus.*
 import grails.transaction.Transactional
+
 import org.apache.shiro.SecurityUtils
 
 @Transactional(readOnly = true)
 class ProducentBestallningController {
-	
-	static scaffold = true
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
+
+    def index(Integer max) {
+        params.max = Math.min(max ?: 10, 100)
+        respond ProducentBestallning.list(params), model:[producentBestallningInstanceCount: ProducentBestallning.count()]
+    }
+
+    def show(ProducentBestallning producentBestallningInstance) {
+        respond producentBestallningInstance
+    }
 	
-	enum Status {
-		NY, UPPDATERAD
-	}
-
-    @Transactional
-    def save(ProducentBestallning producentBestallningInstance) {
-        if (producentBestallningInstance == null) {
-            notFound()
-            return
-        }
-
-        if (producentBestallningInstance.hasErrors()) {
-            respond producentBestallningInstance.errors, view:'create'
-            return
-        }
-					
-        producentBestallningInstance.save flush:true
+	@Transactional
+	def confirm(ProducentBestallning producentBestallningInstance) {
+		
+		//Dummy confirm
 		
 		//Create history post for the save
 		new BestallningsHistorik(
@@ -39,69 +34,14 @@ class ProducentBestallningController {
 			senastUppdateradAv: SecurityUtils.subject.principal
 			).save()
 
-
-        request.withFormat {
-            form multipartForm {
-                flash.message = message(code: 'default.created.message', args: [message(code: 'producentBestallning.label', default: 'ProducentBestallning'), producentBestallningInstance.id])
-                redirect producentBestallningInstance
-            }
-            '*' { respond producentBestallningInstance, [status: CREATED] }
-        }
-    }
-
-    @Transactional
-    def update(ProducentBestallning producentBestallningInstance) {
-        if (producentBestallningInstance == null) {
-            notFound()
-            return
-        }
-
-        if (producentBestallningInstance.hasErrors()) {
-            respond producentBestallningInstance.errors, view:'edit'
-            return
-        }
-
-        producentBestallningInstance.save flush:true
-		
-		//Create history post for the update
-		new BestallningsHistorik(
-			status: Status.UPPDATERAD,
-			datum: new Date(),
-			producentBestallning: producentBestallningInstance,
-			senastUppdateradAv: SecurityUtils.subject.principal
-			).save()
-
-        request.withFormat {
-            form multipartForm {
-                flash.message = message(code: 'default.updated.message', args: [message(code: 'ProducentBestallning.label', default: 'ProducentBestallning'), producentBestallningInstance.id])
-                redirect producentBestallningInstance
-            }
-            '*'{ respond producentBestallningInstance, [status: OK] }
-        }
-    }
-
-    @Transactional
-    def delete(ProducentBestallning producentBestallningInstance) {
-
-        if (producentBestallningInstance == null) {
-            notFound()
-            return
-        }
-		
-		//Delete history and connections
-		
-		
-
-        producentBestallningInstance.delete flush:true
-
-        request.withFormat {
-            form multipartForm {
-                flash.message = message(code: 'default.deleted.message', args: [message(code: 'ProducentBestallning.label', default: 'ProducentBestallning'), producentBestallningInstance.id])
-                redirect action:"index", method:"GET"
-            }
-            '*'{ render status: NO_CONTENT }
-        }
-    }
+		request.withFormat {
+			form multipartForm {
+				flash.message = message(code: 'Beställningen bekräftad', args: [message(code: 'ProducentBestallning.label', default: 'ProducentBestallning'), producentBestallningInstance.id])
+				redirect(controller: "producentBestallning", action: "show", id: producentBestallningInstance.id, params: [producentBestallningInstance: producentBestallningInstance])
+			}
+			'*' { respond producentBestallningInstance, [status: OK], view:'show' }
+		}
+	}
 
     protected void notFound() {
         request.withFormat {

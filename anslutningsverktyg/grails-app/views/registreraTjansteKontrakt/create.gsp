@@ -1,10 +1,10 @@
-<%@ page import="se.skltp.av.ProducentBestallning" %>
-<g:javascript library="jquery"/>
 <!DOCTYPE html>
 <html>
 	<head>
 		<meta name="layout" content="main">
-		<title>Välj logiska adresser</title>
+		<g:set var="entityName" value="${message(code: 'producentBestallning.label', default: 'Välj Tjänstekontrakt')}" />
+		<title><g:message code="default.create.label" args="[entityName]" /></title>
+		
 		<style type="text/css" media="screen">
 			#status {
 				background-color: #eee;
@@ -100,55 +100,40 @@
 			<ul>
 				<li>Tjänstekontrakt:</li>
 				<g:each in="${producentBestallningInstance.producentAnslutning}" var="p">
-					<!-- Fix for demo to only show name of interaction urn:riv:itintegration:engagementindex:FindContent:1:rivtabp21 gets FindContent 
-                    Note that this only works for the exact positions and will not work when we get the actual servicecontract name from TAK-->
-					<li>${p?.tjansteKontrakt?.encodeAsHTML().split(':')[-3]}</li>
-				</g:each>
-			</ul>
-			<ul>
-				<li>Default logisk adress:</li>
-				<g:each in="${producentBestallningInstance.defaultLogiskAdress}" var="p">
-					<li>${p?.hsaId?.encodeAsHTML()}</li>
+					<li>${p?.tjansteKontrakt?.encodeAsHTML()}</li>
 				</g:each>
 			</ul>
 		</div>
 		
 		<div id="page-body" role="main">
 	
+			<a href="#create-producentBestallning" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
+			<div class="nav" role="navigation">
+				<ul>
+					<li><a class="home" href="${createLink(uri: '/')}"><g:message code="default.home.label"/></a></li>
+				</ul>
+			</div>
 			<div id="create-producentBestallning" class="content scaffold-create" role="main">
-			
-				<h1><label for="query">Välj logiska adresser</label></h1>
-				
+				<h1>Välj tjänstekontrakt</h1>
 				<g:if test="${flash.message}">
-						<div class="message" role="status">${flash.message}</div>
-					</g:if>
-				
-				<fieldset class="form">
-				    <g:form action="freetextSearch" method="GET">
-				    	 <div class="fieldcontain">
-				    	 	<label for="query">Tjänsteproducent</label>	
-				            <label for="query">${fieldValue(bean: producentBestallningInstance, field: "tjansteproducent.hsaId")}</label>	
-				        </div>
-				        <div class="fieldcontain">
-				            <label for="query">Sök logiska adresser</label>
-				            
-				            <g:textField name="query" value="${params.query}"/>
-				            <g:submitToRemote url="[controller: 'registreraLogiskAdress' ,action: 'freetextSearch']" value="Sök" update="searchresults" />	
-				        </div>
-				    </g:form>
-				    	
-					<g:form action="save" controller="registreraLogiskAdress">
-						<g:hiddenField name="producentBestallningId" value="${fieldValue(bean: producentBestallningInstance, field: "id")}"/>
-						<fieldset class="form">
-							<g:render template="searchResults"/>
-						</fieldset>
-						<fieldset class="buttons">
-							<g:actionSubmit name="update" class="edit" value="Spara" action="update" controller="registreraLogiskAdress" disabled="false"/>
-							<g:actionSubmit name="create" class="save" value="Spara och gå vidare till nästa steg" action="save" controller="registreraLogiskAdress"/>
-						</fieldset>
-					</g:form>	
-			 	
-				</fieldset>
+				<div class="message" role="status">${flash.message}</div>
+				</g:if>
+				<g:hasErrors bean="${producentBestallningInstance}">
+				<ul class="errors" role="alert">
+					<g:eachError bean="${producentBestallningInstance}" var="error">
+					<li <g:if test="${error in org.springframework.validation.FieldError}">data-field-id="${error.field}"</g:if>><g:message error="${error}"/></li>
+					</g:eachError>
+				</ul>
+				</g:hasErrors>
+				<g:form action="update">
+					<fieldset class="form">
+						<g:render template="form"/>
+					</fieldset>
+					<fieldset class="buttons">
+						<g:actionSubmit name="update" class="edit" value="Spara" action="update" controller="registreraTjansteKontrakt" disabled="true"/>
+						<g:actionSubmit name="create" class="save" value="Spara och gå vidare till nästa steg" action="save" controller="registreraTjansteKontrakt"/>
+					</fieldset>
+				</g:form>
 			</div>
 			
 		</div>
