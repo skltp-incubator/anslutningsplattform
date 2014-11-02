@@ -4,7 +4,7 @@ grails.project.test.class.dir = "target/test-classes"
 grails.project.test.reports.dir = "target/test-reports"
 grails.project.work.dir = "target/work"
 grails.project.target.level = 1.7
-grails.project.source.level = 1.7 
+grails.project.source.level = 1.7
 //grails.project.war.file = "target/${appName}-${appVersion}.war"
 
 grails.project.fork = [
@@ -22,12 +22,16 @@ grails.project.fork = [
 ]
 
 grails.project.dependency.resolver = "maven" // or ivy
+
 grails.project.dependency.resolution = {
     // inherit Grails' default dependencies
     inherits("global") {
         // specify dependency exclusions here; for example, uncomment this to disable ehcache:
         // excludes 'ehcache'
     }
+
+    pom true //http://grails.org/doc/latest/guide/commandLine.html#4.5 Ant and Maven
+
     log "error" // log level of Ivy resolver, either 'error', 'warn', 'info', 'debug' or 'verbose'
     checksums true // Whether to verify checksums on resolve
     legacyResolve false // whether to do a secondary resolve on plugin installation, not advised and here for backwards compatibility
@@ -51,8 +55,11 @@ grails.project.dependency.resolution = {
         // runtime 'mysql:mysql-connector-java:5.1.29'
         // runtime 'org.postgresql:postgresql:9.3-1101-jdbc41'
         test "org.grails:grails-datastore-test-support:1.0-grails-2.4"
-		compile "se.skltp.vp:vp-hsa-cache:2.2.9-SNAPSHOT"
-		compile "se.skltp.tk:tp-vagval-admin-schemas:1.4.2-SNAPSHOT"
+
+        compile ("se.skltp.vp:vp-hsa-cache:2.2.9-SNAPSHOT"){
+          excludes 'spring-asm','slf4j-log4j12'
+        }
+		    compile "se.skltp.tk:tp-vagval-admin-schemas:1.4.2-SNAPSHOT"
     }
 
     plugins {
@@ -64,6 +71,7 @@ grails.project.dependency.resolution = {
         compile ':cache:1.1.7'
         compile ":asset-pipeline:1.9.6"
         compile ":shiro:1.2.1"
+        compile ":webxml:1.4.1"
 
         // plugins needed at runtime but not for compilation
         runtime ":hibernate4:4.3.5.5" // or ":hibernate:3.6.10.17"

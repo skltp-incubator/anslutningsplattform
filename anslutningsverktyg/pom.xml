@@ -30,9 +30,19 @@
         </dependency>
 
         <dependency>
-			<groupId>se.skltp.vp</groupId>
-			<artifactId>vp-hsa-cache</artifactId>
-			<version>${vp.version}</version>
+			    <groupId>se.skltp.vp</groupId>
+			    <artifactId>vp-hsa-cache</artifactId>
+			    <version>${vp.version}</version>
+          <exclusions>
+		       <exclusion>
+		        <groupId>org.springframework</groupId>
+            <artifactId>spring-asm</artifactId>
+		       </exclusion>
+           <exclusion>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-log4j12</artifactId>
+           </exclusion>
+		      </exclusions>
         </dependency>
 
         <dependency>
@@ -89,15 +99,22 @@
 
         </dependency>
 
+        <!--Plugins in order build, compile, runtime-->
+
+        <dependency>
+            <groupId>org.grails.plugins</groupId>
+            <artifactId>tomcat</artifactId>
+            <version>7.0.55</version>
+            <scope>provided</scope>
+            <type>zip</type>
+        </dependency>
 
         <dependency>
             <groupId>org.grails.plugins</groupId>
             <artifactId>scaffolding</artifactId>
             <version>2.1.2</version>
             <scope>compile</scope>
-
             <type>zip</type>
-
         </dependency>
 
         <dependency>
@@ -105,9 +122,7 @@
             <artifactId>cache</artifactId>
             <version>1.1.7</version>
             <scope>compile</scope>
-
             <type>zip</type>
-
         </dependency>
 
         <dependency>
@@ -115,57 +130,7 @@
             <artifactId>asset-pipeline</artifactId>
             <version>1.9.6</version>
             <scope>compile</scope>
-
             <type>zip</type>
-
-        </dependency>
-
-        <dependency>
-            <groupId>org.grails.plugins</groupId>
-            <artifactId>hibernate4</artifactId>
-            <version>4.3.5.5</version>
-            <scope>runtime</scope>
-
-            <type>zip</type>
-
-        </dependency>
-
-        <dependency>
-            <groupId>org.grails.plugins</groupId>
-            <artifactId>database-migration</artifactId>
-            <version>1.4.0</version>
-            <scope>runtime</scope>
-
-            <type>zip</type>
-
-        </dependency>
-
-        <dependency>
-            <groupId>org.grails.plugins</groupId>
-            <artifactId>jquery</artifactId>
-            <version>1.11.1</version>
-            <scope>runtime</scope>
-
-            <type>zip</type>
-
-        </dependency>
-
-        <dependency>
-            <groupId>org.grails.plugins</groupId>
-            <artifactId>tomcat</artifactId>
-            <version>7.0.55</version>
-            <scope>provided</scope>
-
-            <type>zip</type>
-
-        </dependency>
-
-        <dependency>
-            <groupId>org.grails.plugins</groupId>
-            <artifactId>webxml</artifactId>
-            <version>1.4.1</version>
-            <type>zip</type>
-            <scope>runtime</scope>
         </dependency>
 
         <dependency>
@@ -173,8 +138,46 @@
             <artifactId>shiro</artifactId>
             <version>1.2.1</version>
             <type>zip</type>
-            <scope>runtime</scope>
+            <scope>compile</scope>
         </dependency>
+
+        <dependency>
+            <groupId>org.grails.plugins</groupId>
+            <artifactId>webxml</artifactId>
+            <version>1.4.1</version>
+            <type>zip</type>
+            <scope>compile</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.grails.plugins</groupId>
+            <artifactId>hibernate4</artifactId>
+            <version>4.3.5.5</version>
+            <scope>runtime</scope>
+            <type>zip</type>
+        </dependency>
+
+        <dependency>
+            <groupId>org.grails.plugins</groupId>
+            <artifactId>database-migration</artifactId>
+            <version>1.4.0</version>
+            <scope>runtime</scope>
+            <type>zip</type>
+        </dependency>
+
+        <dependency>
+            <groupId>org.grails.plugins</groupId>
+            <artifactId>jquery</artifactId>
+            <version>1.11.1</version>
+            <scope>runtime</scope>
+            <type>zip</type>
+        </dependency>
+
+
+
+
+
+
 
     </dependencies>
 
