@@ -107,13 +107,6 @@
 						<li class="controller"><g:link controller="role" action="index">Roller</g:link></li>
 					</shiro:hasRole>
 
-					<shiro:hasRole name="TJÄNSTEKOMPONENTANSVARIG">
-						<li class="controller"><g:link controller="tjansteproducent" action="create">Registrera ny tjänsteproducent</g:link></li>
-						<li class="controller"><g:link controller="tjansteproducent" action="index">Titta på redan registrerade tjänsteproducenter</g:link></li>
-						<li class="controller"><g:link controller="registreraTjansteKontrakt" action="create">Beställ nya anslutningar till tjänsteproducent</g:link></li>
-						<li class="controller"><g:link controller="registreraTjansteKontrakt" action="index">Titta på mina redan beställda anslutningar</g:link></li>
-					</shiro:hasRole>
-
 				</ul>
 			</div>
 		</div>
