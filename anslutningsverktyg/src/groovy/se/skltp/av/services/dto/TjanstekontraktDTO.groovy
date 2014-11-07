@@ -4,6 +4,5 @@ class TjanstekontraktDTO {
 	
 	String namnrymd
 	String version
-	boolean existerarRedanForProducent
 	
 }

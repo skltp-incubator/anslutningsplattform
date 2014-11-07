@@ -2,7 +2,7 @@ package se.skltp.av.service
 
 import grails.transaction.Transactional
 
-@Transactional
+@Transactional(readOnly = true)
 class TakService {
 	
 	def grailsApplication

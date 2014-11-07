@@ -3,7 +3,7 @@ package se.skltp.av.service
 import se.skltp.av.services.dto.TjanstekontraktDTO;
 import grails.transaction.Transactional
 
-@Transactional
+@Transactional(readOnly = true)
 class HsaService {
 	
 	def grailsApplication

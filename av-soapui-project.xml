@@ -167,12 +167,12 @@
       <soap:address location="http://33.33.33.33:8080/tp-vagval-admin-services/SokVagvalsInfo/v2"/>
     </wsdl:port>
   </wsdl:service>
-</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://33.33.33.33:8080/tp-vagval-admin-services/SokVagvalsInfo/v2</con:endpoint><con:endpoint>http://localhost:8080/tp-vagval-admin-services/SokVagvalsInfo/v2</con:endpoint></con:endpoints><con:operation isOneWay="false" action="" name="hamtaAllaAnropsBehorigheter" bindingOperationName="hamtaAllaAnropsBehorigheter" type="Request-Response" outputName="hamtaAllaAnropsBehorigheterResponse" inputName="hamtaAllaAnropsBehorigheter" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://33.33.33.33:8080/tp-vagval-admin-services/SokVagvalsInfo/v2</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:skl:tp:vagvalsinfo:v2">
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://33.33.33.33:8080/tp-vagval-admin-services/SokVagvalsInfo/v2</con:endpoint><con:endpoint>http://localhost:8080/tp-vagval-admin-services/SokVagvalsInfo/v2</con:endpoint></con:endpoints><con:operation isOneWay="false" action="" name="hamtaAllaAnropsBehorigheter" bindingOperationName="hamtaAllaAnropsBehorigheter" type="Request-Response" outputName="hamtaAllaAnropsBehorigheterResponse" inputName="hamtaAllaAnropsBehorigheter" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://33.33.33.33:8080/tp-vagval-admin-services/SokVagvalsInfo/v2</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:skl:tp:vagvalsinfo:v2">
    <soapenv:Header/>
    <soapenv:Body>
-      <urn:hamtaAllaAnropsBehorigheter>?</urn:hamtaAllaAnropsBehorigheter>
+      <urn:hamtaAllaAnropsBehorigheter xmlns="urn:skl:tp:vagvalsinfo:v1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:nil="true"></urn:hamtaAllaAnropsBehorigheter>
    </soapenv:Body>
-</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:skl:tp:vagvalsinfo:v2/SokVagvalsInfoInterface/hamtaAllaAnropsBehorigheter"/></con:call></con:operation><con:operation isOneWay="false" action="" name="hamtaAllaTjanstekontrakt" bindingOperationName="hamtaAllaTjanstekontrakt" type="Request-Response" outputName="hamtaAllaTjanstekontraktResponse" inputName="hamtaAllaTjanstekontrakt" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/tp-vagval-admin-services/SokVagvalsInfo/v2</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:skl:tp:vagvalsinfo:v2">
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:skl:tp:vagvalsinfo:v2/SokVagvalsInfoInterface/hamtaAllaAnropsBehorigheter"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation isOneWay="false" action="" name="hamtaAllaTjanstekontrakt" bindingOperationName="hamtaAllaTjanstekontrakt" type="Request-Response" outputName="hamtaAllaTjanstekontraktResponse" inputName="hamtaAllaTjanstekontrakt" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/tp-vagval-admin-services/SokVagvalsInfo/v2</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:urn="urn:skl:tp:vagvalsinfo:v2">
    <soapenv:Header/>
    <soapenv:Body>
       <urn:hamtaAllaTjanstekontrakt>?</urn:hamtaAllaTjanstekontrakt>
@@ -182,7 +182,7 @@
 <soapenv:Body>
 <urn:hamtaAllaVirtualiseringar xsi:nil="true"/>
 </soapenv:Body>
-</soapenv:Envelope>]]></con:request><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:skl:tp:vagvalsinfo:v2/SokVagvalsInfoInterface/hamtaAllaVirtualiseringar"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:testSuite name="TestSuite skltp-box"><con:settings/><con:runType>SEQUENTIAL</con:runType><con:testCase failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="TestCase - EHR CheckConsent" searchProperties="true" id="5afb0ccd-e4f5-49aa-9d03-88ca49c7e951" disabled="true"><con:settings/><con:loadTest name="LoadTest - EHR CheckConsent"><con:settings><con:setting id="HttpSettings@close-connections">false</con:setting></con:settings><con:threadCount>60</con:threadCount><con:startDelay>0</con:startDelay><con:sampleInterval>250</con:sampleInterval><con:calculateTPSOnTimePassed>true</con:calculateTPSOnTimePassed><con:resetStatisticsOnThreadCountChange>true</con:resetStatisticsOnThreadCountChange><con:historyLimit>-1</con:historyLimit><con:testLimit>60</con:testLimit><con:limitType>TIME</con:limitType><con:loadStrategy><con:type>Simple</con:type><con:config><testDelay>10</testDelay><randomFactor>0.5</randomFactor></con:config></con:loadStrategy><con:assertion type="Step Status" name="Step Status"/><con:maxAssertionErrors>100</con:maxAssertionErrors><con:cancelExcessiveThreads>true</con:cancelExcessiveThreads><con:strategyInterval>500</con:strategyInterval></con:loadTest><con:properties/></con:testCase><con:testCase failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="TestCase - CRM GetSubjectOfCare" searchProperties="true" id="653a1660-5306-43d0-859b-a918c85d34f4"><con:settings/><con:properties/></con:testCase><con:testCase failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="TestCase - EI - FindContent" searchProperties="true" id="db3051ad-9112-46e1-9d41-33866108c62a"><con:settings/><con:properties/></con:testCase><con:testCase failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="TestCase - PingForConfiguration" searchProperties="true" id="54e3f254-74cb-4f77-8540-865936a993f9"><con:settings/><con:properties/></con:testCase><con:properties/></con:testSuite><con:mockService port="8090" path="/" host="HTs-MacBook-Pro.local" name="SokVagvalsInfoV2" bindToHostOnly="false" docroot=""><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.mock.WsdlMockService@require-soap-action">false</con:setting></con:settings><con:mockOperation name="hamtaAllaTjanstekontrakt" interface="SokVagvalsServiceSoap11LitDocServiceSoapBinding" operation="hamtaAllaTjanstekontrakt"><con:settings/><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:defaultResponse>Response 1</con:defaultResponse><con:response name="Response 1" encoding="UTF-8"><con:settings/><con:responseContent><![CDATA[<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:skl:tp:vagvalsinfo:v2/SokVagvalsInfoInterface/hamtaAllaVirtualiseringar"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:testSuite name="TestSuite skltp-box"><con:settings/><con:runType>SEQUENTIAL</con:runType><con:testCase failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="TestCase - EHR CheckConsent" searchProperties="true" id="5afb0ccd-e4f5-49aa-9d03-88ca49c7e951" disabled="true"><con:settings/><con:loadTest name="LoadTest - EHR CheckConsent"><con:settings><con:setting id="HttpSettings@close-connections">false</con:setting></con:settings><con:threadCount>60</con:threadCount><con:startDelay>0</con:startDelay><con:sampleInterval>250</con:sampleInterval><con:calculateTPSOnTimePassed>true</con:calculateTPSOnTimePassed><con:resetStatisticsOnThreadCountChange>true</con:resetStatisticsOnThreadCountChange><con:historyLimit>-1</con:historyLimit><con:testLimit>60</con:testLimit><con:limitType>TIME</con:limitType><con:loadStrategy><con:type>Simple</con:type><con:config><testDelay>10</testDelay><randomFactor>0.5</randomFactor></con:config></con:loadStrategy><con:assertion type="Step Status" name="Step Status"/><con:maxAssertionErrors>100</con:maxAssertionErrors><con:cancelExcessiveThreads>true</con:cancelExcessiveThreads><con:strategyInterval>500</con:strategyInterval></con:loadTest><con:properties/></con:testCase><con:testCase failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="TestCase - CRM GetSubjectOfCare" searchProperties="true" id="653a1660-5306-43d0-859b-a918c85d34f4"><con:settings/><con:properties/></con:testCase><con:testCase failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="TestCase - EI - FindContent" searchProperties="true" id="db3051ad-9112-46e1-9d41-33866108c62a"><con:settings/><con:properties/></con:testCase><con:testCase failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="TestCase - PingForConfiguration" searchProperties="true" id="54e3f254-74cb-4f77-8540-865936a993f9"><con:settings/><con:properties/></con:testCase><con:properties/></con:testSuite><con:mockService port="8070" path="/tp-vagval-admin-services/SokVagvalsInfo/v2" host="HTs-MacBook-Pro.local" name="SokVagvalsInfoV2" bindToHostOnly="false" docroot=""><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.mock.WsdlMockService@require-soap-action">false</con:setting></con:settings><con:mockOperation name="hamtaAllaTjanstekontrakt" interface="SokVagvalsServiceSoap11LitDocServiceSoapBinding" operation="hamtaAllaTjanstekontrakt"><con:settings/><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:defaultResponse>Response 1</con:defaultResponse><con:response name="Response 1" encoding="UTF-8"><con:settings/><con:responseContent><![CDATA[<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
    <soap:Body>
       <hamtaAllaTjanstekontraktResponse xmlns="urn:skl:tp:vagvalsinfo:v2">
          <tjanstekontraktInfo>
@@ -32394,4 +32394,153 @@
          </virtualiseringsInfo>
       </hamtaAllaVirtualiseringarResponse>
    </soap:Body>
-</soap:Envelope>]]></con:responseContent><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:skl:tp:vagvalsinfo:v2/SokVagvalsInfoInterface/hamtaAllaVirtualiseringarResponse"/></con:response><con:dispatchConfig/></con:mockOperation><con:properties/></con:mockService><con:properties/><con:wssContainer/><con:sensitiveInformation/></con:soapui-project>
+</soap:Envelope>]]></con:responseContent><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:skl:tp:vagvalsinfo:v2/SokVagvalsInfoInterface/hamtaAllaVirtualiseringarResponse"/></con:response><con:dispatchConfig/></con:mockOperation><con:mockOperation name="hamtaAllaAnropsBehorigheter" interface="SokVagvalsServiceSoap11LitDocServiceSoapBinding" operation="hamtaAllaAnropsBehorigheter"><con:settings/><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:defaultResponse>Response 1</con:defaultResponse><con:response name="Response 1" encoding="UTF-8"><con:settings/><con:responseContent><![CDATA[<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+   <soap:Body>
+      <hamtaAllaAnropsBehorigheterResponse xmlns="urn:skl:tp:vagvalsinfo:v2">
+         <anropsBehorighetsInfo>
+            <anropsBehorighetsInfoId>1</anropsBehorighetsInfoId>
+            <receiverId>HSA-VKK123</receiverId>
+            <senderId>client</senderId>
+            <tjansteKontrakt>urn:riv:crm:scheduling:GetSubjectOfCareSchedule:1:rivtabp21</tjansteKontrakt>
+            <fromTidpunkt>2013-05-24T00:00:00.000</fromTidpunkt>
+            <tomTidpunkt>2113-05-24T00:00:00.000</tomTidpunkt>
+         </anropsBehorighetsInfo>
+         <anropsBehorighetsInfo>
+            <anropsBehorighetsInfoId>2</anropsBehorighetsInfoId>
+            <receiverId>HSA-VKM345</receiverId>
+            <senderId>client</senderId>
+            <tjansteKontrakt>urn:riv:crm:scheduling:GetSubjectOfCareSchedule:1:rivtabp21</tjansteKontrakt>
+            <fromTidpunkt>2013-05-24T00:00:00.000</fromTidpunkt>
+            <tomTidpunkt>2113-05-24T00:00:00.000</tomTidpunkt>
+         </anropsBehorighetsInfo>
+         <anropsBehorighetsInfo>
+            <anropsBehorighetsInfoId>3</anropsBehorighetsInfoId>
+            <receiverId>HSA-VKY567</receiverId>
+            <senderId>client</senderId>
+            <tjansteKontrakt>urn:riv:crm:scheduling:GetSubjectOfCareSchedule:1:rivtabp21</tjansteKontrakt>
+            <fromTidpunkt>2013-05-24T00:00:00.000</fromTidpunkt>
+            <tomTidpunkt>2113-05-24T00:00:00.000</tomTidpunkt>
+         </anropsBehorighetsInfo>
+         <anropsBehorighetsInfo>
+            <anropsBehorighetsInfoId>4</anropsBehorighetsInfoId>
+            <receiverId>Ping</receiverId>
+            <senderId>client</senderId>
+            <tjansteKontrakt>urn:riv:itinfra:tp:Ping:1:rivtabp20</tjansteKontrakt>
+            <fromTidpunkt>2013-05-28T00:00:00.000</fromTidpunkt>
+            <tomTidpunkt>2113-05-28T00:00:00.000</tomTidpunkt>
+         </anropsBehorighetsInfo>
+         <anropsBehorighetsInfo>
+            <anropsBehorighetsInfoId>5</anropsBehorighetsInfoId>
+            <receiverId>5565594230</receiverId>
+            <senderId>5565594230</senderId>
+            <tjansteKontrakt>urn:riv:itintegration:registry:GetLogicalAddresseesByServiceContract:1:rivtabp21</tjansteKontrakt>
+            <fromTidpunkt>2013-08-24T00:00:00.000</fromTidpunkt>
+            <tomTidpunkt>2113-08-24T00:00:00.000</tomTidpunkt>
+         </anropsBehorighetsInfo>
+         <anropsBehorighetsInfo>
+            <anropsBehorighetsInfoId>6</anropsBehorighetsInfoId>
+            <receiverId>5565594230</receiverId>
+            <senderId>client</senderId>
+            <tjansteKontrakt>urn:riv:crm:scheduling:GetSubjectOfCareSchedule:1:rivtabp21</tjansteKontrakt>
+            <fromTidpunkt>2013-08-24T00:00:00.000</fromTidpunkt>
+            <tomTidpunkt>2113-08-24T00:00:00.000</tomTidpunkt>
+         </anropsBehorighetsInfo>
+         <anropsBehorighetsInfo>
+            <anropsBehorighetsInfoId>7</anropsBehorighetsInfoId>
+            <receiverId>5565594230</receiverId>
+            <senderId>SKLTP-BOX</senderId>
+            <tjansteKontrakt>urn:riv:itintegration:engagementindex:FindContent:1:rivtabp21</tjansteKontrakt>
+            <fromTidpunkt>2013-08-24T00:00:00.000</fromTidpunkt>
+            <tomTidpunkt>2113-08-24T00:00:00.000</tomTidpunkt>
+         </anropsBehorighetsInfo>
+         <anropsBehorighetsInfo>
+            <anropsBehorighetsInfoId>8</anropsBehorighetsInfoId>
+            <receiverId>5565594230</receiverId>
+            <senderId>client</senderId>
+            <tjansteKontrakt>urn:riv:itintegration:engagementindex:FindContent:1:rivtabp21</tjansteKontrakt>
+            <fromTidpunkt>2013-08-25T00:00:00.000</fromTidpunkt>
+            <tomTidpunkt>2113-08-25T00:00:00.000</tomTidpunkt>
+         </anropsBehorighetsInfo>
+         <anropsBehorighetsInfo>
+            <anropsBehorighetsInfoId>9</anropsBehorighetsInfoId>
+            <receiverId>5565594230</receiverId>
+            <senderId>client</senderId>
+            <tjansteKontrakt>urn:riv:itintegration:engagementindex:Update:1:rivtabp21</tjansteKontrakt>
+            <fromTidpunkt>2013-09-16T00:00:00.000</fromTidpunkt>
+            <tomTidpunkt>2113-09-16T00:00:00.000</tomTidpunkt>
+         </anropsBehorighetsInfo>
+         <anropsBehorighetsInfo>
+            <anropsBehorighetsInfoId>10</anropsBehorighetsInfoId>
+            <receiverId>demo-ei-notify-publisher</receiverId>
+            <senderId>client</senderId>
+            <tjansteKontrakt>urn:riv:itintegration:engagementindex:ProcessNotification:1:rivtabp21</tjansteKontrakt>
+            <fromTidpunkt>2013-09-16T00:00:00.000</fromTidpunkt>
+            <tomTidpunkt>2113-09-16T00:00:00.000</tomTidpunkt>
+         </anropsBehorighetsInfo>
+         <anropsBehorighetsInfo>
+            <anropsBehorighetsInfoId>11</anropsBehorighetsInfoId>
+            <receiverId>demo-ei-notify-publisher</receiverId>
+            <senderId>5565594230</senderId>
+            <tjansteKontrakt>urn:riv:itintegration:engagementindex:ProcessNotification:1:rivtabp21</tjansteKontrakt>
+            <fromTidpunkt>2013-09-16T00:00:00.000</fromTidpunkt>
+            <tomTidpunkt>2113-09-16T00:00:00.000</tomTidpunkt>
+         </anropsBehorighetsInfo>
+         <anropsBehorighetsInfo>
+            <anropsBehorighetsInfoId>12</anropsBehorighetsInfoId>
+            <receiverId>5565594230</receiverId>
+            <senderId>client</senderId>
+            <tjansteKontrakt>urn:riv:clinicalprocess:healthcond:basic:GetObservation:1:rivtabp21</tjansteKontrakt>
+            <fromTidpunkt>2013-01-01T00:00:00.000</fromTidpunkt>
+            <tomTidpunkt>2114-12-31T00:00:00.000</tomTidpunkt>
+         </anropsBehorighetsInfo>
+         <anropsBehorighetsInfo>
+            <anropsBehorighetsInfoId>19</anropsBehorighetsInfoId>
+            <receiverId>HSA-ID-1</receiverId>
+            <senderId>client</senderId>
+            <tjansteKontrakt>urn:riv:clinicalprocess:healthcond:basic:GetObservation:1:rivtabp21</tjansteKontrakt>
+            <fromTidpunkt>2013-01-01T00:00:00.000</fromTidpunkt>
+            <tomTidpunkt>2114-12-31T00:00:00.000</tomTidpunkt>
+         </anropsBehorighetsInfo>
+         <anropsBehorighetsInfo>
+            <anropsBehorighetsInfoId>20</anropsBehorighetsInfoId>
+            <receiverId>HSA-ID-2</receiverId>
+            <senderId>client</senderId>
+            <tjansteKontrakt>urn:riv:clinicalprocess:healthcond:basic:GetObservation:1:rivtabp21</tjansteKontrakt>
+            <fromTidpunkt>2013-01-01T00:00:00.000</fromTidpunkt>
+            <tomTidpunkt>2114-12-31T00:00:00.000</tomTidpunkt>
+         </anropsBehorighetsInfo>
+         <anropsBehorighetsInfo>
+            <anropsBehorighetsInfoId>21</anropsBehorighetsInfoId>
+            <receiverId>HSA-ID-3</receiverId>
+            <senderId>client</senderId>
+            <tjansteKontrakt>urn:riv:clinicalprocess:healthcond:basic:GetObservation:1:rivtabp21</tjansteKontrakt>
+            <fromTidpunkt>2013-01-01T00:00:00.000</fromTidpunkt>
+            <tomTidpunkt>2114-12-31T00:00:00.000</tomTidpunkt>
+         </anropsBehorighetsInfo>
+         <anropsBehorighetsInfo>
+            <anropsBehorighetsInfoId>22</anropsBehorighetsInfoId>
+            <receiverId>HSA-ID-4</receiverId>
+            <senderId>client</senderId>
+            <tjansteKontrakt>urn:riv:clinicalprocess:healthcond:basic:GetObservation:1:rivtabp21</tjansteKontrakt>
+            <fromTidpunkt>2013-01-01T00:00:00.000</fromTidpunkt>
+            <tomTidpunkt>2114-12-31T00:00:00.000</tomTidpunkt>
+         </anropsBehorighetsInfo>
+         <anropsBehorighetsInfo>
+            <anropsBehorighetsInfoId>23</anropsBehorighetsInfoId>
+            <receiverId>HSA-ID-5</receiverId>
+            <senderId>client</senderId>
+            <tjansteKontrakt>urn:riv:clinicalprocess:healthcond:basic:GetObservation:1:rivtabp21</tjansteKontrakt>
+            <fromTidpunkt>2013-01-01T00:00:00.000</fromTidpunkt>
+            <tomTidpunkt>2114-12-31T00:00:00.000</tomTidpunkt>
+         </anropsBehorighetsInfo>
+         <anropsBehorighetsInfo>
+            <anropsBehorighetsInfoId>24</anropsBehorighetsInfoId>
+            <receiverId>HSA-ID-6</receiverId>
+            <senderId>client</senderId>
+            <tjansteKontrakt>urn:riv:clinicalprocess:healthcond:basic:GetObservation:1:rivtabp21</tjansteKontrakt>
+            <fromTidpunkt>2013-01-01T00:00:00.000</fromTidpunkt>
+            <tomTidpunkt>2114-12-31T00:00:00.000</tomTidpunkt>
+         </anropsBehorighetsInfo>
+      </hamtaAllaAnropsBehorigheterResponse>
+   </soap:Body>
+</soap:Envelope>]]></con:responseContent><con:wsaConfig mustUnderstand="NONE" version="200508" action="urn:skl:tp:vagvalsinfo:v2/SokVagvalsInfoInterface/hamtaAllaAnropsBehorigheterResponse"/></con:response><con:dispatchConfig/></con:mockOperation><con:properties/></con:mockService><con:properties/><con:wssContainer/><con:sensitiveInformation/></con:soapui-project>

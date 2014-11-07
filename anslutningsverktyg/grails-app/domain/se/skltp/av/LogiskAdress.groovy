@@ -4,15 +4,12 @@ class LogiskAdress {
 	
 	String hsaId
 	
-	static belongsTo = [ProducentAnslutning, ProducentBestallning]
+	static belongsTo = [ProducentAnslutning, KonsumentAnslutning]
 	
-	static hasMany = [producentAnslutning: ProducentAnslutning, producentBestallning: ProducentBestallning]
+	static hasMany = [producentAnslutning: ProducentAnslutning, konsumentAnslutning: KonsumentAnslutning]
 
     static constraints = {
 		hsaId(unique: true, nullable: false, blank: false)
     }
 	
-	String toString(){
-		return hsaId
-	}
 }
