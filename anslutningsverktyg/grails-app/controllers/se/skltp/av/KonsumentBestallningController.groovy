@@ -1,6 +1,6 @@
 package se.skltp.av
 
-class LogiskAdressController {
+class KonsumentBestallningController {
 
     static scaffold = true
 }

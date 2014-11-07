@@ -1,6 +1,6 @@
 package se.skltp.av
 
-class LogiskAdressController {
+class BestallningsHistorikController {
 
     static scaffold = true
 }

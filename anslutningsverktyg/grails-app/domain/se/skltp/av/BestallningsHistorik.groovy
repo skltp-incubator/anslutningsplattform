@@ -7,7 +7,7 @@ class BestallningsHistorik {
 	String senastUppdateradAv
 	
 	//To cascade deletes when ProducentBestallning is removed
-	static belongsTo = [producentBestallning: ProducentBestallning]
+	static belongsTo = [producentBestallning: ProducentBestallning, konsumentBestallning: KonsumentBestallning]
 
     static constraints = {
     }
