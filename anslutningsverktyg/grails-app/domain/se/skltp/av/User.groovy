@@ -1,13 +1,13 @@
 package se.skltp.av
 
+import static se.skltp.av.util.AvUtil.*
+
 /**
  * Currently named User instead of Anvandare to map with ShiroDbRealm
  *
  */
 class User {
-	
-	private static final Date NULL_DATE = new Date(0)
-	
+		
 	String namn
 	String username
 	String passwordHash
@@ -16,15 +16,16 @@ class User {
 	Date datumSkapad
 	Date datumUppdaterad
 
-	static hasMany = [ roles: Role, permissions: String, tjanstekomponenter: Tjanstekomponent ]
+	static hasMany = [ roles: Role, permissions: String, tjansteKomponenter: TjansteKomponent ]
 
 	static constraints = {
-		namn(nullable: false, blank: false)
-		username(nullable: false, blank: false, unique: true)
-		passwordHash blank: false
+		namn nullable: false, blank: false 
+		username nullable: false, blank: false, unique: true
+		passwordHash nullable: false, blank: false
 		datumSkapad nullable: false
 		datumUppdaterad nullable: true
 		epost email: true, blank: false
+		telefonNummer nullable: true
 	}
 
 	def beforeInsert() {

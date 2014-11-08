@@ -1,6 +1,6 @@
 package se.skltp.av
 
-class Tjanstekomponent {
+class TjansteKomponent {
 
     String hsaId
 	String tekniskKontaktEpost
@@ -16,8 +16,11 @@ class Tjanstekomponent {
 	
     static constraints = {
       hsaId blank: false, unique: true
-      tekniskKontaktEpost email: true, blank: false
-	  funktionsBrevladaEpost email: true, blank: false
-	  ipadress blank: false
+      tekniskKontaktEpost email: true, nullable: false, blank: false
+	  tekniskKontaktNamn nullable: false, blank: false
+	  tekniskKontaktTelefon nullable: true, blank: false
+	  funktionsBrevladaEpost blank: false
+	  funktionsBrevladaTelefon nullable: false, blank: false
+	  ipadress nullable: true, blank: false
     }
 }

@@ -1,10 +1,8 @@
 package se.skltp.av
 
-import java.util.Date;
+import static se.skltp.av.util.AvUtil.*
 
 class KonsumentAnslutning {
-	
-	private static final Date NULL_DATE = new Date(0)
 	
 	String tjansteKontrakt
 	Date validFromTime
@@ -15,12 +13,18 @@ class KonsumentAnslutning {
 	static hasMany = [logiskAdresser: LogiskAdress]
 
     static constraints = {
-		tjansteKontrakt(nullable: false, blank: false)
+		tjansteKontrakt nullable: false, blank: false
+		validFromTime nullable: false, blank: false
+		validToTime nullable: false, blank: false
     }
 	
 	def beforeInsert() {
 		if (validFromTime == NULL_DATE) {
 			validFromTime = new Date()
+		}
+		
+		if (validToTime == NULL_DATE) {
+			validToTime = new Date() + hundredYears
 		}
 	}
 	

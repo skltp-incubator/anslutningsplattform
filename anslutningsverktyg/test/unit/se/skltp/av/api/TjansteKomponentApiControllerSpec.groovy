@@ -1,13 +1,14 @@
-package se.skltp.av
+package se.skltp.av.api
 
 import grails.test.mixin.TestFor
+import spock.lang.Ignore;
 import spock.lang.Specification
 
 /**
  * See the API for {@link grails.test.mixin.web.ControllerUnitTestMixin} for usage instructions
  */
-@TestFor(ProducentBestallningController)
-class ProducentBestallningControllerSpec extends Specification {
+@TestFor(TjansteKomponentApiController)
+class TjansteKomponentApiControllerSpec extends Specification {
 
     def setup() {
     }
@@ -15,6 +16,7 @@ class ProducentBestallningControllerSpec extends Specification {
     def cleanup() {
     }
 
+	@Ignore
     void "test something"() {
     }
 }

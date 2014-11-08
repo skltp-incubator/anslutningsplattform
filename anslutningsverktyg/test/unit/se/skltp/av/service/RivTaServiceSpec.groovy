@@ -2,6 +2,7 @@ package se.skltp.av.service
 
 import grails.test.mixin.TestFor
 import se.skltp.av.service.RivTaService;
+import spock.lang.Ignore;
 import spock.lang.Specification
 
 /**
@@ -16,6 +17,7 @@ class RivTaServiceSpec extends Specification {
     def cleanup() {
     }
 
+	@Ignore
     void "test something"() {
     }
 }

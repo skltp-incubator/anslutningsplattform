@@ -1,5 +1,13 @@
 package se.skltp.av.service
 
+import java.awt.event.ItemEvent;
+import java.util.ArrayList;
+import java.util.List;
+
+import se.skl.tp.hsa.cache.HsaCache;
+import se.skl.tp.hsa.cache.HsaCacheImpl;
+import se.skl.tp.hsa.cache.HsaNodeInfo;
+import se.skltp.av.services.dto.HsaDTO;
 import se.skltp.av.services.dto.TjanstekontraktDTO;
 import grails.transaction.Transactional
 
@@ -8,18 +16,26 @@ class HsaService {
 	
 	def grailsApplication
 	
-	def hsaServiceImpl
+	private HsaCache hsaCache
 
-    def freeTextSearch(String searchParams, int maxNoOfHits) {
-		return getHsaService().freeTextSearch(searchParams, maxNoOfHits);
+    def freeTextSearch(String searchText, int maxNoOfHits) {
+		
+		def resultFromCache = getHsaCache().freeTextSearch(searchText, maxNoOfHits);
+		
+		def result = []
+		resultFromCache.each{
+			result.add(new HsaDTO(hsaId: it.hsaId, dn: it.dn))
+		}
+		
+		return result;
     }
 	
-	def getHsaService(){
-		if(!hsaServiceImpl){
+	def getHsaCache(){
+		if(!hsaCache){
 			def hsaFiles = grailsApplication.config.hsa.hsacache.files
-			hsaServiceImpl = new HsaServiceImpl(hsaFiles as String[])
+			hsaCache = new HsaCacheImpl(hsaFiles as String[]);
 		}
-		return hsaServiceImpl
+		return hsaCache
 	}
 	
 	

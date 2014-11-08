@@ -1,6 +1,7 @@
 package se.skltp.av
 
 import grails.test.mixin.TestFor
+import spock.lang.Ignore;
 import spock.lang.Specification
 
 /**
@@ -15,6 +16,7 @@ class BestallningsHistorikControllerSpec extends Specification {
     def cleanup() {
     }
 
+	@Ignore
     void "test something"() {
     }
 }

@@ -2,6 +2,7 @@ package se.skltp.av.service
 
 import grails.test.mixin.TestFor
 import se.skltp.av.service.TakService;
+import spock.lang.Ignore;
 import spock.lang.Specification
 
 /**
@@ -10,13 +11,11 @@ import spock.lang.Specification
 @TestFor(TakService)
 class TakServiceSpec extends Specification {
 
-    @spock.lang.Ignore
     def setup() {
     }
-	@spock.lang.Ignore
     def cleanup() {
     }
-	@spock.lang.Ignore
+	@Ignore
     void "test something"() {
     }
 }

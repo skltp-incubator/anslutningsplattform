@@ -6,7 +6,11 @@ class ShiroSecurityFilters {
 
     def publicActions = [
       signup: ['index','register'],
-      auth: ['*']
+      auth: ['*'],
+	  assets: ['*'],
+	  producentBestallningApi: ['*'],
+	  tjansteKomponentApi: ['*'],
+	  hsaApi: ['*']
     ]
 
     private boolean findAction(controllerName, actionName){
@@ -25,7 +29,7 @@ class ShiroSecurityFilters {
               if(isPublic) return true
 
               // Ignore direct views (e.g. the default main index page) and assets.
-              if (!controllerName || controllerName == 'assets') return true
+              if (!controllerName) return true
 
               // Access control by convention.
               accessControl()

@@ -9,7 +9,7 @@ class LogiskAdress {
 	static hasMany = [producentAnslutning: ProducentAnslutning, konsumentAnslutning: KonsumentAnslutning]
 
     static constraints = {
-		hsaId(unique: true, nullable: false, blank: false)
+		hsaId unique: true, nullable: false, blank: false
     }
 	
 }

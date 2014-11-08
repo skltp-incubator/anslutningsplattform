@@ -6,11 +6,12 @@ class KonsumentBestallning {
 
 	String status
 	
-	static belongsTo = [tjanstekomponent: Tjanstekomponent]
+	static belongsTo = [tjansteKomponent: TjansteKomponent]
 		
 	static hasMany = [bestallningsHistorik: BestallningsHistorik, konsumentAnslutning: KonsumentAnslutning]
 	
     static constraints = {
-		miljo(nullable: false, blank: false)
+		miljo nullable: false, blank: false 
+		status nullable: false, blank: false
     }
 }

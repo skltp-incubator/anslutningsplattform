@@ -1,5 +1,7 @@
 package se.skltp.av
 
+import org.junit.Ignore;
+
 import grails.test.mixin.TestFor
 import spock.lang.Specification
 
@@ -15,6 +17,7 @@ class RoleControllerSpec extends Specification {
     def cleanup() {
     }
 
+	@Ignore
     void "test something"() {
     }
 }
