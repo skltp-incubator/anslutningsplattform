@@ -1,26 +1,33 @@
 {
-    "name": "anslutningsverktyg",
-    "version": "0.0.1",
-    "homepage": "https://github.com/skltp/av",
-    "authors": [
-        "Jonas Behmer <jonas.behmer@callistaenterprise.se>"
-    ],
-    "description": "Frontend dependecy handling for Anslutningsverktyget",
-    "license": "MIT",
-    "private": true,
-    "ignore": [
-        "**/.*",
-        "node_modules",
-        "bower_components",
-        "test",
-        "tests"
-    ],
-    "dependencies": {
-        "jquery": "1.11.1"
-    },
-    "exportsOverride": {
-        "jquery": {
-            "js": "jquery.js"
-        }
+  "name": "anslutningsverktyg",
+  "version": "0.0.1",
+  "homepage": "https://github.com/skltp/av",
+  "authors": [
+    "Jonas Behmer <jonas.behmer@callistaenterprise.se>"
+  ],
+  "description": "Frontend dependecy handling for Anslutningsverktyget",
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "1.11.1",
+    "bootstrap": "~3.3.0",
+    "angular": "1.2.26",
+    "angular-resource": "1.2.26",
+    "angular-sanitize": "1.2.26",
+    "angular-route": "1.2.26",
+    "angular-cookies": "1.2.26",
+    "angular-animate": "1.2.26"
+  },
+  "exportsOverride": {
+    "jquery": {
+      "js": "jquery.js"
     }
+  }
 }
