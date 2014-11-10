@@ -127,14 +127,6 @@
 
         <dependency>
             <groupId>org.grails.plugins</groupId>
-            <artifactId>asset-pipeline</artifactId>
-            <version>1.9.6</version>
-            <scope>compile</scope>
-            <type>zip</type>
-        </dependency>
-
-        <dependency>
-            <groupId>org.grails.plugins</groupId>
             <artifactId>shiro</artifactId>
             <version>1.2.1</version>
             <type>zip</type>
@@ -164,21 +156,6 @@
             <scope>runtime</scope>
             <type>zip</type>
         </dependency>
-
-        <dependency>
-            <groupId>org.grails.plugins</groupId>
-            <artifactId>jquery</artifactId>
-            <version>1.11.1</version>
-            <scope>runtime</scope>
-            <type>zip</type>
-        </dependency>
-
-
-
-
-
-
-
     </dependencies>
 
     <build>

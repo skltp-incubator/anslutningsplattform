@@ -79,6 +79,7 @@
 				}
 			}
 		</style>
+        <r:require module="jquery"/>
 	</head>
 	<body>
 		<a href="#page-body" class="skip"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
