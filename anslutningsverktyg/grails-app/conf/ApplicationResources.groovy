@@ -8,6 +8,9 @@ modules = {
         resource url: 'js/lib/bootstrap/dist/css/bootstrap.css', disposition: 'head'
     }
 
+    "main-style" {
+        resource url: 'css/application.css', disposition: 'head'
+    }
     angular {
         resource url: 'js/lib/angular/angular.js', disposition: 'head'
         resource url: 'js/lib/angular-cookies/angular-cookies.js', disposition: 'head'

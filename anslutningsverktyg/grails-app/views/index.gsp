@@ -1,115 +1,24 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta name="layout" content="main"/>
-		<title>Anslutningsverktyg</title>
-		<style type="text/css" media="screen">
-			#status {
-				background-color: #eee;
-				border: .2em solid #fff;
-				margin: 2em 2em 1em;
-				padding: 1em;
-				width: 12em;
-				float: left;
-				-moz-box-shadow: 0px 0px 1.25em #ccc;
-				-webkit-box-shadow: 0px 0px 1.25em #ccc;
-				box-shadow: 0px 0px 1.25em #ccc;
-				-moz-border-radius: 0.6em;
-				-webkit-border-radius: 0.6em;
-				border-radius: 0.6em;
-			}
-
-			.ie6 #status {
-				display: inline; /* float double margin fix http://www.positioniseverything.net/explorer/doubled-margin.html */
-			}
-
-			#status ul {
-				font-size: 0.9em;
-				list-style-type: none;
-				margin-bottom: 0.6em;
-				padding: 0;
-			}
-
-			#status li {
-				line-height: 1.3;
-			}
-
-			#status h1 {
-				text-transform: uppercase;
-				font-size: 1.1em;
-				margin: 0 0 0.3em;
-			}
-
-			#page-body {
-				margin: 2em 1em 1.25em 18em;
-			}
-
-			h2 {
-				margin-top: 1em;
-				margin-bottom: 0.3em;
-				font-size: 1em;
-			}
-
-			p {
-				line-height: 1.5;
-				margin: 0.25em 0;
-			}
-
-			#controller-list ul {
-				list-style-position: inside;
-			}
-
-			#controller-list li {
-				line-height: 1.3;
-				list-style-position: inside;
-				margin: 0.25em 0;
-			}
-
-			@media screen and (max-width: 480px) {
-				#status {
-					display: none;
-				}
-
-				#page-body {
-					margin: 0 1em 1em;
-				}
-
-				#page-body h1 {
-					margin-top: 0;
-				}
-			}
-		</style>
-        <r:require module="jquery"/>
-	</head>
-	<body>
-		<a href="#page-body" class="skip"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
-		<div id="status" role="complementary">
-			Lorum ipsum Lorum ipsum Lorum ipsum Lorum ipsum
-		</div>
-		<div id="page-body" role="main">
-			<h1>Anslutningsverktyg</h1>
-			<p>Lorum ipsum Lorum ipsum Lorum ipsum Lorum ipsum Lorum ipsum Lorum ipsum Lorum ipsum</p>
-			
-			<div id="controller-list" role="navigation">
-				<h2>Logga in</h2>
-				<ul>
-
-					<li class="controller"><g:link controller="auth" action="index">Logga in</g:link></li>
-
-				</ul>
-			</div>
-
-			<div id="controller-list" role="navigation">
-				<h2>Tillgängliga val:</h2>
-				<ul>
-
-					<shiro:hasRole name="ADMINISTRATÖR">
-						<li class="controller"><g:link controller="user" action="index">Användare</g:link></li>
-						<li class="controller"><g:link controller="role" action="index">Roller</g:link></li>
-					</shiro:hasRole>
-
-				</ul>
-			</div>
-		</div>
-	</body>
+<head>
+    <meta name="layout" content="main"/>
+    <title>Anslutningsverktyg</title>
+    <r:require modules="jquery,bootstrap,main-style"/>
+</head>
+<body>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-3 col-md-2 sidebar">
+            <ul class="nav nav-sidebar">
+                <h1>Tjänsteproducent</h1>
+                <!-- Insert a link here that generates a server trip that which renders a partial angular page" -->
+                <li> <a href="/anslutningsverktyg/anslut">Anslut ny tjänst</a></li>
+                <shiro:hasRole name="ADMINISTRATÖR">
+                    <li><g:link controller="user" action="index">Användare</g:link></li>
+                </shiro:hasRole>
+            </ul>
+        </div>
+    </div>
+</div>
+</body>
 </html>
