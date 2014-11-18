@@ -58,7 +58,7 @@ class BootStrap {
 			user: tkAnsvarig).save(failOnError:true)
 			
 		def tk2 = new TjansteKomponent(
-			hsaId: "HSASERVICES-123Z",
+			hsaId: "HSASERVICES-123	Z",
 			tekniskKontaktEpost: "kontakten@lorumipsum.nu",
 			tekniskKontaktNamn: "Tolvan Tolvansson",
 			tekniskKontaktTelefon: "1234567890",

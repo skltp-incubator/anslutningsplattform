@@ -5,11 +5,16 @@ import se.skltp.av.TjansteKomponent;
 
 class TjansteKomponentApiController extends RestfulController{
 
-	static namespace = 'v1'
-
-	static responseFormats = ['json', 'xml']
+	def tjansteKomponentService
 
 	TjansteKomponentApiController() {
 		super(TjansteKomponent)
+	}
+
+	def query() {
+		println "$params"
+		//Bara hämta namn och id
+		def tjansteKomponenter = tjansteKomponentService.query(params.query)
+		respond tjansteKomponenter
 	}
 }
