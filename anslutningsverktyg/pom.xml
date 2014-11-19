@@ -24,8 +24,8 @@
 
     <dependencies>
         <dependency>
-			<groupId>se.skltp.tk</groupId>
-			<artifactId>tp-vagval-admin-schemas</artifactId>
+			<groupId>se.skltp.tak</groupId>
+			<artifactId>tak-schemas</artifactId>
 			<version>${tak.version}</version>
         </dependency>
 
@@ -207,6 +207,15 @@
                     <grailsVersion>${grails.version}</grailsVersion>
                 </configuration>
                 <extensions>true</extensions>
+                <executions>
+                    <execution>
+                        <id>default-maven-functional-test</id>
+                        <phase>integration-test</phase>
+                        <configuration>
+                            <skip>true</skip>
+                        </configuration>
+                    </execution>
+                </executions>
             </plugin>
             
             <plugin>

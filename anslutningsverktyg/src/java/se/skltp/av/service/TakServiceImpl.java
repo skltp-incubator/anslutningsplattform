@@ -8,10 +8,10 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import se.skltp.tk.vagvalsinfo.wsdl.v2.SokVagvalsInfoInterface;
-import se.skltp.tk.vagvalsinfo.wsdl.v2.SokVagvalsServiceSoap11LitDocService;
-import se.skltp.tk.vagvalsinfo.wsdl.v2.TjanstekontraktInfoType;
-import se.skltp.tk.vagvalsinfo.wsdl.v2.VirtualiseringsInfoType;
+import se.skltp.tak.vagvalsinfo.wsdl.v2.SokVagvalsInfoInterface;
+import se.skltp.tak.vagvalsinfo.wsdl.v2.SokVagvalsServiceSoap11LitDocService;
+import se.skltp.tak.vagvalsinfo.wsdl.v2.TjanstekontraktInfoType;
+import se.skltp.tak.vagvalsinfo.wsdl.v2.VirtualiseringsInfoType;
 
 public class TakServiceImpl {
 
@@ -39,7 +39,7 @@ public class TakServiceImpl {
 		for (final TjanstekontraktInfoType tk: response) {
 			result.add(new Tjanstekontrakt() {
 				public String getNamnrymd()    {return tk.getNamnrymd();}
-				public String getVersion()     {return tk.getVersion();}
+				public String getVersion()     {return tk.getMajorVersion();}
 				public String getBeskrivning() {return tk.getBeskrivning();}
 			});
 		}
