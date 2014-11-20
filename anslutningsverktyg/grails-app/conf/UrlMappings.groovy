@@ -22,6 +22,11 @@ class UrlMappings {
                     format = "json"
                 }
             }
+
+            "/environments"(version: '1.0', controller: 'driftMiljoApi') {
+                action = [GET:"list"]
+                format = "json"
+            }
         }
 
         "/"(view: "/index")

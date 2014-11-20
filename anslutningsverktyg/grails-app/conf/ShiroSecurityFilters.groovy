@@ -10,7 +10,8 @@ class ShiroSecurityFilters {
 	  assets: ['*'],
 	  producentBestallningApi: ['*'],
 	  tjansteKomponentApi: ['*'],
-	  hsaApi: ['*']
+	  hsaApi: ['*'],
+      driftMiljoApi: ['*']
     ]
 
     private boolean findAction(controllerName, actionName){
