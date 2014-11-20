@@ -1,13 +1,13 @@
 class UrlMappings {
 
     static mappings = {
-
-        //Controllers
-        "/$controller/$action?/$id?(.$format)?" {
-            constraints {
-                // apply constraints here
-            }
-        }
+//
+//        //Controllers
+//        "/$controller/$action?/$id?(.$format)?" {
+//            constraints {
+//                // apply constraints here
+//            }
+//        }
         //API
         group "/api", {
             "/tjanstekomponenter"(version: '1.0', namespace: 'v1', controller: 'tjansteKomponentApi')
@@ -17,6 +17,10 @@ class UrlMappings {
             "/serviceComponents"(version: '1.0', controller: 'tjansteKomponentApi') {
                 action = [GET:"query"]
                 format = "json"
+                "/serviceComponents/$id"(version: '1.0', controller: 'tjansteKomponentApi') {
+                    action = [GET:"get"]
+                    format = "json"
+                }
             }
         }
 

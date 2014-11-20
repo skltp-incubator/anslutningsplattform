@@ -48,6 +48,9 @@ grails.project.dependency.resolution = {
         //mavenRepo "http://repository.codehaus.org"
         //mavenRepo "http://download.java.net/maven/2/"
         //mavenRepo "http://repository.jboss.com/maven2/"
+        mavenRepo "http://repository.muleforge.org/"
+        mavenRepo "https://repository.mulesoft.org/nexus/content/repositories/releases/"
+        mavenRepo "http://dist.codehaus.org/mule/dependencies/maven2/"
     }
 
     dependencies {
@@ -76,6 +79,7 @@ grails.project.dependency.resolution = {
         runtime ":hibernate4:4.3.5.5" // or ":hibernate:3.6.10.17"
         runtime ":database-migration:1.4.0"
         runtime ':resources:1.2.13'
+        runtime ":cors:1.1.6"
 
         // Uncomment these to enable additional asset-pipeline capabilities
         //compile ":sass-asset-pipeline:1.9.0"
