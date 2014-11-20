@@ -1,1 +1,0 @@
-Remove this file when we actually put some filters in this folder

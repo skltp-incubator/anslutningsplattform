@@ -1,13 +1,13 @@
 class UrlMappings {
 
     static mappings = {
-//
-//        //Controllers
-//        "/$controller/$action?/$id?(.$format)?" {
-//            constraints {
-//                // apply constraints here
-//            }
-//        }
+
+        //Controllers
+        "/$controller/$action?/$id?(.$format)?" {
+            constraints {
+                // apply constraints here
+            }
+        }
         //API
         group "/api", {
             "/tjanstekomponenter"(version: '1.0', namespace: 'v1', controller: 'tjansteKomponentApi')

@@ -165,11 +165,19 @@
         </dependency>
 
         <dependency>
-          <groupId>org.grails.plugins</groupId>
-          <artifactId>cors</artifactId>
-          <version>1.1.6</version>
-          <scope>runtime</scope>
-          <type>zip</type>
+            <groupId>org.grails.plugins</groupId>
+            <artifactId>asset-pipeline</artifactId>
+            <version>1.9.6</version>
+            <scope>compile</scope>
+            <type>zip</type>
+        </dependency>
+
+        <dependency>
+            <groupId>org.grails.plugins</groupId>
+            <artifactId>jquery</artifactId>
+            <version>1.11.1</version>
+            <scope>runtime</scope>
+            <type>zip</type>
         </dependency>
 
     </dependencies>

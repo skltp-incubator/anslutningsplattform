@@ -1,1 +1,0 @@
-Remove this readme folder when we add som services to this folder.
