@@ -20,10 +20,6 @@ class UrlMappings {
             }
         }
 
-
-        //This is the way to serve static resource from the web-app folders
-        "/anslut"(uri: "views/tjansteproducent/anslut.html")
-
         "/"(view: "/index")
         "500"(view: '/error')
     }
