@@ -155,6 +155,13 @@
             <version>1.4.0</version>
             <scope>runtime</scope>
             <type>zip</type>
+
+        </dependency><dependency>
+            <groupId>org.grails.plugins</groupId>
+            <artifactId>cors</artifactId>
+            <version>1.1.6</version>
+            <scope>test</scope>
+            <type>zip</type>
         </dependency>
     </dependencies>
 
@@ -217,7 +224,7 @@
                     </execution>
                 </executions>
             </plugin>
-            
+
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
