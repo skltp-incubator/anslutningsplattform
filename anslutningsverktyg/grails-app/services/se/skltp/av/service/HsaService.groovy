@@ -1,15 +1,9 @@
 package se.skltp.av.service
 
-import java.awt.event.ItemEvent;
-import java.util.ArrayList;
-import java.util.List;
-
-import se.skl.tp.hsa.cache.HsaCache;
-import se.skl.tp.hsa.cache.HsaCacheImpl;
-import se.skl.tp.hsa.cache.HsaNodeInfo;
-import se.skltp.av.services.dto.HsaDTO;
-import se.skltp.av.services.dto.TjanstekontraktDTO;
 import grails.transaction.Transactional
+import se.skl.tp.hsa.cache.HsaCache
+import se.skl.tp.hsa.cache.HsaCacheImpl
+import se.skltp.av.services.dto.HsaDTO
 
 @Transactional(readOnly = true)
 class HsaService {
