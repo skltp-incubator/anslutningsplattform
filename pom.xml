@@ -17,13 +17,57 @@
 
     <scm>
       <url>http://github.com/skltp/av</url>
-      <connection>scm:git:git://github.com/skltp/av.git</connection>
-      <developerConnection>scm:git:git://github.com/skltp/av.git</developerConnection>
+      <connection>scm:git:git://github.com/skltp/anslutningsplattform.git</connection>
+      <developerConnection>scm:git:git://github.com/skltp/anslutningsplattform.git</developerConnection>
       <tag>HEAD</tag>
     </scm>
+
+    <repositories>
+        <!-- Sonatype staging repo added to be able to use artifacts
+            not yet pushed to central maven.
+         -->
+        <repository>
+            <id>sonatype-nexus-staging-repository</id>
+            <url>https://oss.sonatype.org/content/repositories/staging/</url>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
 
     <modules>
         <module>anslutningsverktyg</module>
     </modules>
+
+    <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-release-plugin</artifactId>
+                    <version>2.5.1</version>
+                    <configuration>
+                        <autoVersionSubmodules>true</autoVersionSubmodules>
+                        <tagNameFormat>v@{project.version}</tagNameFormat>
+                        <pushChanges>false</pushChanges>
+                        <localCheckout>true</localCheckout>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>2.3.2</version>
+                <configuration>
+                    <source>1.7</source>
+                    <target>1.7</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
 
 </project>
