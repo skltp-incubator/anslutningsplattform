@@ -36,6 +36,7 @@ grails.project.dependency.resolution = {
     checksums true // Whether to verify checksums on resolve
     legacyResolve false // whether to do a secondary resolve on plugin installation, not advised and here for backwards compatibility
 
+/*
     repositories {
         inherits true // Whether to inherit repository definitions from plugins
 
@@ -88,4 +89,5 @@ grails.project.dependency.resolution = {
         //compile ":coffee-asset-pipeline:1.8.0"
         //compile ":handlebars-asset-pipeline:1.3.0.3"
     }
+*/
 }
