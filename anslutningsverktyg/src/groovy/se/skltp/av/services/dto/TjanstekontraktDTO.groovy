@@ -1,8 +1,8 @@
 package se.skltp.av.services.dto
 
-class TjanstekontraktDTO {
-	
-	String namnrymd
-	String version
-	
+class TjansteKontraktDTO {
+    String namn
+    String namnrymd
+    int majorVersion
+    int minorVersion
 }
