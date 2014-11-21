@@ -59,10 +59,10 @@ grails.project.dependency.resolution = {
         // runtime 'org.postgresql:postgresql:9.3-1101-jdbc41'
         test "org.grails:grails-datastore-test-support:1.0-grails-2.4"
 
-        compile ("se.skltp.vp:vp-hsa-cache:2.2.9-SNAPSHOT"){
+        compile ("se.skltp.vp:vp-hsa-cache:2.2.9-RC1"){
           excludes 'spring-asm','slf4j-log4j12'
         }
-		    compile "se.skltp.tak:tak-schemas:1.4.2-SNAPSHOT"
+		    compile "se.skltp.tak:tak-schemas:1.4.2-RC1"
     }
 
     plugins {
