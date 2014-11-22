@@ -33,6 +33,11 @@ class UrlMappings {
                 format = "json"
             }
 
+            "/logicalAddresses"(version: '1.0', controller: 'logiskAdressApi') {
+                action = [GET:"query"]
+                format = "json"
+            }
+
             "/environments"(version: '1.0', controller: 'driftMiljoApi') {
                 action = [GET:"list"]
                 format = "json"
