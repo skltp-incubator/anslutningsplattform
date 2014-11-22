@@ -13,7 +13,8 @@ class ShiroSecurityFilters {
 	  hsaApi: ['*'],
       driftMiljoApi: ['*'],
       tjansteDomanApi: ['*'],
-      tjansteKontraktApi: ['*']
+      tjansteKontraktApi: ['*'],
+      logiskAdressApi: ['*']
     ]
 
     private boolean findAction(controllerName, actionName){
