@@ -88,6 +88,17 @@ grails.hibernate.osiv.readonly = false
 environments {
     development {
         grails.logging.jul.usebridge = true
+
+        //Cors must be addressed when running locally
+        cors.enabled=true
+        cors.url.pattern = '/api/*'
+        cors.headers=[
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Credentials': true,
+                'Access-Control-Allow-Headers': 'origin, authorization, accept, content-type, x-requested-with, x-ap-auth',
+                'Access-Control-Allow-Methods': 'GET, HEAD, POST, PUT, DELETE, TRACE, OPTIONS',
+                'Access-Control-Max-Age': 3600
+        ]
     }
     production {
         grails.logging.jul.usebridge = false
@@ -124,3 +135,4 @@ tak.sokvagvalsinfo.url = 'http://localhost:8090/tp-vagval-admin-services/SokVagv
 // HSA config
 //hsa.hsacache.files = ["classpath:hsacache.xml", "classpath:hsacachecomplementary.xml"]
 hsa.hsacache.files = ["grails-app/conf/hsacache.xml", "grails-app/conf/hsacachecomplementary.xml"]
+
