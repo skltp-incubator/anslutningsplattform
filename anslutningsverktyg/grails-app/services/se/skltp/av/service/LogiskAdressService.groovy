@@ -27,13 +27,45 @@ class LogiskAdressService {
     private getLogiskAdressMockDTOs(String query) {
         [
                 new LogiskAdressDTO(
-                        hsaId: 'SE0000000001-1234',
-                        namn: 'Nässjö VC DLM'
+                        hsaId: 'SE2321000065-7330028000014',
+                        namn: 'Kronobergs landsting'
                 ),
                 new LogiskAdressDTO(
-                        hsaId: 'SE0000000005-1234',
-                        namn: 'Eksjö Primärvårdsområde'
-                )
+                        hsaId: 'SE2321000065-7365566019822',
+                        namn: 'Kronoberg Achima Care'
+                ),
+                new LogiskAdressDTO(
+                        hsaId: 'SE2321000065-7365565696222',
+                        namn: 'Kronoberg HälsoRingen Vård'
+                ),
+                new LogiskAdressDTO(
+                        hsaId: 'SE2321000065-7330028091937',
+                        namn: 'Kronoberg Smålandshälsan i Ljungby'
+                ),
+                new LogiskAdressDTO(
+                        hsaId: 'SE2321000057-493K',
+                        namn: 'Jönköpings landsting'
+                ),
+                new LogiskAdressDTO(
+                        hsaId: 'SE2321000057-5SRJ',
+                        namn: 'Jönköping Bräcke Diakoni VC Lokstallarna'
+                ),
+                new LogiskAdressDTO(
+                        hsaId: 'SE2321000057-6SV4',
+                        namn: 'Jönköping A6 Ögonklinik'
+                ),
+                new LogiskAdressDTO(
+                        hsaId: 'SE2321000073-1000',
+                        namn: 'Kalmars landsting'
+                ),
+                new LogiskAdressDTO(
+                        hsaId: 'SE2321000073-4C87',
+                        namn: 'Kalmar Husläkarcentrum Kalmar'
+                ),
+                new LogiskAdressDTO(
+                        hsaId: 'SE2321000073-4C86',
+                        namn: 'Kalmar Virserums läkarhus'
+                ),
         ].findAll {
             query == null ||
                     it.namn.toLowerCase().contains(query.toLowerCase()) ||

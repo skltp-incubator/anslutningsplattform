@@ -9,22 +9,22 @@ class TjansteKomponentService {
 
     @Transactional(readOnly = true)
     List<TjansteKomponentDTO> query(String queryString) {
-        def domainServiceComponents = TjansteKomponent.findAllByHsaIdIlike("%$queryString%")
-        return domainServiceComponents.collect {
+        def domainServiceComponents = TjansteKomponent.findAllByHsaIdIlikeOrNamnIlike("%$queryString%", "%$queryString%")
+        domainServiceComponents.collect {
             new TjansteKomponentDTO(
                     id: it.id,
                     hsaId: it.hsaId,
-                    namn: it.hsaId, //FIXME: another name?
+                    namn: it.namn,
             )
         }
     }
 
     TjansteKomponentDTO findById(long id) {
         def domainServiceComponent = TjansteKomponent.findById(id)
-        return new TjansteKomponentDTO(
+        new TjansteKomponentDTO(
                 id: domainServiceComponent.id,
                 hsaId: domainServiceComponent.hsaId,
-                namn: domainServiceComponent.hsaId, //FIXME: another name?
+                namn: domainServiceComponent.namn,
                 tekniskKontaktEpost: domainServiceComponent.tekniskKontaktEpost,
                 tekniskKontaktNamn: domainServiceComponent.tekniskKontaktNamn,
                 tekniskKontaktTelefon: domainServiceComponent.tekniskKontaktTelefon,
