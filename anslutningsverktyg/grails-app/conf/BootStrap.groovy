@@ -54,25 +54,49 @@ class BootStrap {
 				tkAnsvarig.addToRoles(tkAnsvarigRole)
 				tkAnsvarig.save(failOnError:true)
 
-				def tk1 = new TjansteKomponent(
-						hsaId: "HSASERVICES-123Q",
-						tekniskKontaktEpost: "kontakten@lorumipsum.nu",
-						tekniskKontaktNamn: "Tolvan Tolvansson",
-						tekniskKontaktTelefon: "1234567890",
-						funktionsBrevladaEpost: "funktionsbrevladan@lorumipsum.nu",
-						funktionsBrevladaTelefon: "0987654321",
-						ipadress: "",
-						user: tkAnsvarig).save(failOnError:true)
+                def tk1 = new TjansteKomponent(
+                        hsaId: "SE165565594230-0016",
+                        namn: "NPÖ 2",
+                        tekniskKontaktEpost: "kontakten@lorumipsum.nu",
+                        tekniskKontaktNamn: "Tolvan Tolvansson",
+                        tekniskKontaktTelefon: "1234567890",
+                        funktionsBrevladaEpost: "funktionsbrevladan@lorumipsum.nu",
+                        funktionsBrevladaTelefon: "0987654321",
+                        ipadress: "",
+                        user: tkAnsvarig).save(failOnError:true)
 
-				def tk2 = new TjansteKomponent(
-						hsaId: "HSASERVICES-123	Z",
-						tekniskKontaktEpost: "kontakten@lorumipsum.nu",
-						tekniskKontaktNamn: "Tolvan Tolvansson",
-						tekniskKontaktTelefon: "1234567890",
-						funktionsBrevladaEpost: "funktionsbrevladan@lorumipsum.nu",
-						funktionsBrevladaTelefon: "0987654321",
-						ipadress: "",
-						user: tkAnsvarig).save(failOnError:true)
+                def tk2 = new TjansteKomponent(
+                        hsaId: "SE5565594230-B3B",
+                        namn: "Tieto Lifecare",
+                        tekniskKontaktEpost: "kontakten@lorumipsum.nu",
+                        tekniskKontaktNamn: "Tolvan Tolvansson",
+                        tekniskKontaktTelefon: "1234567890",
+                        funktionsBrevladaEpost: "funktionsbrevladan@lorumipsum.nu",
+                        funktionsBrevladaTelefon: "0987654321",
+                        ipadress: "",
+                        user: tkAnsvarig).save(failOnError:true)
+
+                def tk3 = new TjansteKomponent(
+                        hsaId: "SE2321000016-532S",
+                        namn: "MVK",
+                        tekniskKontaktEpost: "kontakten@lorumipsum.nu",
+                        tekniskKontaktNamn: "Tolvan Tolvansson",
+                        tekniskKontaktTelefon: "1234567890",
+                        funktionsBrevladaEpost: "funktionsbrevladan@lorumipsum.nu",
+                        funktionsBrevladaTelefon: "0987654321",
+                        ipadress: "",
+                        user: tkAnsvarig).save(failOnError:true)
+
+                def tk4 = new TjansteKomponent(
+                        hsaId: "SE2321000016-6SW1",
+                        namn: "L - Remittera",
+                        tekniskKontaktEpost: "kontakten@lorumipsum.nu",
+                        tekniskKontaktNamn: "Tolvan Tolvansson",
+                        tekniskKontaktTelefon: "1234567890",
+                        funktionsBrevladaEpost: "funktionsbrevladan@lorumipsum.nu",
+                        funktionsBrevladaTelefon: "0987654321",
+                        ipadress: "",
+                        user: tkAnsvarig).save(failOnError:true)
 
 				new ProducentBestallning(
 						miljo: "TEST",

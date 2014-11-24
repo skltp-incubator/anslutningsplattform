@@ -3,6 +3,7 @@ package se.skltp.av
 class TjansteKomponent {
 
     String hsaId
+    String namn
 	String tekniskKontaktEpost
 	String tekniskKontaktNamn
 	String tekniskKontaktTelefon
@@ -16,6 +17,7 @@ class TjansteKomponent {
 	
     static constraints = {
       hsaId blank: false, unique: true
+      namn nullable: true, blank: true
       tekniskKontaktEpost email: true, nullable: false, blank: false
 	  tekniskKontaktNamn nullable: false, blank: false
 	  tekniskKontaktTelefon nullable: true, blank: false
