@@ -83,6 +83,18 @@ class BootStrap {
 						miljo: "SIT",
 						status: BestallningsStatus.NY,
 						tjansteKomponent: tk1).save(failOnError:true)
+
+                new DriftMiljo(
+                        namn: 'Test'
+                ).save(failOnError: true)
+
+                new DriftMiljo(
+                        namn: 'QA'
+                ).save(failOnError: true)
+
+                new DriftMiljo(
+                        namn: 'Production'
+                ).save(failOnError: true)
 			}
 		}
 	}
