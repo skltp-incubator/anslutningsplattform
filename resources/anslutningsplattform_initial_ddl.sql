@@ -65,6 +65,7 @@ CREATE TABLE `tjanste_komponent` (
   `version` bigint(20) NOT NULL,
   `funktions_brevlada_epost` varchar(255) NOT NULL,
   `funktions_brevlada_telefon` varchar(255) NOT NULL,
+  `namn` varchar(255) NOT NULL,
   `hsa_id` varchar(255) NOT NULL,
   `ipadress` varchar(255) DEFAULT NULL,
   `teknisk_kontakt_epost` varchar(255) NOT NULL,
@@ -165,4 +166,14 @@ CREATE TABLE `producent_anslutning_logisk_adresser` (
   KEY `FK_mlmhp7ww0p5ma74gscacl19o0` (`logisk_adress_id`),
   CONSTRAINT `FK_8ntf7a0xavslt72uwxs2btvxk` FOREIGN KEY (`producent_anslutning_id`) REFERENCES `producent_anslutning` (`id`),
   CONSTRAINT `FK_mlmhp7ww0p5ma74gscacl19o0` FOREIGN KEY (`logisk_adress_id`) REFERENCES `logisk_adress` (`id`)
+) ENGINE=INNODB;
+
+
+-- Create syntax for TABLE 'drift_miljo'
+CREATE TABLE `drift_miljo` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `version` bigint(20) NOT NULL,
+  `namn` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `UK_sb8bbouer5wak8vyiiy4pf2bx` (`namn`)
 ) ENGINE=INNODB;
