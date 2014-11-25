@@ -136,5 +136,6 @@ tak.sokvagvalsinfo.url = 'http://localhost:8090/tp-vagval-admin-services/SokVagv
 //hsa.hsacache.files = ["classpath:hsacache.xml", "classpath:hsacachecomplementary.xml"]
 hsa.hsacache.files = ["grails-app/conf/hsacache.xml", "grails-app/conf/hsacachecomplementary.xml"]
 
+rivta.cache.file = 'grails-app/conf/domains.xml'
 api.auth.token = 'secret-token'
 

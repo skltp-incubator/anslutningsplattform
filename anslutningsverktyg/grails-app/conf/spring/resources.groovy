@@ -4,6 +4,7 @@ import grails.rest.render.json.JsonRenderer
 import grails.rest.render.json.JsonCollectionRenderer
 import se.skltp.av.api.v1.*
 import se.skltp.av.*
+import se.skltp.av.cache.RivTaCacheInMemoryImpl
 
 beans = {
 
@@ -25,4 +26,8 @@ beans = {
 	tjanstekomponentV1CollectionRenderer(JsonCollectionRenderer, TjansteKomponent){
 		excludes = v1_DEFAULT_EXCLUDES
 	}
+
+    rivTaCache(RivTaCacheInMemoryImpl) {
+        cacheFile = grailsApplication.config.rivta.cache.file
+    }
 }

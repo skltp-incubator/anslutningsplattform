@@ -12,7 +12,8 @@ class TjansteKontraktApiController extends RestfulController {
     def rivTaService
 
     def query() {
-        def serviceContracts = rivTaService.queryTjansteKontrakt(params.hsaId, params.getLong('environmentId'), params.getLong('serviceDomainId'))
+        println "$params"
+        def serviceContracts = rivTaService.queryTjansteKontrakt(params.hsaId, params.getLong('environmentId'), params.serviceDomainId)
         respond serviceContracts.collect {
             it.properties.minus(it.properties.findAll { it.value == null}) //hack to get rid of null values in the api
         }
