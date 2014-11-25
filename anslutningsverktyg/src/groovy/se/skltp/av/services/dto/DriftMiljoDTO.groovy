@@ -1,6 +1,6 @@
 package se.skltp.av.services.dto
 
 class DriftMiljoDTO {
-    long id
+    String id
     String namn
 }

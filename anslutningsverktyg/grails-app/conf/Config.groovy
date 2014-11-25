@@ -174,7 +174,19 @@ log4j.main = {
 }
 
 // Tak config
-tak.sokvagvalsinfo.url = 'http://localhost:8090/tp-vagval-admin-services/SokVagvalsInfo/v2?wsdl'
+//tak.sokvagvalsinfo.url = 'http://localhost:8090/tp-vagval-admin-services/SokVagvalsInfo/v2?wsdl'
+// Note: the sequence number must be surrounded by quotes to be a valid groovy identifier
+tak.env.id.'1' = 'ntjp-prod'
+tak.env.name.'1' = 'NTjP PROD'
+tak.env.url.'1' = 'http://TODO-PROD'
+
+tak.env.id.'2' = 'ntjp-qa'
+tak.env.name.'2' = 'NTjP QA'
+tak.env.url.'2' = 'http://TODO-QA'
+
+tak.env.id.'3' = 'ntjp-test'
+tak.env.name.'3' = 'NTjP TEST'
+tak.env.url.'3' = 'http://TODO-TEST'
 
 // HSA config
 //hsa.hsacache.files = ["classpath:hsacache.xml", "classpath:hsacachecomplementary.xml"]
