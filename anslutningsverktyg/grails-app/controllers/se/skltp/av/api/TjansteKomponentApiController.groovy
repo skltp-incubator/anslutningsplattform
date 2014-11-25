@@ -13,7 +13,7 @@ class TjansteKomponentApiController extends RestfulController {
     }
 
     def query() {
-        println "$params"
+        log.debug params
         //TODO: Hämta bara namn och id
         def serviceComponentDTOs = tjansteKomponentService.query(params.query)
         respond serviceComponentDTOs.collect {
@@ -22,7 +22,7 @@ class TjansteKomponentApiController extends RestfulController {
     }
 
     def get(long id) {
-        println "$params"
+        log.debug params
         def serviceComponentDTO = tjansteKomponentService.findById(id)
         respond serviceComponentDTO.properties.minus(serviceComponentDTO.properties.findAll { it.value == null }) //hack to get rid of null values in the api
     }

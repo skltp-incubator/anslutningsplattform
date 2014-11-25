@@ -13,7 +13,7 @@ class LogiskAdressApiController extends RestfulController {
     }
 
     def query() {
-        println "$params"
+        log.debug params
         def result = []
         if (params.query) { //TODO: also require environment here?
             //free text search

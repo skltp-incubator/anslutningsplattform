@@ -27,6 +27,9 @@ class HsaService {
 	def getHsaCache(){
 		if(!hsaCache){
 			def hsaFiles = grailsApplication.config.hsa.hsacache.files
+
+			log.info "HSA cache not loaded, lets load from files: ${hsaFiles}"
+
 			hsaCache = new HsaCacheImpl(hsaFiles as String[]);
 		}
 		return hsaCache
