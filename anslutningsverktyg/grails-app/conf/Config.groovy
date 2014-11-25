@@ -1,11 +1,25 @@
+import static java.lang.System.getProperty
+
 // locations to search for config files that get merged into the main config;
 // config files can be ConfigSlurper scripts, Java properties files, or classes
 // in the classpath in ConfigSlurper format
 
- grails.config.locations = [ "classpath:${appName}-config.properties",
-                             "classpath:${appName}-config.groovy",
-                             "file:${userHome}/.grails/${appName}-config.properties",
-                             "file:${userHome}/.grails/${appName}-config.groovy"]
+// grails.config.locations = [ "classpath:${appName}-config.properties",
+//                             "classpath:${appName}-config.groovy",
+//                             "file:${userHome}/.grails/${appName}-config.properties",
+//                             "file:${userHome}/.grails/${appName}-config.groovy"]
+
+def CONFIG_DIR = 'se.skltp.ap.config.dir'
+
+println "Check if system variable ${CONFIG_DIR} is set! It should point to dir containing external ${appName}-config-override.properties or ${appName}-config-override.groovy"
+
+if(getProperty(CONFIG_DIR)){
+    println "System variable was found and pointing to ${getProperty(CONFIG_DIR)}! Any existing override files will be used."
+
+    grails.config.locations = [  "file:${getProperty(CONFIG_DIR)}/${appName}-config-override.properties",
+                                 "file:${getProperty(CONFIG_DIR)}/${appName}-config-override.groovy"]
+}
+
 
 // if (System.properties["${appName}.config.location"]) {
 //    grails.config.locations << "file:" + System.properties["${appName}.config.location"]

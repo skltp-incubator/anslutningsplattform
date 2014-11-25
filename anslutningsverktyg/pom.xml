@@ -16,7 +16,7 @@
     <description>anslutningsplattform</description>
 
     <properties>
-		<tak.version>1.4.2-RC1</tak.version>
+		<tak.version>1.4.2-RC3</tak.version>
     	<vp.version>2.2.9-RC1</vp.version>
         <grails.version>2.4.3</grails.version>
     </properties>
@@ -230,6 +230,23 @@
                         </configuration>
                     </execution>
                 </executions>
+            </plugin>
+            <plugin>
+              <artifactId>maven-antrun-plugin</artifactId>
+              <executions>
+                <execution>
+                  <phase>pre-clean</phase>
+                  <goals>
+                    <goal>run</goal>
+                  </goals>
+                  <configuration>
+                    <tasks>
+                      <delete file="plugin.xml"/>
+                      <echo file="plugin.xml" message="&lt;plugin name='test'/&gt;"/>
+                    </tasks>
+                  </configuration>
+                </execution>
+              </executions>
             </plugin>
 
         </plugins>
