@@ -113,10 +113,39 @@ environments {
                 'Access-Control-Allow-Methods': 'GET, HEAD, POST, PUT, DELETE, TRACE, OPTIONS',
                 'Access-Control-Max-Age': 3600
         ]
+
+        log4j = {
+            appenders{
+                console name: 'stdout', layout: pattern(conversionPattern: "%d [%t] %-5p %c %x - %m%n")
+            }
+
+            error stdout:'stackTrace'
+
+            debug 'grails.app', 'se.skltp.av', 'se.skltp.ap'
+        }
     }
     production {
+
+        def catalinaBase = getProperty('catalina.base')
+        def logDirectory = catalinaBase ? "${catalinaBase}/logs" : "."
+
+        log4j = {
+            appenders{
+                rollingFile name: 'stdout', file: "${logDirectory}/${appName}.log".toString(), layout: pattern(conversionPattern: "%d [%t] %-5p %c %x - %m%n"), maxFileSize: '10MB', maxBackupIndex: 10
+                rollingFile name: 'audit', file:"${logDirectory}/${appName}-audit.log".toString(), layout:pattern(conversionPattern: '%d: %m%n'), maxFileSize: '10MB',maxBackupIndex: 10
+            }
+            root {
+                error 'stdout'
+                additivity = false
+            }
+            error stdout:'stackTrace'
+
+            info 'grails.app'
+
+            info audit:'grails.app.controller.se.skltp.av', 'grails.app.controller.se.skltp.ap'
+        }
+
         grails.logging.jul.usebridge = false
-        // TODO: grails.serverURL = "http://www.changeme.com"
     }
 }
 
@@ -141,6 +170,7 @@ log4j.main = {
            'net.sf.ehcache.hibernate'
 
     fatal 'org.hibernate.tool.hbm2ddl.SchemaExport'   //Removing background noise
+    info 'grails.app', 'se.skltp.av', 'se.skltp.ap'
 }
 
 // Tak config
