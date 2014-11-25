@@ -19,7 +19,7 @@ class LogiskAdressService {
         getLogiskAdressMockDTOs(queryString)
     }
 
-    List<LogiskAdressDTO> getByEnvironmentAndServiceDomain(long environmentId, long serviceDomainId) {
+    List<LogiskAdressDTO> getByEnvironmentAndServiceDomain(long environmentId, String serviceDomainId) {
         //TODO:query DB for existing logical addresses configured for environment and serviceDomain
         getLogiskAdressMockDTOs(null)
     }
