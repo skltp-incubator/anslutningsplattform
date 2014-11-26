@@ -18,7 +18,7 @@ class HsaService {
 		
 		def result = []
 		resultFromCache.each{
-			result.add(new HsaDTO(hsaId: it.hsaId, dn: it.dn))
+			result.add(new HsaDTO(hsaId: it.hsaId, dn: it.dn, namn: it.name))
 		}
 		
 		return result;

@@ -14,7 +14,7 @@ class LogiskAdressService {
         hsaDTOList.collect {
             new LogiskAdressDTO(
                     hsaId: it.hsaId,
-                    namn: it.dn //TODO: get a real name from somewhere?
+                    namn: it.namn
             )
         }
         //getLogiskAdressMockDTOs(queryString)
