@@ -24,7 +24,7 @@ class UrlMappings {
             }
 
             "/serviceDomains"(version: '1.0', controller: 'tjansteDomanApi') {
-                action = [GET:"query"]
+                action = [GET:"list"]
                 format = "json"
             }
 

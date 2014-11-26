@@ -11,9 +11,9 @@ class TjansteDomanApiController extends RestfulController {
 
     def rivTaService
 
-    def query() {
+    def list() {
         log.debug params
-        def serviceDomains = rivTaService.queryTjansteDoman(params.hsaId, params.getLong('environmentId'))
+        def serviceDomains = rivTaService.listTjansteDoman()
         respond serviceDomains.collect {
             it.properties.minus(it.properties.findAll { it.value == null}) //hack to get rid of null values in the api
         }

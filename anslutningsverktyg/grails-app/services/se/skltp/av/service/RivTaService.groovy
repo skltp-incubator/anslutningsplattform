@@ -21,7 +21,7 @@ class RivTaService {
         }
     }
 
-    List<TjansteDomanDTO> queryTjansteDoman(String hsaId, long environmentId) {
+    List<TjansteDomanDTO> listTjansteDoman() {
         rivTaCache.getDomaner().collect {
             new TjansteDomanDTO(
                     tjansteDomanId: it.id,
