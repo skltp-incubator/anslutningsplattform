@@ -17,7 +17,7 @@
 
     <properties>
 		<tak.version>1.4.2-RC3</tak.version>
-    	<vp.version>2.2.9-RC1</vp.version>
+    	<vp.version>2.2.9-SNAPSHOT</vp.version>
         <grails.version>2.4.3</grails.version>
     </properties>
 

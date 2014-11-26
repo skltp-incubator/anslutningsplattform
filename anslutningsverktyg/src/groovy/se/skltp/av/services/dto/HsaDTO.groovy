@@ -4,5 +4,6 @@ class HsaDTO {
 	
 	String hsaId
 	String dn
+	String namn
 
 }
