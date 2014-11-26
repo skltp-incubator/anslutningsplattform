@@ -1,6 +1,7 @@
 package se.skltp.av.service
 
 import grails.transaction.Transactional
+import se.skltp.av.services.dto.HsaDTO;
 import se.skltp.av.services.dto.LogiskAdressDTO
 
 @Transactional(readOnly = true)
@@ -9,18 +10,20 @@ class LogiskAdressService {
     def hsaService
 
     List<LogiskAdressDTO> freeTextSearch(String queryString, int limit) {
-//        List<HsaDTO> hsaDTOList = hsaService.freeTextSearch(queryString, limit)
-//        hsaDTOList.collect {
-//            new LogiskAdressDTO(
-//                    hsaId: it.hsaId,
-//                    namn: it.hsaId //TODO: get a real name from somewhere?
-//            )
-//        }
-        getLogiskAdressMockDTOs(queryString)
+        List<HsaDTO> hsaDTOList = hsaService.freeTextSearch(queryString, limit)
+        hsaDTOList.collect {
+            new LogiskAdressDTO(
+                    hsaId: it.hsaId,
+                    namn: it.dn //TODO: get a real name from somewhere?
+            )
+        }
+        //getLogiskAdressMockDTOs(queryString)
     }
 
-    List<LogiskAdressDTO> getByEnvironmentAndServiceDomain(long environmentId, String serviceDomainId) {
-        //TODO:query DB for existing logical addresses configured for environment and serviceDomain
+    List<LogiskAdressDTO> getByEnvironmentAndServiceDomain(String environmentId, String serviceDomainId) {
+        //TODO: query takService for existing logical addresses configured for environment and serviceDomain
+		println "getByEnvironmentAndServiceDomain: $environmentId, $serviceDomainId"
+		
         getLogiskAdressMockDTOs(null)
     }
 
