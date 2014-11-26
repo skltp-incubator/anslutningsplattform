@@ -5,6 +5,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
@@ -45,7 +46,8 @@ final class TakCache {
 		endpointSync = new ConcurrentHashMap<String, Date>();
 	}
 	
-	protected synchronized static void cacheAnropsBehorighet(final String endpoint, final List<AnropsBehorighetsInfoType> behorigheter) {
+	private synchronized static void cacheAnropsBehorighet(final String endpoint, final List<AnropsBehorighetsInfoType> behorigheter) {
+		final Set<String> currentKeys = new HashSet<String>();
 		ConcurrentHashMap<String, AnropsBehorighetDTO> cache;
 		if(!behorighet.contains(endpoint)) {
 			cache = new ConcurrentHashMap<String, AnropsBehorighetDTO>();
@@ -55,13 +57,22 @@ final class TakCache {
 		}
 		for(final AnropsBehorighetsInfoType type : behorigheter) {
 			final AnropsBehorighetDTO dto = TakCacheUtil.map(type);
+			currentKeys.add(dto.getId());
 			if(cache.putIfAbsent(dto.getId(), dto) != null) {
 				cache.replace(dto.getId(), dto);
 			}
 		}
+		final Iterator<String> it = cache.keySet().iterator();
+		while(it.hasNext()) {
+			final String key = it.next();
+			if(!currentKeys.contains(key)) {
+				behorighet.remove(key);
+			}
+		}
 	}
 	
-	protected synchronized static void cacheTjanstecontract(final String endpoint, final List<TjanstekontraktInfoType> kontrakt) {
+	private synchronized static void cacheTjanstecontract(final String endpoint, final List<TjanstekontraktInfoType> kontrakt) {
+		final Set<String> currentKeys = new HashSet<String>();
 		ConcurrentHashMap<String, TjanstekontraktDTO> cache;
 		if(!tjanstekontrakt.contains(endpoint)) {
 			cache = new ConcurrentHashMap<String, TjanstekontraktDTO>();
@@ -71,13 +82,22 @@ final class TakCache {
 		}
 		for(final TjanstekontraktInfoType type : kontrakt) {
 			final TjanstekontraktDTO dto = TakCacheUtil.map(type);
-			if(cache.putIfAbsent(dto.getNamnrymd(), dto) != null) {
-				cache.replace(dto.getNamnrymd(), dto);
+			currentKeys.add(dto.getId());
+			if(cache.putIfAbsent(dto.getId(), dto) != null) {
+				cache.replace(dto.getId(), dto);
+			}
+		}
+		final Iterator<String> it = cache.keySet().iterator();
+		while(it.hasNext()) {
+			final String key = it.next();
+			if(!currentKeys.contains(key)) {
+				tjanstekontrakt.remove(key);
 			}
 		}
 	}
 	
-	protected synchronized static void cacheVirtualiseringar(final String endpoint, final List<VirtualiseringsInfoType> virtualiseringar) {
+	private synchronized static void cacheVirtualiseringar(final String endpoint, final List<VirtualiseringsInfoType> virtualiseringar) {
+		final Set<String> currentKeys = new HashSet<String>();
 		ConcurrentHashMap<String, VirtualiseringDTO> cache;
 		if(!virtualisering.contains(endpoint)) {
 			cache = new ConcurrentHashMap<String, VirtualiseringDTO>();
@@ -87,8 +107,16 @@ final class TakCache {
 		}
 		for(final VirtualiseringsInfoType type : virtualiseringar) {
 			final VirtualiseringDTO dto = TakCacheUtil.map(type);
+			currentKeys.add(dto.getId());
 			if(cache.putIfAbsent(dto.getId(), dto) != null) {
 				cache.replace(dto.getId(), dto);
+			}
+		}
+		final Iterator<String> it = cache.keySet().iterator();
+		while(it.hasNext()) {
+			final String key = it.next();
+			if(!currentKeys.contains(key)) {
+				virtualiseringar.remove(key);
 			}
 		}
 	}
@@ -151,11 +179,10 @@ final class TakCache {
 						jaxWs.setAddress(endpoint);
 						final SokVagvalsInfoInterface client = (SokVagvalsInfoInterface) jaxWs.create();
 						
-						//TODO: Add separate error handling for each interface? JAXB error on Behorighets?
-						//Ar det mojligtvis XMLGregorianCalendar som spokar?
+						//TODO: Add separate error handling for each interface? 
 						cacheVirtualiseringar(endpoint, client.hamtaAllaVirtualiseringar(null).getVirtualiseringsInfo());
 						cacheTjanstecontract(endpoint, client.hamtaAllaTjanstekontrakt(null).getTjanstekontraktInfo());
-						//cacheAnropsBehorighet(endpoint, client.hamtaAllaAnropsBehorigheter(null).getAnropsBehorighetsInfo());
+						cacheAnropsBehorighet(endpoint, client.hamtaAllaAnropsBehorigheter(null).getAnropsBehorighetsInfo());
 						
 						if(endpointSync.putIfAbsent(endpoint, new Date()) != null) {
 							endpointSync.replace(endpoint, new Date());

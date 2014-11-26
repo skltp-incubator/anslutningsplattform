@@ -62,10 +62,14 @@ public final class TakCacheUtil {
 	}
 	
 	public static Date toDate(final XMLGregorianCalendar date) {
-		if(date == null) {
+		try {
+			if(date == null) {
+				return null;
+			}
+			return date.toGregorianCalendar().getTime();
+		} catch (Exception err) {
 			return null;
 		}
-		return date.toGregorianCalendar().getTime();
 	}
 	
 	public static String getId(final VirtualiseringsInfoIdType type) {
