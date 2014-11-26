@@ -9,15 +9,22 @@ import static java.lang.System.getProperty
 //                             "file:${userHome}/.grails/${appName}-config.properties",
 //                             "file:${userHome}/.grails/${appName}-config.groovy"]
 
-def CONFIG_DIR = 'se.skltp.ap.config.dir'
 
-println "Check if system variable ${CONFIG_DIR} is set! It should point to dir containing external ${appName}-config-override.properties or ${appName}-config-override.groovy"
+//System variable holding info about config dir for external resources
+def SYS_VAR_CONFIG_DIR = 'se.skltp.ap.config.dir'
 
-if(getProperty(CONFIG_DIR)){
-    println "System variable was found and pointing to ${getProperty(CONFIG_DIR)}! Any existing override files will be used."
+//Dir where external resources as override properties and caches are placed
+def EXT_RESOURCES_DIR = 'grails-app/conf'
 
-    grails.config.locations = [  "file:${getProperty(CONFIG_DIR)}/${appName}-config-override.properties",
-                                 "file:${getProperty(CONFIG_DIR)}/${appName}-config-override.groovy"]
+if(getProperty(SYS_VAR_CONFIG_DIR)){
+    EXT_RESOURCES_DIR = getProperty(SYS_VAR_CONFIG_DIR)
+    println "System variable ${SYS_VAR_CONFIG_DIR} is set! External Resources will be loaded from ${EXT_RESOURCES_DIR}"
+
+    grails.config.locations = [  "file:${getProperty(EXT_RESOURCES_DIR)}/${appName}-config-override.properties",
+                                 "file:${getProperty(EXT_RESOURCES_DIR)}/${appName}-config-override.groovy"]
+
+}else{
+    println "NOTE! System variable ${SYS_VAR_CONFIG_DIR} is NOT set! External Resources will be loaded from ${EXT_RESOURCES_DIR}"
 }
 
 
@@ -188,10 +195,11 @@ tak.env.id.'3' = 'ntjp-test'
 tak.env.name.'3' = 'NTjP TEST'
 tak.env.url.'3' = 'http://TODO-TEST'
 
-// HSA config
-//hsa.hsacache.files = ["classpath:hsacache.xml", "classpath:hsacachecomplementary.xml"]
-hsa.hsacache.files = ["grails-app/conf/hsacache.xml", "grails-app/conf/hsacachecomplementary.xml"]
+// HSA cache
+hsa.hsacache.files = ["${EXT_RESOURCES_DIR}/hsacache.xml", "${EXT_RESOURCES_DIR}/hsacachecomplementary.xml"]
 
-rivta.cache.file = 'grails-app/conf/domains.xml'
+// RIV TA cache
+rivta.cache.file = "${EXT_RESOURCES_DIR}/domains.xml"
+
+// Token used by client to invoke backend
 api.auth.token = 'secret-token'
-
