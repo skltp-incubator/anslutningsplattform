@@ -117,6 +117,14 @@
 
         <dependency>
             <groupId>org.grails.plugins</groupId>
+            <artifactId>mail</artifactId>
+            <version>1.0.7</version>
+            <scope>compile</scope>
+            <type>zip</type>
+        </dependency>
+
+        <dependency>
+            <groupId>org.grails.plugins</groupId>
             <artifactId>shiro</artifactId>
             <version>1.2.1</version>
             <type>zip</type>
