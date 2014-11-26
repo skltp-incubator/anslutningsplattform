@@ -9,7 +9,7 @@ class RivTaService {
 
     def rivTaCache
 
-    List<TjansteKontraktDTO> queryTjansteKontrakt(String hsaId, long environmentId, String serviceDomainId) {
+    List<TjansteKontraktDTO> queryTjansteKontrakt(String hsaId, String environmentId, String serviceDomainId) {
         def kontraktForDoman = rivTaCache.getTjansteKontraktForDoman(serviceDomainId)
         kontraktForDoman.collect {
             new TjansteKontraktDTO(
