@@ -15,12 +15,10 @@ public class TakCacheServicesImpl implements TakCacheServices {
 	
 	private final String endpoint;
 	private final String id;
-	private final String filePath;
 	
-	public TakCacheServicesImpl(final String endpoint, final String id, final String filePath) {
+	public TakCacheServicesImpl(final String endpoint, final String id) {
 		this.endpoint = endpoint;
 		this.id = id;
-		this.filePath = filePath;
 	}
 	
 	/**
@@ -28,10 +26,6 @@ public class TakCacheServicesImpl implements TakCacheServices {
 	 */	
 	public String getEndpoint() {
 		return this.endpoint;
-	}
-	
-	public String getFilePath() {
-		return this.filePath;
 	}
 	
 	public String getId() {
