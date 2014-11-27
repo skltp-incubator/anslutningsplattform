@@ -1,14 +1,6 @@
 package se.skltp.av.service
 
-import java.util.Date;
-import java.util.List;
-
 import javax.annotation.PostConstruct;
-
-import se.skltp.av.service.tak.TakCacheServices
-import se.skltp.av.service.tak.m.AnropsBehorighetDTO;
-import se.skltp.av.service.tak.m.TjanstekontraktDTO;
-import se.skltp.av.service.tak.m.VirtualiseringDTO;
 import se.skltp.av.services.dto.TakRoutingEntryDTO
 import grails.transaction.Transactional
 
@@ -16,7 +8,10 @@ import grails.transaction.Transactional
 class TakService {
 	
 	def grailsApplication
-		
+	
+	//def takServiceImpl
+	
+	def takRoutingMap
 	def takCacheMap
 
 	// don't do lazy init, we want to make sure that TAK-caches are populated
@@ -27,7 +22,7 @@ class TakService {
 	def init() {
 		log.debug("init TAK routing from config ...")
 		def confMap = grailsApplication.getFlatConfig()
-		def takRoutingMap = getTakRoutingMap(confMap)
+		takRoutingMap = getTakRoutingMap(confMap)
 		log.debug("done init TAK routing from config")
 
 		log.debug("init TAK caches ...")
@@ -107,64 +102,31 @@ class TakService {
 		takMap
 	}
 	
-	/**
-	 * Create and initialize TAK cache.
-	 * @param id assigned from config for a TAK-environment 
-	 * @param url for TAK webservice
-	 * @return
-	 */
 	def getTakCache(String id, String url) {
-		// TODO: change from mock-impl to real TAK-impl
-		new TakCacheServicesMock(takId: id, takUrl: url)		
+		"TODO: init real TAK-cache for: id: $id, url: $url"		
 	}
 	
-// BEGIN: PUBLIC METHODS		
-	public List<TjanstekontraktDTO> getAllTjanstekontrakt(String takId) {
-		// TODO: what should be returned here?
-		// see question in: https://skl-tp.atlassian.net/browse/AV-45
-		// Note: the method signature should be changed to reflect what we
-		// need for the use-case ...
-		//takCacheMap.takId.getAllTjanstekontrakt()
+	def getTakRoutingEntriesList() {
+		new ArrayList(takRoutingMap.values())
 	}
-// END: PUBLIC METHODS
+
+// TODO
+    def getAllTjanstekontrakt(String tjansteDoman) {
+		if(tjansteDoman){
+			return getTakServiceImpl().getAllTjanstekontrakt(tjansteDoman)
+		}
+		return getTakServiceImpl().getAllTjanstekontrakt()
+    }
 	
-	// TODO: tmp mock during cache-impl - replace !
-	class TakCacheServicesMock implements TakCacheServices {
-		def takId
-		def takUrl
-
-		@Override
-		public String getEndpoint() {
-			return takUrl;
+	def getAllProducentAnslutningar(String id){
+		getTakServiceImpl().getAllProducentAnslutningar(id)
+	}
+	
+	def getTakServiceImpl(){
+		if(!takServiceImpl){
+			def takUrl = grailsApplication.config.tak.sokvagvalsinfo.url
+			takServiceImpl = new TakServiceImpl(takUrl)
 		}
-
-		@Override
-		public String getId() {
-			return takId;
-		}
-
-		@Override
-		public Date lastSynched() {
-			return new Date();
-		}
-
-		@Override
-		public List<AnropsBehorighetDTO> getAllAnropsBehorigheter() {
-			// TODO Auto-generated method stub
-			return null;
-		}
-
-		@Override
-		public List<TjanstekontraktDTO> getAllTjanstekontrakt() {
-			// TODO Auto-generated method stub
-			return null;
-		}
-
-		@Override
-		public List<VirtualiseringDTO> getAllVirtualiseringar() {
-			// TODO Auto-generated method stub
-			return null;
-		}
-		
+		return takServiceImpl
 	}
 }
