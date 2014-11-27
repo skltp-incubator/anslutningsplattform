@@ -130,6 +130,24 @@ environments {
 
             debug 'grails.app', 'se.skltp.av', 'se.skltp.ap'
         }
+		
+		// SMTP config
+		grails {
+			mail {
+				// gmail for testing locally
+				host = "smtp.gmail.com"
+				port = "465"
+				//username = "youracount@gmail.com"
+				//password = "yourpassword"
+				username = "hakan.dahl.demo1@gmail.com"
+				password = "SET_YOUR_PASSWORD"
+				props = ["mail.smtp.auth":"true",
+					"mail.smtp.socketFactory.port":"465",
+					"mail.smtp.socketFactory.class":"javax.net.ssl.SSLSocketFactory",
+					"mail.smtp.socketFactory.fallback":"false"]
+			}
+		}
+		grails.mail.disabled=true
     }
     production {
 
@@ -153,6 +171,21 @@ environments {
         }
 
         grails.logging.jul.usebridge = false
+		
+		// SMTP config
+		grails {
+			mail {
+				// gmail for testing locally
+				host = "smtp.gmail.com"
+				port = "465"
+				username = "youracount@gmail.com"
+				password = "yourpassword"
+				props = ["mail.smtp.auth":"true",
+					"mail.smtp.socketFactory.port":"465",
+					"mail.smtp.socketFactory.class":"javax.net.ssl.SSLSocketFactory",
+					"mail.smtp.socketFactory.fallback":"false"]
+			}
+		}
     }
 }
 
@@ -203,3 +236,7 @@ rivta.cache.file = "${EXT_RESOURCES_DIR}/domains.xml"
 
 // Token used by client to invoke backend
 api.auth.token = 'secret-token'
+
+//grails.mail.default.from = 'noreply.anslutningsplattform@ntjp.se'
+grails.mail.default.from = 'hakan.dahl.demo1@gmail.com'
+smtp.to.address = 'hakan.dahl.demo1@gmail.com'

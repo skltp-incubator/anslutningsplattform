@@ -5,4 +5,5 @@ class TjansteKontraktDTO {
     String namnrymd
     int majorVersion
     int minorVersion
+    boolean installedInEnvironment
 }

@@ -10,8 +10,12 @@ class UrlMappings {
         }
         //API
         group "/api", {
-            "/tjanstekomponenter"(version: '1.0', namespace: 'v1', controller: 'tjansteKomponentApi')
-            "/producentbestallningar"(version: '1.0', namespace: 'v1', controller: 'producentBestallningApi')
+
+			"/serviceProducerConnectionOrders"(version: '1.0', namespace: 'v1', controller: 'producentBestallningApi') {
+				action = [POST:"save"]
+				format = "json"
+			}
+						
             "/hsa"(version: '1.0', namespace: 'v1', controller: 'hsaApi')
 
             "/serviceComponents"(version: '1.0', controller: 'tjansteKomponentApi') {
