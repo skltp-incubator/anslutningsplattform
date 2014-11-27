@@ -19,6 +19,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import antlr.StringUtils;
 import se.skltp.av.service.tak.m.PersistenceEntity;
 import se.skltp.tak.vagvalsinfo.wsdl.v2.AnropsBehorighetsInfoType;
 import se.skltp.tak.vagvalsinfo.wsdl.v2.TjanstekontraktInfoType;
@@ -143,17 +144,45 @@ public class TakCacheFilePersistenceImpl implements TakCachePersistenceServices 
 					Path cacheFile = FileSystems.getDefault().getPath(path, indexEntry.getFileName());
 					if(Files.exists(cacheFile)) {
 						final CachedEndpoint cached = map(cacheFile.toFile());
-						entitys.add(new PersistenceEntity(
-							indexEntry.getEndpoint(), 
-							indexEntry.getSynced(), 
-							cached.getEntries().getVirtualiseringar(),
-							cached.getEntries().getTjanstekontrakt(),
-							cached.getEntries().getAnropsbehorigheter()));
+						if(cached != null) {
+							entitys.add(new PersistenceEntity(
+									cached.getEndpoint(), 
+									cached.getSynched(), 
+									cached.getEntries().getVirtualiseringar(),
+									cached.getEntries().getTjanstekontrakt(),
+									cached.getEntries().getAnropsbehorigheter()));
+						}
 					}
 				}
 			}
 		}
 		return entitys;
+	}
+	
+	public PersistenceEntity getEndpoint(final String endpoint) {
+		synchronized (TakCacheFilePersistenceImpl.class) {
+			final Index index = getIndex();
+			if(index != null) {
+				for(final IndexEntry indexEntry : index.getEntrys()) {
+					if(endpoint.equalsIgnoreCase(indexEntry.getEndpoint())) {
+						Path cacheFile = FileSystems.getDefault().getPath(path, indexEntry.getFileName());
+						if(Files.exists(cacheFile)) {
+							final CachedEndpoint cached = map(cacheFile.toFile());
+							if(cached != null) {
+								return new PersistenceEntity(
+										cached.getEndpoint(), 
+										cached.getSynched(), 
+										cached.getEntries().getVirtualiseringar(), 
+										cached.getEntries().getTjanstekontrakt(), 
+										cached.getEntries().getAnropsbehorigheter()
+									);
+							}
+						}
+					}
+				}
+			}
+		}
+		return null;
 	}
 
 }

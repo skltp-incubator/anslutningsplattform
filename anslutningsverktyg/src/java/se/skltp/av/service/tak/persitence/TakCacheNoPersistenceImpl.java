@@ -1,6 +1,6 @@
 package se.skltp.av.service.tak.persitence;
 
-import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import se.skltp.av.service.tak.m.PersistenceEntity;
@@ -13,7 +13,11 @@ public class TakCacheNoPersistenceImpl implements TakCachePersistenceServices {
 
 	@Override
 	public List<PersistenceEntity> getEndpoints() {
-		return new ArrayList<PersistenceEntity>();
+		return Collections.emptyList();
+	}
+	
+	public PersistenceEntity getEndpoint(final String endpoint) {
+		return null;
 	}
 
 }

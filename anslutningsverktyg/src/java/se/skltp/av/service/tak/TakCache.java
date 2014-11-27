@@ -19,8 +19,6 @@ import se.skltp.av.service.tak.m.AnropsBehorighetDTO;
 import se.skltp.av.service.tak.m.PersistenceEntity;
 import se.skltp.av.service.tak.m.TjanstekontraktDTO;
 import se.skltp.av.service.tak.m.VirtualiseringDTO;
-import se.skltp.av.service.tak.persitence.TakCacheFilePersistenceImpl;
-import se.skltp.av.service.tak.persitence.TakCachePersistenceServices;
 import se.skltp.tak.vagvalsinfo.wsdl.v2.AnropsBehorighetsInfoType;
 import se.skltp.tak.vagvalsinfo.wsdl.v2.SokVagvalsInfoInterface;
 import se.skltp.tak.vagvalsinfo.wsdl.v2.TjanstekontraktInfoType;
@@ -174,10 +172,13 @@ final class TakCache {
 	
 	
 	/**
+	 * 
+	 * Add possibilty to use local-cache if failed to sync.
+	 * 
 	 * @param endpoints
 	 * @param callback
 	 */
-	public static synchronized void sync(final List<String> endpoints, final TakCacheCallback callback, final TakCachePersistenceServices persistences) {
+	public static void sync(final List<String> endpoints, final TakSyncCacheCallback callback) {
 		worker.execute(new Runnable() {
 			public void run() {
 				final JaxWsProxyFactoryBean jaxWs = new JaxWsProxyFactoryBean();
@@ -205,28 +206,43 @@ final class TakCache {
 						
 						persitencesEntitys.add(new PersistenceEntity(endpoint, synched, vInfoTypes, tInfoTypes, aInfoTypes));
 						
-						callback.onSuccess(endpoint);
+						callback.onSyncSuccess(endpoint);
 					} catch (Exception err) {
-						callback.onError(endpoint, err);
+						callback.onSyncError(endpoint, err);
 					}
 				}
-				persistences.persistEndpoints(persitencesEntitys);
+				callback.onSyncComplete(persitencesEntitys);
 			}
 		});
 	}
 	
-	public static synchronized void loadPersistedCache(final TakCacheCallback callback, final TakCachePersistenceServices persitence) {
+	public static void loadAllPersistedCaches(final List<PersistenceEntity> entitys) {
 		worker.execute(new Runnable() {
 			public void run() {
-				for(PersistenceEntity entity : persitence.getEndpoints()) {
+				for(PersistenceEntity entity : entitys) {
 					final String endpoint = entity.getEndpoint();
 					try {
 						cacheAnropsBehorighet(endpoint, entity.getAnropsbehorighet());
 						cacheTjanstecontract(endpoint, entity.getTjanstekontrakt());
 						cacheVirtualiseringar(endpoint, entity.getVirtualiseringar());
-						callback.onSuccess(endpoint);
 					} catch (Exception err) {
-						callback.onError(endpoint, err);
+						log.error("Could not load persisted cache for endpont: " + endpoint, err);
+					}
+				}
+			}
+		});
+	}
+	
+	public static void loadPersistedCache(final PersistenceEntity entity) {
+		worker.execute(new Runnable() {
+			public void run() {
+				if(entity != null) {
+					try {
+						cacheAnropsBehorighet(entity.getEndpoint(), entity.getAnropsbehorighet());
+						cacheTjanstecontract(entity.getEndpoint(), entity.getTjanstekontrakt());
+						cacheVirtualiseringar(entity.getEndpoint(), entity.getVirtualiseringar());
+					} catch (Exception err) {
+						log.error("Could not load persisted cache for endpont: " + entity.getEndpoint(), err);
 					}
 				}
 			}
