@@ -3,7 +3,7 @@ package se.skltp.av.service.tak;
 import java.util.List;
 
 import se.skltp.av.service.tak.m.PersistenceEntity;
-import se.skltp.av.service.tak.persitence.TakCachePersistenceServices;
+import se.skltp.av.service.tak.persistence.TakCachePersistenceServices;
 
 /**
  * Callback to be used when syncing TAK-cahe.

@@ -1,4 +1,4 @@
-package se.skltp.av.service.tak.persitence;
+package se.skltp.av.service.tak.persistence;
 
 
 import java.io.File;
