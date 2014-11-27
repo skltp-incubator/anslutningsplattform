@@ -1,8 +1,12 @@
 package se.skltp.av.services.dto
 
+import grails.validation.Validateable
+import groovy.transform.ToString
 import se.skltp.av.ProducentBestallning
 import se.skltp.av.User
 
+@Validateable
+@ToString
 class TjansteKomponentDTO {
     long id
     String hsaId
@@ -16,4 +20,5 @@ class TjansteKomponentDTO {
     String funktionsBrevladaEpost
     String funktionsBrevladaTelefon
     String ipadress
+	String pingForConfiguration
 }
