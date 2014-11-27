@@ -7,6 +7,9 @@ class TjansteKomponentDTO {
     long id
     String hsaId
     String namn
+    String huvudAnsvarigNamn
+    String huvudAnsvarigEpost
+    String huvudAnsvarigTelefon
     String tekniskKontaktEpost
     String tekniskKontaktNamn
     String tekniskKontaktTelefon
