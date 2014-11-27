@@ -2,6 +2,8 @@
 -- Dumpning av testdata
 --
 
+use anslutningsplattform;
+
 INSERT INTO `role` (`id`, `version`, `name`) VALUES
 (3, 0, 'ADMINISTRATÖR'),
 (4, 0, 'TJÄNSTEKOMPONENTANSVARIG');

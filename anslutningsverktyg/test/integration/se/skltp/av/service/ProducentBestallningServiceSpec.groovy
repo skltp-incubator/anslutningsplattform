@@ -1,34 +1,46 @@
 package se.skltp.av.service
 
 
+import se.skltp.av.User
+import se.skltp.av.services.dto.AnsvarigDTO
+import se.skltp.av.services.dto.DriftMiljoDTO
+import se.skltp.av.services.dto.ProducentBestallningDTO
+import se.skltp.av.services.dto.TjansteDomanDTO
+import se.skltp.av.services.dto.TjansteKomponentDTO
 import spock.lang.*
-import se.skltp.av.ProducentBestallning
-import se.skltp.av.ProducentBestallningService
-import se.skltp.av.util.BestallningsStatus
 
 /**
  *
  */
 class ProducentBestallningServiceSpec extends Specification {
 
-    def producentBestallningService
+	def producentBestallningService
 
-    def setup() {
-    }
+	def setup() {
+	}
 
-    def cleanup() {
-    }
+	def cleanup() {
+	}
 
-    void "create new producentbestallning"() {
+	void "create new responsible user for tjanstekomponent when not in db"() {
 
-        setup:
+		setup:
+			def serviceDomain = new TjansteDomanDTO()
+			def serviceComponent = new TjansteKomponentDTO()
+			def serviceConsumer = new TjansteKomponentDTO()
+			def miljo = new DriftMiljoDTO()
+			
+			def client = new AnsvarigDTO(name: 'Agda Andersson', email: 'agda.andersson@apbackend.dummy', phone: '1234567890')
+	
+			def producentBestallningDTO = new ProducentBestallningDTO(serviceDomain: serviceDomain, serviceComponent: 
+				serviceComponent, serviceConsumer: serviceConsumer, miljo: miljo, client: client)
+			
+			producentBestallningService.updateProducentBestallning(producentBestallningDTO)
 
-        when:
-            def newProducentBestallning = new ProducentBestallningDTO(status: BestallningsStatus.NY, miljo: 'TEST')
-            producentBestallningService.updateProducentBestallning(newProducentBestallning)
-
-        then:
-            ProducentBestallning.list() == 1
-
-    }
+		when:
+			def size = User.list().size
+		then:
+			size == 1
+		
+	}
 }

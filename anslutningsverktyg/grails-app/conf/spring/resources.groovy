@@ -5,6 +5,7 @@ import grails.rest.render.json.JsonCollectionRenderer
 import se.skltp.av.api.v1.*
 import se.skltp.av.*
 import se.skltp.av.cache.RivTaCacheInMemoryImpl
+import se.skltp.av.services.dto.*;
 
 beans = {
 
