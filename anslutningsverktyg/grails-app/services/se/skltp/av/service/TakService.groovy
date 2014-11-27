@@ -17,6 +17,7 @@ class TakService {
 	
 	def grailsApplication
 		
+	def takRoutingMap
 	def takCacheMap
 
 	// don't do lazy init, we want to make sure that TAK-caches are populated
@@ -27,7 +28,7 @@ class TakService {
 	def init() {
 		log.debug("init TAK routing from config ...")
 		def confMap = grailsApplication.getFlatConfig()
-		def takRoutingMap = getTakRoutingMap(confMap)
+		takRoutingMap = getTakRoutingMap(confMap)
 		log.debug("done init TAK routing from config")
 
 		log.debug("init TAK caches ...")
@@ -118,14 +119,13 @@ class TakService {
 		new TakCacheServicesMock(takId: id, takUrl: url)		
 	}
 	
-// BEGIN: PUBLIC METHODS		
-	public List<TjanstekontraktDTO> getAllTjanstekontrakt(String takId) {
-		// TODO: what should be returned here?
-		// see question in: https://skl-tp.atlassian.net/browse/AV-45
-		// Note: the method signature should be changed to reflect what we
-		// need for the use-case ...
-		//takCacheMap.takId.getAllTjanstekontrakt()
+// BEGIN: PUBLIC METHODS
+	def getTakRoutingEntriesList() {
+		new ArrayList(takRoutingMap.values())
 	}
+
+	// TODO: impl method for AV-45
+	
 // END: PUBLIC METHODS
 	
 	// TODO: tmp mock during cache-impl - replace !
