@@ -28,6 +28,9 @@ import se.skltp.tak.vagvalsinfo.wsdl.v2.VirtualiseringsInfoType;
 
 /**
  *	TODO: Safe file removal on failure.
+ *
+ * File based persitence.
+ *
  */
 public class TakCacheFilePersistenceImpl implements TakCachePersistenceServices {
 	

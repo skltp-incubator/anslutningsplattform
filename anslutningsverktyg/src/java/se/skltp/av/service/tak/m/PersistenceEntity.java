@@ -7,6 +7,9 @@ import se.skltp.tak.vagvalsinfo.wsdl.v2.AnropsBehorighetsInfoType;
 import se.skltp.tak.vagvalsinfo.wsdl.v2.TjanstekontraktInfoType;
 import se.skltp.tak.vagvalsinfo.wsdl.v2.VirtualiseringsInfoType;
 
+/**
+ * Holder of JAXB-types to be persisted.
+ */
 public class PersistenceEntity {
 	
 	private final String endpoint;

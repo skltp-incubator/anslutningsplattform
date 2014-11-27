@@ -46,6 +46,11 @@ final class TakCache {
 		endpointSync = new ConcurrentHashMap<String, Date>();
 	}
 	
+	/**
+	 * Adds Response from HamtaAllaAnropsBehorgiheter to cache.
+	 * @param endpoint URL
+	 * @param behorigheter
+	 */
 	private synchronized static void cacheAnropsBehorighet(final String endpoint, final List<AnropsBehorighetsInfoType> behorigheter) {
 		if(endpoint != null) {
 			final Set<String> currentKeys = new HashSet<String>();
@@ -73,6 +78,11 @@ final class TakCache {
 		}
 	}
 	
+	/**
+	 * Adds repsonse from HamtaAllaTjansterkontrakt to cache.
+	 * @param endpoint URL
+	 * @param kontrakt
+	 */
 	private synchronized static void cacheTjanstecontract(final String endpoint, final List<TjanstekontraktInfoType> kontrakt) {
 		if(endpoint != null) {
 			final Set<String> currentKeys = new HashSet<String>();
@@ -100,6 +110,11 @@ final class TakCache {
 		}
 	}
 	
+	/**
+	 * Adds response from HamtaAllaVirtualiseringar to cache
+	 * @param endpoint
+	 * @param virtualiseringar
+	 */
 	private synchronized static void cacheVirtualiseringar(final String endpoint, final List<VirtualiseringsInfoType> virtualiseringar) {
 		if(endpoint != null) {
 			final Set<String> currentKeys = new HashSet<String>();
@@ -128,8 +143,8 @@ final class TakCache {
 	}
 
 	/**
-	 * TODO: Dont create new Array
-	 * @param endpoint
+	 * Get all cached AnropsBehorigheter from provided endpoint.
+	 * @param endpoint URL
 	 * @return
 	 */
 	protected static List<AnropsBehorighetDTO> getAnropsBehorighet(final String endpoint) {
@@ -141,8 +156,8 @@ final class TakCache {
 	}
 	
 	/**
-	 * TODO: Dont create new Array
-	 * @param endpoint
+	 * Get all cached Tjanstekontrakt from provided endpoint.
+	 * @param endpoint URL
 	 * @return
 	 */
 	protected static List<TjanstekontraktDTO> getTjanstekontrakt(final String endpoint) {
@@ -154,8 +169,8 @@ final class TakCache {
 	}
 	
 	/**
-	 * TODO: Dont create new Array
-	 * @param endpoint
+	 * Get all cached Virtualiseringar from provided endpoint.
+	 * @param endpoint URL
 	 * @return
 	 */
 	protected static List<VirtualiseringDTO> getVirtualisering(final String endpoint) {
@@ -166,6 +181,11 @@ final class TakCache {
 		return Collections.emptyList();
 	}
 
+	/**
+	 * Get date reference for when endpoint was latest synched.
+	 * @param endpoint
+	 * @return
+	 */
 	protected static Date lastSynched(final String endpoint) {
 		return endpointSync.get(endpoint);
 	}
@@ -173,7 +193,7 @@ final class TakCache {
 	
 	/**
 	 * 
-	 * Add possibilty to use local-cache if failed to sync.
+	 * Sync provided list of enpoints.
 	 * 
 	 * @param endpoints
 	 * @param callback
@@ -216,6 +236,10 @@ final class TakCache {
 		});
 	}
 	
+	/**
+	 * Load a list of entitys to cache.
+	 * @param entitys
+	 */
 	public static void loadAllPersistedCaches(final List<PersistenceEntity> entitys) {
 		worker.execute(new Runnable() {
 			public void run() {
@@ -233,6 +257,10 @@ final class TakCache {
 		});
 	}
 	
+	/**
+	 * Load specific entity into cache.
+	 * @param entity
+	 */
 	public static void loadPersistedCache(final PersistenceEntity entity) {
 		worker.execute(new Runnable() {
 			public void run() {
