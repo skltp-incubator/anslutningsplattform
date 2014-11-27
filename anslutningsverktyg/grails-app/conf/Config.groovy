@@ -20,8 +20,8 @@ if(getProperty(SYS_VAR_CONFIG_DIR)){
     EXT_RESOURCES_DIR = getProperty(SYS_VAR_CONFIG_DIR)
     println "System variable ${SYS_VAR_CONFIG_DIR} is set! External Resources will be loaded from ${EXT_RESOURCES_DIR}"
 
-    grails.config.locations = [  "file:${getProperty(EXT_RESOURCES_DIR)}/${appName}-config-override.properties",
-                                 "file:${getProperty(EXT_RESOURCES_DIR)}/${appName}-config-override.groovy"]
+    grails.config.locations = [  "file:${EXT_RESOURCES_DIR}/${appName}-config-override.properties",
+                                 "file:${EXT_RESOURCES_DIR}/${appName}-config-override.groovy"]
 
 }else{
     println "NOTE! System variable ${SYS_VAR_CONFIG_DIR} is NOT set! External Resources will be loaded from ${EXT_RESOURCES_DIR}"
@@ -228,11 +228,29 @@ tak.env.id.'3' = 'ntjp-test'
 tak.env.name.'3' = 'NTjP TEST'
 tak.env.url.'3' = 'http://TODO-TEST'
 
-// HSA cache
-hsa.hsacache.files = ["${EXT_RESOURCES_DIR}/hsacache.xml", "${EXT_RESOURCES_DIR}/hsacachecomplementary.xml"]
-
-// RIV TA cache
-rivta.cache.file = "${EXT_RESOURCES_DIR}/domains.xml"
+environments {
+	development{
+		// HSA cache
+		hsa.hsacache.files = ["${EXT_RESOURCES_DIR}/hsacache.xml", "${EXT_RESOURCES_DIR}/hsacachecomplementary.xml"]
+		
+		// RIV TA cache
+		rivta.cache.file = "${EXT_RESOURCES_DIR}/domains.xml"
+	}
+	test{
+		// HSA cache
+		hsa.hsacache.files = ["${EXT_RESOURCES_DIR}/hsacache-test.xml", "${EXT_RESOURCES_DIR}/hsacachecomplementary-test.xml"]
+		
+		// RIV TA cache
+		rivta.cache.file = "${EXT_RESOURCES_DIR}/domains.xml"
+	}
+	production{
+		// HSA cache
+		hsa.hsacache.files = ["${EXT_RESOURCES_DIR}/hsacache.xml", "${EXT_RESOURCES_DIR}/hsacachecomplementary.xml"]
+		
+		// RIV TA cache
+		rivta.cache.file = "${EXT_RESOURCES_DIR}/domains.xml"
+	}
+}
 
 // Token used by client to invoke backend
 api.auth.token = 'secret-token'
