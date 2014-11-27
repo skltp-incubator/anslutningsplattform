@@ -1,8 +1,7 @@
 package se.skltp.av.service.tak.m;
 
-import java.util.Date;
 
-public class TjanstekontraktDTO {
+public class TjanstekontraktDTO implements CacheableDTO {
 	
 	private final String beskrivning;
 	private final String majorVersion;
@@ -31,5 +30,16 @@ public class TjanstekontraktDTO {
 	
 	public String getNamnrymd() {
 		return this.namnrymd;
+	}
+	
+	public String getId() {
+		return this.namnrymd;
+	}
+
+	@Override
+	public String toString() {
+		return "TjanstekontraktDTO [beskrivning=" + beskrivning
+				+ ", majorVersion=" + majorVersion + ", minorVersion="
+				+ minorVersion + ", namnrymd=" + namnrymd + "]";
 	}
 }

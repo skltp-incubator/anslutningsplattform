@@ -22,31 +22,43 @@ public class TakCacheServicesImpl implements TakCacheServices {
 	}
 	
 	/**
-	 * API
-	 */	
+	 * {@inheritDoc}
+	 */
 	public String getEndpoint() {
 		return this.endpoint;
 	}
 	
+	/**
+	 * {@inheritDoc}
+	 */
 	public String getId() {
 		return this.id;
 	}
 	
+	/**
+	 * {@inheritDoc}
+	 */
 	public Date lastSynched() {
 		return TakCache.lastSynched(this.endpoint);
 	}
 
-	@Override
+	/**
+	 * {@inheritDoc}
+	 */
 	public List<AnropsBehorighetDTO> getAllAnropsBehorigheter() {
 		return TakCache.getAnropsBehorighet(this.endpoint);
 	}
 
-	@Override
+	/**
+	 * {@inheritDoc}
+	 */
 	public List<TjanstekontraktDTO> getAllTjanstekontrakt() {
 		return TakCache.getTjanstekontrakt(this.endpoint);
 	}
 
-	@Override
+	/**
+	 * {@inheritDoc}
+	 */
 	public List<VirtualiseringDTO> getAllVirtualiseringar() {
 		return TakCache.getVirtualisering(this.endpoint);
 	}

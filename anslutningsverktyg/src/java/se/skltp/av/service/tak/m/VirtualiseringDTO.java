@@ -4,7 +4,7 @@ import java.util.Date;
 
 import se.skltp.tak.vagvalsinfo.wsdl.v2.VirtualiseringsInfoType;
 
-public class VirtualiseringDTO {
+public class VirtualiseringDTO implements CacheableDTO {
 	
 	private final String address;
 	private final Date fromTidpunkt;
@@ -51,5 +51,13 @@ public class VirtualiseringDTO {
 	
 	public String getId() {
 		return this.id;
+	}
+
+	@Override
+	public String toString() {
+		return "VirtualiseringDTO [address=" + address + ", fromTidpunkt="
+				+ fromTidpunkt + ", reciverId=" + reciverId + ", rivProfil="
+				+ rivProfil + ", tjanstekontrakt=" + tjanstekontrakt
+				+ ", tomTidpunkt=" + tomTidpunkt + ", id=" + id + "]";
 	}
 }
