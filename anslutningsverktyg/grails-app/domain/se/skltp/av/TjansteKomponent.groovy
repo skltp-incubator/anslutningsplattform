@@ -1,5 +1,8 @@
 package se.skltp.av
 
+import groovy.transform.ToString;
+
+@ToString
 class TjansteKomponent {
 
     String hsaId

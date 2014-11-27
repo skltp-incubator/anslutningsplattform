@@ -1,11 +1,13 @@
 package se.skltp.av
 
 import static se.skltp.av.util.AvUtil.*
+import groovy.transform.ToString;
 
 /**
  * Currently named User instead of Anvandare to map with ShiroDbRealm
  *
  */
+@ToString
 class User {
 		
 	String namn

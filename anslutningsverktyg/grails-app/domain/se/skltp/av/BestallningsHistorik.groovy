@@ -1,7 +1,10 @@
 package se.skltp.av
 
 import static se.skltp.av.util.AvUtil.*
+import groovy.transform.ToString;
 
+
+@ToString
 class BestallningsHistorik {
 	
 	String status

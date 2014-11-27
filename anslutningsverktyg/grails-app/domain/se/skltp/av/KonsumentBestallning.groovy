@@ -1,5 +1,8 @@
 package se.skltp.av
 
+import groovy.transform.ToString;
+
+@ToString
 class KonsumentBestallning {
 	
 	String miljo
