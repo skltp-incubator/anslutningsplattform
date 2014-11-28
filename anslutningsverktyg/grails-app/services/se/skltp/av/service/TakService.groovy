@@ -1,6 +1,14 @@
 package se.skltp.av.service
 
+import java.util.Date;
+import java.util.List;
+
 import javax.annotation.PostConstruct;
+
+import se.skltp.av.service.tak.TakCacheServices
+import se.skltp.av.service.tak.m.AnropsBehorighetDTO;
+import se.skltp.av.service.tak.m.TjanstekontraktDTO;
+import se.skltp.av.service.tak.m.VirtualiseringDTO;
 import se.skltp.av.services.dto.TakRoutingEntryDTO
 import grails.transaction.Transactional
 
@@ -8,9 +16,7 @@ import grails.transaction.Transactional
 class TakService {
 	
 	def grailsApplication
-	
-	//def takServiceImpl
-	
+		
 	def takRoutingMap
 	def takCacheMap
 
@@ -102,31 +108,63 @@ class TakService {
 		takMap
 	}
 	
+	/**
+	 * Create and initialize TAK cache.
+	 * @param id assigned from config for a TAK-environment 
+	 * @param url for TAK webservice
+	 * @return
+	 */
 	def getTakCache(String id, String url) {
-		"TODO: init real TAK-cache for: id: $id, url: $url"		
+		// TODO: change from mock-impl to real TAK-impl
+		new TakCacheServicesMock(takId: id, takUrl: url)		
 	}
 	
+// BEGIN: PUBLIC METHODS
 	def getTakRoutingEntriesList() {
 		new ArrayList(takRoutingMap.values())
 	}
 
-// TODO
-    def getAllTjanstekontrakt(String tjansteDoman) {
-		if(tjansteDoman){
-			return getTakServiceImpl().getAllTjanstekontrakt(tjansteDoman)
-		}
-		return getTakServiceImpl().getAllTjanstekontrakt()
-    }
+	// TODO: impl method for AV-45
 	
-	def getAllProducentAnslutningar(String id){
-		getTakServiceImpl().getAllProducentAnslutningar(id)
-	}
+// END: PUBLIC METHODS
 	
-	def getTakServiceImpl(){
-		if(!takServiceImpl){
-			def takUrl = grailsApplication.config.tak.sokvagvalsinfo.url
-			takServiceImpl = new TakServiceImpl(takUrl)
+	// TODO: tmp mock during cache-impl - replace !
+	class TakCacheServicesMock implements TakCacheServices {
+		def takId
+		def takUrl
+
+		@Override
+		public String getEndpoint() {
+			return takUrl;
 		}
-		return takServiceImpl
+
+		@Override
+		public String getId() {
+			return takId;
+		}
+
+		@Override
+		public Date lastSynched() {
+			return new Date();
+		}
+
+		@Override
+		public List<AnropsBehorighetDTO> getAllAnropsBehorigheter() {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		@Override
+		public List<TjanstekontraktDTO> getAllTjanstekontrakt() {
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+		@Override
+		public List<VirtualiseringDTO> getAllVirtualiseringar() {
+			// TODO Auto-generated method stub
+			return null;
+		}
+		
 	}
 }
