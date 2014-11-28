@@ -1,10 +1,9 @@
 package se.skltp.av.services.dto
 
-import se.skltp.av.ProducentBestallning
-import se.skltp.av.User
+import groovy.transform.ToString
 
+@ToString(includeNames=true, includeFields = true)
 class TjansteKomponentDTO {
-    long id
     String hsaId
     String namn
     String huvudAnsvarigNamn
