@@ -1,5 +1,6 @@
 package se.skltp.av.service
 
+import java.util.List;
 import grails.transaction.Transactional
 import se.skltp.av.services.dto.HsaDTO;
 import se.skltp.av.services.dto.LogiskAdressDTO
@@ -8,23 +9,32 @@ import se.skltp.av.services.dto.LogiskAdressDTO
 class LogiskAdressService {
 
     def hsaService
+	def takService
 
     List<LogiskAdressDTO> freeTextSearch(String queryString, int limit) {
+		//getLogiskAdressMockDTOs(queryString)
+
         List<HsaDTO> hsaDTOList = hsaService.freeTextSearch(queryString, limit)
         hsaDTOList.collect {
             new LogiskAdressDTO(
                     hsaId: it.hsaId,
                     namn: it.namn
             )
-        }
-        //getLogiskAdressMockDTOs(queryString)
+        }        
     }
 
     List<LogiskAdressDTO> getByEnvironmentAndServiceDomain(String environmentId, String serviceDomainId) {
-        //TODO: query takService for existing logical addresses configured for environment and serviceDomain
-		println "getByEnvironmentAndServiceDomain: $environmentId, $serviceDomainId"
+		//getLogiskAdressMockDTOs(null)
 		
-        getLogiskAdressMockDTOs(null)
+		// get all logical addresses for domain from TAK (no description in TAK-API)
+		List<String> logicalAddress = takService.getLogicalAddressByServiceDomainNS(environmentId, serviceDomainId)
+		// try to find a name/description for logical address from HSA
+		List dtoList = new ArrayList()
+		logicalAddress.each {
+			String name = hsaService.getNameForHsaId(it)
+			dtoList.add(new LogiskAdressDTO(hsaId: it, namn: name))
+		}
+		dtoList
     }
 
     private getLogiskAdressMockDTOs(String query) {

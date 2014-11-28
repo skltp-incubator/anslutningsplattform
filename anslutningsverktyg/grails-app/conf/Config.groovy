@@ -134,6 +134,7 @@ environments {
 		// SMTP config
 		grails {
 			mail {
+				/*
 				// gmail for testing locally
 				host = "smtp.gmail.com"
 				port = "465"
@@ -145,9 +146,13 @@ environments {
 					"mail.smtp.socketFactory.port":"465",
 					"mail.smtp.socketFactory.class":"javax.net.ssl.SSLSocketFactory",
 					"mail.smtp.socketFactory.fallback":"false"]
+				*/
+				// Basefarm mail config - can be used use from local workstation over VPN 
+				host = "mailout.sth.basefarm.net"
+				port = "25"
 			}
 		}
-		grails.mail.disabled=true
+		//grails.mail.disabled=true
     }
     production {
 
@@ -175,15 +180,9 @@ environments {
 		// SMTP config
 		grails {
 			mail {
-				// gmail for testing locally
-				host = "smtp.gmail.com"
-				port = "465"
-				username = "youracount@gmail.com"
-				password = "yourpassword"
-				props = ["mail.smtp.auth":"true",
-					"mail.smtp.socketFactory.port":"465",
-					"mail.smtp.socketFactory.class":"javax.net.ssl.SSLSocketFactory",
-					"mail.smtp.socketFactory.fallback":"false"]
+				// Basefarm mail config
+				host = "mailout.sth.basefarm.net"
+				port = "25"
 			}
 		}
     }
@@ -235,8 +234,13 @@ environments {
 		
 		// RIV TA cache
 		rivta.cache.file = "${EXT_RESOURCES_DIR}/domains.xml"
+		
+		// TAK cache location
+		tak.cache.location = "${EXT_RESOURCES_DIR}/tak"
 
         grails.gorm.failOnError = true //Lets fail for anything so we catch it in dev
+		
+		grails.mail.disabled=true //Disable sending mail in local dev for now
 	}
 	test{
 		// HSA cache
@@ -244,6 +248,12 @@ environments {
 		
 		// RIV TA cache
 		rivta.cache.file = "${EXT_RESOURCES_DIR}/domains.xml"
+		
+		// TAK cache location
+		tak.cache.location = "${EXT_RESOURCES_DIR}/tak"
+		
+		grails.mail.disabled=true //Disable sending mail in test for now
+
 	}
 	production{
 		// HSA cache
@@ -251,12 +261,22 @@ environments {
 		
 		// RIV TA cache
 		rivta.cache.file = "${EXT_RESOURCES_DIR}/domains.xml"
+		
+		// TAK cache location
+		tak.cache.location = "${EXT_RESOURCES_DIR}/tak"
+		
+		grails.mail.disabled=true //Disable sending mail in production for now
+
 	}
 }
+
+//TAK cache
+
 
 // Token used by client to invoke backend
 api.auth.token = 'secret-token'
 
 //grails.mail.default.from = 'noreply.anslutningsplattform@ntjp.se'
-grails.mail.default.from = 'hakan.dahl.demo1@gmail.com'
-smtp.to.address = 'hakan.dahl.demo1@gmail.com'
+//grails.mail.default.from = 'hakan.dahl.demo1@gmail.com'
+//smtp.to.address = 'hakan.dahl.demo1@gmail.com'
+smtp.to.address = 'johanna.essen@callistaenterprise.se'
