@@ -13,12 +13,15 @@ class ProducentBestallningApiController{
 	def producentBestallningService
 
 	def list() {
-		log.debug params
+		log.debug "API, a request to list producentbestallningar, params: $params"
+		
 		respond producentBestallningService.listProducentBestallning()
 	}
 
 	def get(long id) {
-		log.debug params
+		
+		log.debug "API, a request for producentbestallning: $id, params: $params"
+		
 		def producentBestallning = ProducentBestallning.get(id)
 
 		if(ProducentBestallning == null) {

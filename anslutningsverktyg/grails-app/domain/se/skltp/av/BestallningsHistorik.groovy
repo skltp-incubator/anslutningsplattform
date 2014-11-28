@@ -18,6 +18,8 @@ class BestallningsHistorik {
 		status(nullable: false, blank: false)
 		datum(nullable: false, blank: false)
 		senastUppdateradAv(nullable: false, blank: false)
+		producentBestallning nullable: true
+		konsumentBestallning nullable: true
     }
 	
 	def beforeInsert() {

@@ -33,7 +33,7 @@ class ProducentBestallningServiceSpec extends Specification {
 			def client = new AnsvarigDTO(name: 'Agda Andersson', email: 'agda.andersson@apbackend.dummy', phone: '1234567890')
 	
 			def producentBestallningDTO = new ProducentBestallningDTO(serviceDomain: serviceDomain, serviceComponent: 
-				serviceComponent, serviceConsumer: serviceConsumer, miljo: miljo, client: client)
+				serviceComponent, serviceConsumer: serviceConsumer, targetEnvironment: miljo, client: client)
 			
 			producentBestallningService.updateProducentBestallning(producentBestallningDTO)
 

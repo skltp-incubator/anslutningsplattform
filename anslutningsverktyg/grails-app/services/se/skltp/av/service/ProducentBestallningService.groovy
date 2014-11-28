@@ -28,7 +28,6 @@ class ProducentBestallningService {
 			
 			def tKomp = it.tjansteKomponent
 			def serviceConsumer = new TjansteKomponentDTO(
-				id: tKomp.id,
 				hsaId: tKomp.hsaId,
 				namn: tKomp.namn,
 				//huvudAnsvarigNamn
@@ -63,11 +62,27 @@ class ProducentBestallningService {
     def updateProducentBestallning(producentBestallningDTO) {
 
 		User user = upsertUser(producentBestallningDTO)
+		
+		if(!user){
+			//TODO: User is not saved correctly, what to do?
+		}
+		
 		TjansteKomponent tjansteKomponent = upsertTjansteKomponent(producentBestallningDTO, user)
+		if(!tjansteKomponent){
+			//TODO: TjansteKomponent is not saved correctly, what to do?
+		}
+		
 		ProducentBestallning producentBestallning = upsertProducentBestallning(producentBestallningDTO, tjansteKomponent)
-		//createProducentBestallningHistorik(producentBestallning, user.epost)
+		if(!producentBestallning){
+			//TODO: ProducentBestallning is not saved correctly, what to do?
+		}
+		
+		//create producentanslutningar
+		
+		
+		createProducentBestallningHistorik(producentBestallning, user.epost)
 
-		//log.debug "Producentbestallning done, lets save in database: $producentBestallning"
+		log.debug "Producentbestallning updated in database, lets return success"
     }
 
 	private ProducentBestallning upsertProducentBestallning(producentBestallningDTO, tjansteKomponent){
@@ -75,19 +90,22 @@ class ProducentBestallningService {
 		ProducentBestallning producentBestallning = ProducentBestallning.get(producentBestallningDTO.id)
 
 		if(!producentBestallning){
+			log.debug "ProducentBestallning not found in database, create a new one: $producentBestallningDTO"
+			
 			producentBestallning = new ProducentBestallning()
 			producentBestallning.setStatus(BestallningsStatus.NY.toString())
 		}else{
 			producentBestallning.setStatus(BestallningsStatus.UPPDATERAD.toString())
 		}
 
-		//tjansteKomponent.addToProducentBestallningar(producentBestallning)
-
 		producentBestallning.setTjansteKomponent(tjansteKomponent)
 		producentBestallning.setMiljo(producentBestallningDTO.targetEnvironment.namn)
-
-		println producentBestallning.validate()
-		println producentBestallning.errors
+		
+		if(!producentBestallning.validate()){
+			log.error "ProducentBestallning does not contain all mandatory attributes!"
+			log.error producentBestallning.errors
+		}
+		
 		return producentBestallning.save()
 	}
 	
@@ -97,11 +115,10 @@ class ProducentBestallningService {
 		TjansteKomponent tjansteKomponent = TjansteKomponent.findByHsaId(serviceComponent.hsaId)
 		
 		if(!tjansteKomponent){
-			tjansteKomponent = new TjansteKomponent()
 			log.debug "Tjanstekomponent not found in database, create a new one: $serviceComponent"
+			
+			tjansteKomponent = new TjansteKomponent()
 		}
-		
-		//user.addToTjansteKomponenter(tjansteKomponent)
 		
 		tjansteKomponent.setUser(user)
 		tjansteKomponent.setHsaId(serviceComponent.hsaId)
@@ -111,38 +128,60 @@ class ProducentBestallningService {
 		tjansteKomponent.setTekniskKontaktTelefon(serviceComponent.tekniskKontaktTelefon)
 		tjansteKomponent.setFunktionsBrevladaEpost(serviceComponent.funktionsBrevladaEpost)
 		tjansteKomponent.setFunktionsBrevladaTelefon(serviceComponent.funktionsBrevladaTelefon)
+		tjansteKomponent.setHuvudAnsvarigEpost(serviceComponent.huvudAnsvarigEpost)
+		tjansteKomponent.setHuvudAnsvarigNamn(serviceComponent.huvudAnsvarigNamn)
+		tjansteKomponent.setHuvudAnsvarigTelefon(serviceComponent.huvudAnsvarigTelefon)
 		tjansteKomponent.setIpadress(serviceComponent.ipadress)
-		tjansteKomponent.save(flush:true)
-		return tjansteKomponent
+			
+		if(!tjansteKomponent.validate()){
+			log.error "Tjanstekomponent does not contain all mandatory attributes!"
+			log.error tjansteKomponent.errors
+		}
+		
+		return tjansteKomponent.save(flush:true)
 	}
 	
 	private User upsertUser(producentBestallningDTO){
 		
 		AnsvarigDTO ansvarig = producentBestallningDTO.client
 		
-		User user = User.get(ansvarig.id)
+		User user = User.findByUsername(ansvarig.email)
 		
 		if(!user){
-			user = new User(passwordHash: new Sha256Hash("changeme").toHex())
 			log.debug "Tjanstekomponent responsible user not found in database, create a new one: $ansvarig"
+			
+			user = new User(username: ansvarig.email, passwordHash: new Sha256Hash("changeme").toHex())
 		}
 		
 		user.namn = ansvarig.name
-		user.username = ansvarig.email
 		user.epost = ansvarig.email
 		user.telefonNummer = ansvarig.phone
 		user.datumSkapad = new Date() //TODO look over datumSkapad and datumUppdaterad...these code be done in hibernate event handlers instead
 		user.datumUppdaterad = new Date()
+		
+		if(!user.validate()){
+			log.error "User does not contain all mandatory attributes!"
+			log.error user.errors
+		}
+		
 		return user.save()
 	}
 	
-	private void createProducentBestallningHistorik(producentBestallning, epost){
-		new BestallningsHistorik(
+	private BestallningsHistorik createProducentBestallningHistorik(producentBestallning, epost){
+		BestallningsHistorik history = new BestallningsHistorik(
 			status: producentBestallning.status,
 			producentBestallning: producentBestallning,
-			senastUppdateradAv: epost
-			).save()
+			senastUppdateradAv: epost,
+			datum: new Date() //TODO look over datumSkapad and datumUppdaterad...these code be done in hibernate event handlers instead
+		)
 		
-		log.debug "Producentbestallning history data created in database: $BestallningsHistorik"
+		if(!history.validate()){
+			log.error "BestallningsHistorik does not contain all mandatory attributes!"
+			log.error history.errors
+		}
+		
+		return history.save()
+		
+		log.debug "Producentbestallning history data created after changes by user ${epost} in producentBestallning: $producentBestallning"
 	}
 }
