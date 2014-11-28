@@ -130,10 +130,11 @@ environments {
 
             debug 'grails.app', 'se.skltp.av', 'se.skltp.ap'
         }
-
+		
 		// SMTP config
 		grails {
 			mail {
+				/*
 				// gmail for testing locally
 				host = "smtp.gmail.com"
 				port = "465"
@@ -145,9 +146,13 @@ environments {
 					"mail.smtp.socketFactory.port":"465",
 					"mail.smtp.socketFactory.class":"javax.net.ssl.SSLSocketFactory",
 					"mail.smtp.socketFactory.fallback":"false"]
+				*/
+				// Basefarm mail config - can be used use from local workstation over VPN 
+				host = "mailout.sth.basefarm.net"
+				port = "25"
 			}
 		}
-		grails.mail.disabled=true
+		//grails.mail.disabled=true
     }
     production {
 
@@ -171,19 +176,13 @@ environments {
         }
 
         grails.logging.jul.usebridge = false
-
+		
 		// SMTP config
 		grails {
 			mail {
-				// gmail for testing locally
-				host = "smtp.gmail.com"
-				port = "465"
-				username = "youracount@gmail.com"
-				password = "yourpassword"
-				props = ["mail.smtp.auth":"true",
-					"mail.smtp.socketFactory.port":"465",
-					"mail.smtp.socketFactory.class":"javax.net.ssl.SSLSocketFactory",
-					"mail.smtp.socketFactory.fallback":"false"]
+				// Basefarm mail config
+				host = "mailout.sth.basefarm.net"
+				port = "25"
 			}
 		}
     }
@@ -241,5 +240,6 @@ rivta.cache.file = "${EXT_RESOURCES_DIR}/domains.xml"
 api.auth.token = 'secret-token'
 
 //grails.mail.default.from = 'noreply.anslutningsplattform@ntjp.se'
-grails.mail.default.from = 'hakan.dahl.demo1@gmail.com'
-smtp.to.address = 'hakan.dahl.demo1@gmail.com'
+//grails.mail.default.from = 'hakan.dahl.demo1@gmail.com'
+//smtp.to.address = 'hakan.dahl.demo1@gmail.com'
+smtp.to.address = 'johanna.essen@callistaenterprise.se'
