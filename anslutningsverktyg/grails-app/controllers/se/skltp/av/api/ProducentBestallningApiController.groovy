@@ -26,7 +26,7 @@ class ProducentBestallningApiController{
 		}
 		else {
 
-			def roducentBestallningDTO = new ProducentBestallningDTO(
+			def producentBestallningDTO = new ProducentBestallningDTO(
 					id: producentBestallning.id,
 					status: producentBestallning.status,
 					miljo: producentBestallning.miljo

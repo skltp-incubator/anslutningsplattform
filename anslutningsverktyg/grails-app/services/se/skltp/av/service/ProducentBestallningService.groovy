@@ -43,58 +43,58 @@ class ProducentBestallningService {
 				//pingForConfiguration
 			)
 			
-			def miljo = new DriftMiljoDTO()
-			
+			def targetEnvironment = new DriftMiljoDTO()
+
 			def client = new AnsvarigDTO()
-	
+
 			def producentBestallningDTO = new ProducentBestallningDTO(
 				id: it.id,
 				status: it.status,
-				serviceDomain: serviceDomain, 
+				serviceDomain: serviceDomain,
 				serviceComponent:
-				serviceComponent, 
-				serviceConsumer: serviceConsumer, 
-				miljo: miljo, 
+				serviceComponent,
+				serviceConsumer: serviceConsumer,
+				targetEnvironment: targetEnvironment,
 				client: client)
         }
     }
 
     @Transactional
     def updateProducentBestallning(producentBestallningDTO) {
-		
+
 		User user = upsertUser(producentBestallningDTO)
 		TjansteKomponent tjansteKomponent = upsertTjansteKomponent(producentBestallningDTO, user)
 		ProducentBestallning producentBestallning = upsertProducentBestallning(producentBestallningDTO, tjansteKomponent)
-		//producentBestallning.save()
-		
 		//createProducentBestallningHistorik(producentBestallning, user.epost)
-		
+
 		//log.debug "Producentbestallning done, lets save in database: $producentBestallning"
     }
-	
+
 	private ProducentBestallning upsertProducentBestallning(producentBestallningDTO, tjansteKomponent){
-		
+
 		ProducentBestallning producentBestallning = ProducentBestallning.get(producentBestallningDTO.id)
-		
+
 		if(!producentBestallning){
 			producentBestallning = new ProducentBestallning()
-			producentBestallning.setStatus(BestallningsStatus.NY.toString())	
+			producentBestallning.setStatus(BestallningsStatus.NY.toString())
 		}else{
 			producentBestallning.setStatus(BestallningsStatus.UPPDATERAD.toString())
 		}
-		
+
 		//tjansteKomponent.addToProducentBestallningar(producentBestallning)
-		
+
 		producentBestallning.setTjansteKomponent(tjansteKomponent)
-		producentBestallning.setMiljo(producentBestallningDTO.miljo.namn)
-		producentBestallning.save(flush:true)
-		return producentBestallning
+		producentBestallning.setMiljo(producentBestallningDTO.targetEnvironment.namn)
+
+		println producentBestallning.validate()
+		println producentBestallning.errors
+		return producentBestallning.save()
 	}
 	
 	private TjansteKomponent upsertTjansteKomponent(producentBestallningDTO, user){
 		
 		TjansteKomponentDTO serviceComponent = producentBestallningDTO.serviceComponent
-		TjansteKomponent tjansteKomponent = TjansteKomponent.get(serviceComponent.id)
+		TjansteKomponent tjansteKomponent = TjansteKomponent.findByHsaId(serviceComponent.hsaId)
 		
 		if(!tjansteKomponent){
 			tjansteKomponent = new TjansteKomponent()
@@ -127,12 +127,13 @@ class ProducentBestallningService {
 			log.debug "Tjanstekomponent responsible user not found in database, create a new one: $ansvarig"
 		}
 		
-		user.setNamn(ansvarig.name)
-		user.setUsername(ansvarig.email)
-		user.setEpost(ansvarig.email)
-		user.setTelefonNummer(ansvarig.phone)
-		user.save(flush:true)
-		return user
+		user.namn = ansvarig.name
+		user.username = ansvarig.email
+		user.epost = ansvarig.email
+		user.telefonNummer = ansvarig.phone
+		user.datumSkapad = new Date() //TODO look over datumSkapad and datumUppdaterad...these code be done in hibernate event handlers instead
+		user.datumUppdaterad = new Date()
+		return user.save()
 	}
 	
 	private void createProducentBestallningHistorik(producentBestallning, epost){

@@ -235,6 +235,8 @@ environments {
 		
 		// RIV TA cache
 		rivta.cache.file = "${EXT_RESOURCES_DIR}/domains.xml"
+
+        grails.gorm.failOnError = true //Lets fail for anything so we catch it in dev
 	}
 	test{
 		// HSA cache

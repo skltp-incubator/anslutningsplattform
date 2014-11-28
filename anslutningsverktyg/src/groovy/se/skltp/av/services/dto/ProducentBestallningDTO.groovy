@@ -19,7 +19,8 @@ class ProducentBestallningDTO {
 	TjansteDomanDTO serviceDomain
     TjansteKomponentDTO serviceComponent
 	TjansteKomponentDTO serviceConsumer
-    DriftMiljoDTO miljo
+    DriftMiljoDTO targetEnvironment
+
 	AnsvarigDTO client
 	List<TjansteKontraktDTO> serviceContracts
 }
