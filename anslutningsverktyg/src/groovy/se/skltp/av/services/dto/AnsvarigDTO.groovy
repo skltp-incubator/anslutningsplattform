@@ -1,10 +1,9 @@
 package se.skltp.av.services.dto
 
-import grails.validation.Validateable;
-import groovy.transform.ToString;
+import groovy.transform.ToString
 
-@Validateable
-@ToString
+
+@ToString(includeNames=true, includeFields = true)
 class AnsvarigDTO {
 	long id
 	String name

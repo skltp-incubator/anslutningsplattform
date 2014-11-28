@@ -1,13 +1,9 @@
 package se.skltp.av.services.dto
 
-import grails.validation.Validateable
 import groovy.transform.ToString
-import se.skltp.av.services.dto.TjansteKomponentDTO
-import se.skltp.av.services.dto.DriftMiljoDTO
-import se.skltp.av.util.BestallningsStatus;
+import se.skltp.av.util.BestallningsStatus
 
-@Validateable
-@ToString
+@ToString(includeNames=true, includeFields = true)
 class ProducentBestallningDTO {
 	
 	long id

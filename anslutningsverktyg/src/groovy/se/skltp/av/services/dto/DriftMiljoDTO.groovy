@@ -1,9 +1,8 @@
 package se.skltp.av.services.dto
 
-import grails.validation.Validateable
 import groovy.transform.ToString
 
-@ToString
+@ToString(includeNames=true, includeFields = true)
 class DriftMiljoDTO {
     String id
     String namn
