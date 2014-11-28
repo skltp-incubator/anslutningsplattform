@@ -1,9 +1,12 @@
 package se.skltp.av
 
+import groovy.transform.ToString;
+
 /**
  * Currently named Role instead of Roll to map with ShiroDbRealm
  * 
  */
+@ToString
 class Role {
     String name
 

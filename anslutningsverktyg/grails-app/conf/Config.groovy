@@ -227,14 +227,51 @@ tak.env.id.'3' = 'ntjp-test'
 tak.env.name.'3' = 'NTjP TEST'
 tak.env.url.'3' = 'http://TODO-TEST'
 
+environments {
+	development{
+		// HSA cache
+		hsa.hsacache.files = ["${EXT_RESOURCES_DIR}/hsacache.xml", "${EXT_RESOURCES_DIR}/hsacachecomplementary.xml"]
+		
+		// RIV TA cache
+		rivta.cache.file = "${EXT_RESOURCES_DIR}/domains.xml"
+		
+		// TAK cache location
+		tak.cache.location = "${EXT_RESOURCES_DIR}/tak"
+
+        grails.gorm.failOnError = true //Lets fail for anything so we catch it in dev
+		
+		grails.mail.disabled=true //Disable sending mail in local dev for now
+	}
+	test{
+		// HSA cache
+		hsa.hsacache.files = ["${EXT_RESOURCES_DIR}/hsacache-test.xml", "${EXT_RESOURCES_DIR}/hsacachecomplementary-test.xml"]
+		
+		// RIV TA cache
+		rivta.cache.file = "${EXT_RESOURCES_DIR}/domains.xml"
+		
+		// TAK cache location
+		tak.cache.location = "${EXT_RESOURCES_DIR}/tak"
+		
+		grails.mail.disabled=true //Disable sending mail in test for now
+
+	}
+	production{
+		// HSA cache
+		hsa.hsacache.files = ["${EXT_RESOURCES_DIR}/hsacache.xml", "${EXT_RESOURCES_DIR}/hsacachecomplementary.xml"]
+		
+		// RIV TA cache
+		rivta.cache.file = "${EXT_RESOURCES_DIR}/domains.xml"
+		
+		// TAK cache location
+		tak.cache.location = "${EXT_RESOURCES_DIR}/tak"
+		
+		grails.mail.disabled=true //Disable sending mail in production for now
+
+	}
+}
+
 //TAK cache
-tak.cache.location = "${EXT_RESOURCES_DIR}/tak"
 
-// HSA cache
-hsa.hsacache.files = ["${EXT_RESOURCES_DIR}/hsacache.xml", "${EXT_RESOURCES_DIR}/hsacachecomplementary.xml"]
-
-// RIV TA cache
-rivta.cache.file = "${EXT_RESOURCES_DIR}/domains.xml"
 
 // Token used by client to invoke backend
 api.auth.token = 'secret-token'

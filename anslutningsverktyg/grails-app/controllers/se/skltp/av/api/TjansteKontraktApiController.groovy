@@ -5,11 +5,12 @@ import se.skltp.av.services.dto.TjansteKontraktDTO
 
 class TjansteKontraktApiController extends RestfulController {
 
+    def rivTaService
+    
     TjansteKontraktApiController() {
         super(TjansteKontraktDTO)
     }
 
-    def rivTaService
 
     def query() {
         log.debug params

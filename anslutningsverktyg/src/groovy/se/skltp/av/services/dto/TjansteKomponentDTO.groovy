@@ -1,7 +1,6 @@
 package se.skltp.av.services.dto
 
 import groovy.transform.ToString
-
 @ToString(includeNames=true, includeFields = true)
 class TjansteKomponentDTO {
     String hsaId
@@ -15,4 +14,5 @@ class TjansteKomponentDTO {
     String funktionsBrevladaEpost
     String funktionsBrevladaTelefon
     String ipadress
+	String pingForConfiguration
 }

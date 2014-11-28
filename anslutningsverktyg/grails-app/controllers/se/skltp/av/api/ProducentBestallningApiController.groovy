@@ -1,28 +1,53 @@
 package se.skltp.av.api
 
-import se.skltp.av.ProducentBestallning;
+import se.skltp.av.ProducentBestallning
 import grails.rest.RestfulController
+import se.skltp.av.services.dto.ProducentBestallningDTO
 
-class ProducentBestallningApiController extends RestfulController{
+class ProducentBestallningApiController{
 
-	static allowedMethods = [save: "POST"]
-	
 	static namespace = 'v1'
 
-	static responseFormats = ['json', 'xml']
-	
 	def mailingService
 
-	ProducentBestallningApiController() {
-		super(ProducentBestallning)
+	def producentBestallningService
+
+	def list() {
+		log.debug "API, a request to list producentbestallningar, params: $params"
+		
+		respond producentBestallningService.listProducentBestallning()
 	}
-	
-	def save() {
-		// TODO: store to DB
+
+	def get(long id) {
 		
-		// TODO: extract the below params from POST
-		//def fromAddress = "noreply.anslutningsplattform@ntjp.se"
+		log.debug "API, a request for producentbestallning: $id, params: $params"
 		
+		def producentBestallning = ProducentBestallning.get(id)
+
+		if(ProducentBestallning == null) {
+			render status:404
+		}
+		else {
+
+			def producentBestallningDTO = new ProducentBestallningDTO(
+					id: producentBestallning.id,
+					status: producentBestallning.status,
+					miljo: producentBestallning.miljo
+					)
+
+			return [producentBestallning: producentBestallningDTO]
+		}
+	}
+
+
+
+	def save(ProducentBestallningDTO producentBestallningDTO) {
+		
+		log.debug "API, a save requested for producentbestallning: $producentBestallningDTO"
+
+		producentBestallningService.updateProducentBestallning(producentBestallningDTO)
+		
+
 		//NOT: testing with gmail requires:
 		// 1. a non google-apps/enterprise mail account (see pt 2)
 		// 2. allowing "less secure apps" using:
@@ -35,12 +60,12 @@ class ProducentBestallningApiController extends RestfulController{
 		def subjectField = "AP TEST subject"
 		//def bodyPlainText = "AP TEST body"
 		// TODO: prettify this!
-		def bodyPlainText = request.JSON.toString()
+		//def bodyPlainText = request.JSON.toString()
 		
 		def success = false
-		log.info("Sending mail ... with body:\n${bodyPlainText}")
+		log.info("Sending mail ... with body:\n${producentBestallningDTO}")
 		try {
-			mailingService.send(fromAddress, subjectField, bodyPlainText)
+			mailingService.send(fromAddress, subjectField, producentBestallningDTO.toString())
 			success = true
 			log.info("Mail sent.")
 		}
@@ -48,6 +73,8 @@ class ProducentBestallningApiController extends RestfulController{
 			log.error("Failed to send mail", e)
 		}
 		
-		respond(status: success ? 200 : 500)
+		//TODO: Fixa så att mail skickas enbart om det gick bra att spara en beställning
+		
+		render status: success ? 201 : 500
 	}
 }

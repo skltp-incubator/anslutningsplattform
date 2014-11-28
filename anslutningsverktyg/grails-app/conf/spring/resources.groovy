@@ -5,17 +5,18 @@ import grails.rest.render.json.JsonCollectionRenderer
 import se.skltp.av.api.v1.*
 import se.skltp.av.*
 import se.skltp.av.cache.RivTaCacheInMemoryImpl
+import se.skltp.av.services.dto.*;
 
 beans = {
 
 	/* Default excludes for api v1 */
 	final v1_DEFAULT_EXCLUDES = ['class']
 
-	producentBestallningV1Renderer(JsonRenderer, ProducentBestallning){
+	producentBestallningV1Renderer(JsonRenderer, ProducentBestallningDTO){
 		excludes = v1_DEFAULT_EXCLUDES
 	}
 
-	producentBestallningV1CollectionRenderer(JsonCollectionRenderer, ProducentBestallning){
+	producentBestallningV1CollectionRenderer(JsonCollectionRenderer, ProducentBestallningDTO){
 		excludes = v1_DEFAULT_EXCLUDES
 	}
 	

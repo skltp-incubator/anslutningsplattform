@@ -1,8 +1,13 @@
 package se.skltp.av
 
+import groovy.transform.ToString;
+
 import java.util.Date;
+
 import static se.skltp.av.util.AvUtil.*
 
+
+@ToString
 class ProducentAnslutning {
 	
 	String rivTaProfile

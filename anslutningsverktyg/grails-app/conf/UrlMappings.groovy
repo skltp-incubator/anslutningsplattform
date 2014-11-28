@@ -12,7 +12,7 @@ class UrlMappings {
         group "/api", {
 
 			"/serviceProducerConnectionOrders"(version: '1.0', namespace: 'v1', controller: 'producentBestallningApi') {
-				action = [POST:"save"]
+				action = [POST:"save", GET:"list"]
 				format = "json"
 			}
 						
