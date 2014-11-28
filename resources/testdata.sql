@@ -29,9 +29,12 @@ INSERT INTO `user_roles` (`role_id`, `user_id`) VALUES
 (3, 3),
 (4, 4);
 
-INSERT INTO `tjanste_komponent` (`id`, `version`, `funktions_brevlada_epost`, `funktions_brevlada_telefon`, `hsa_id`, `ipadress`, `teknisk_kontakt_epost`, `teknisk_kontakt_namn`, `teknisk_kontakt_telefon`, `user_id`, `namn`) VALUES
-(3, 0, 'funktionsbrevladan@lorumipsum.nu', '0987654321', 'HSASERVICES-123Q', NULL, 'kontakten@lorumipsum.nu', 'Tolvan Tolvansson', '1234567890', 4, 'HSASERVICES-123Q namn'),
-(4, 0, 'funktionsbrevladan@lorumipsum.nu', '0987654321', 'HSASERVICES-123Z', NULL, 'kontakten@lorumipsum.nu', 'Tolvan Tolvansson', '1234567890', 4, 'HSASERVICES-123Z namn');
+INSERT INTO `tjanste_komponent` (`id`, `version`, `funktions_brevlada_epost`,
+  `funktions_brevlada_telefon`, `hsa_id`, `ipadress`, `teknisk_kontakt_epost`,
+  `teknisk_kontakt_namn`, `teknisk_kontakt_telefon`, `user_id`, `namn`,
+  `huvud_ansvarig_epost`, `huvud_ansvarig_namn`, `huvud_ansvarig_telefon`) VALUES
+(3, 0, 'funktionsbrevladan@lorumipsum.nu', '0987654321', 'HSASERVICES-123Q', NULL, 'kontakten@lorumipsum.nu', 'Tolvan Tolvansson', '1234567890', 4, 'HSASERVICES-123Q namn', 'huvudansvarig@lorumipsum.nu', 'Jöns Jönsson', '1234567890'),
+(4, 0, 'funktionsbrevladan@lorumipsum.nu', '0987654321', 'HSASERVICES-123Z', NULL, 'kontakten@lorumipsum.nu', 'Tolvan Tolvansson', '1234567890', 4, 'HSASERVICES-123Z namn', 'huvudansvarig@lorumipsum.nu', 'Nils Nilsson', '1234567890');
 
 INSERT INTO `producent_bestallning` (`id`, `version`, `miljo`, `status`, `tjanste_komponent_id`) VALUES
 (3, 0, 'TEST', 'NY', 3),
