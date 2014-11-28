@@ -130,7 +130,7 @@ environments {
 
             debug 'grails.app', 'se.skltp.av', 'se.skltp.ap'
         }
-		
+
 		// SMTP config
 		grails {
 			mail {
@@ -171,7 +171,7 @@ environments {
         }
 
         grails.logging.jul.usebridge = false
-		
+
 		// SMTP config
 		grails {
 			mail {
@@ -227,6 +227,9 @@ tak.env.url.'2' = 'http://TODO-QA'
 tak.env.id.'3' = 'ntjp-test'
 tak.env.name.'3' = 'NTjP TEST'
 tak.env.url.'3' = 'http://TODO-TEST'
+
+//TAK cache
+tak.cache.location = "${EXT_RESOURCES_DIR}/tak"
 
 // HSA cache
 hsa.hsacache.files = ["${EXT_RESOURCES_DIR}/hsacache.xml", "${EXT_RESOURCES_DIR}/hsacachecomplementary.xml"]

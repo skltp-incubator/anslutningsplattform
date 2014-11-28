@@ -7,7 +7,12 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 import java.util.UUID;
 
 import javax.xml.bind.JAXBContext;
@@ -27,27 +32,26 @@ import se.skltp.tak.vagvalsinfo.wsdl.v2.VirtualiseringsInfoType;
 
 
 /**
- *	TODO: Safe file removal on failure.
  *
  * File based persitence.
  *
  */
 public class TakCacheFilePersistenceImpl implements TakCachePersistenceServices {
-	
+
 	private static final Logger log = LoggerFactory.getLogger(TakCacheFilePersistenceImpl.class);
 
 	private static final String INDEX_FILE_NAME = "takCache.index";
 	private static final String ENDPOINT_FILE_ENDING = ".tec";
 	final String path;
-	
-	
+
+
 	public TakCacheFilePersistenceImpl(final String path) {
 		this.path = path;
 	}
-	
+
 	public void persistEndpoints(final List<PersistenceEntity> entitys) {
 		synchronized (TakCacheFilePersistenceImpl.class) {
-			clearOldEntrys();
+			final Set<String> newEntrys = new HashSet<String>();
 			final Index index = new Index();
 			for(PersistenceEntity p : entitys) {
 				try {
@@ -59,42 +63,56 @@ public class TakCacheFilePersistenceImpl implements TakCachePersistenceServices 
 					cachedEntries.setTjanstekontrakt(p.getTjanstekontrakt());
 					cachedEntries.setVirtualiseringar(p.getVirtualiseringar());
 					cachedEndpoint.setEntries(cachedEntries);
-				
+
 					final String fileName = UUID.randomUUID().toString() + ENDPOINT_FILE_ENDING;
-				
+
 					createTakEndpointCacheFile(cachedEndpoint, fileName);
-				
+
 					IndexEntry indexEntry = new IndexEntry();
 					indexEntry.setEndpoint(p.getEndpoint());;
 					indexEntry.setFileName(fileName);
 					indexEntry.setSynced(p.getSynched());
 					index.getEntrys().add(indexEntry);
+
+					newEntrys.add(p.getEndpoint());
 				} catch (Exception err) {
 					log.error("Could not create endpoint cache", err);
 				}
 			}
 			try {
+				for(IndexEntry entry : getIndex().getEntrys()) {
+					if(!newEntrys.contains(entry.getEndpoint())) {
+						index.getEntrys().add(entry);
+					} else {
+						removeFile(entry.getFileName());
+					}
+				}
 				writeIndex(index);
 			} catch (Exception err) {
 				log.error("Could not create index", err);
 			}
 		}
 	}
-	
-	private void clearOldEntrys() {
+
+	private void removeFile(final String file) {
 		try {
-			final Index index = getIndex();
-			if(index != null) {
-				for(final IndexEntry entry : index.getEntrys()) {
-					final Path entryPath = FileSystems.getDefault().getPath(path, entry.getFileName());
-					if(Files.exists(entryPath)) {
-						Files.delete(entryPath);
-					}
-				}
+			final Path entryPath = FileSystems.getDefault().getPath(path, file);
+			if(Files.exists(entryPath)) {
+					Files.delete(entryPath);
 			}
 		} catch (Exception err) {
 			log.error("Could not read index file", err);
 		}
+	}
+
+	private Map<String, IndexEntry> indexMap(final Index index) {
+		Map<String, IndexEntry> indexMap = new HashMap<String, IndexEntry>();
+		if(index != null) {
+			for(final IndexEntry entry : index.getEntrys()) {
+				indexMap.put(entry.getEndpoint(), entry);
+			}
+		}
+		return indexMap;
 	}
 
 	private Index getIndex() {
@@ -110,7 +128,7 @@ public class TakCacheFilePersistenceImpl implements TakCachePersistenceServices 
 		}
 		return null;
 	}
-	
+
 	private void createTakEndpointCacheFile(final CachedEndpoint cachedEndpoint, final String fileName) throws JAXBException {
 		JAXBContext ctx = JAXBContext.newInstance(CachedEndpoint.class);
 		Marshaller m = ctx.createMarshaller();
@@ -118,7 +136,7 @@ public class TakCacheFilePersistenceImpl implements TakCachePersistenceServices 
 		Path path = FileSystems.getDefault().getPath(this.path, fileName);
 		m.marshal(cachedEndpoint, path.toFile());
 	}
-	
+
 	private void writeIndex(final Index index) throws JAXBException {
 		JAXBContext ctx = JAXBContext.newInstance(Index.class);
 		Marshaller m = ctx.createMarshaller();
@@ -126,7 +144,7 @@ public class TakCacheFilePersistenceImpl implements TakCachePersistenceServices 
 		Path path = FileSystems.getDefault().getPath(this.path, INDEX_FILE_NAME);
 		m.marshal(index, path.toFile());
 	}
-	
+
 	private CachedEndpoint map(final File file) {
 		try {
 			JAXBContext ctx = JAXBContext.newInstance(CachedEndpoint.class);
@@ -149,8 +167,8 @@ public class TakCacheFilePersistenceImpl implements TakCachePersistenceServices 
 						final CachedEndpoint cached = map(cacheFile.toFile());
 						if(cached != null) {
 							entitys.add(new PersistenceEntity(
-									cached.getEndpoint(), 
-									cached.getSynched(), 
+									cached.getEndpoint(),
+									cached.getSynched(),
 									cached.getEntries().getVirtualiseringar(),
 									cached.getEntries().getTjanstekontrakt(),
 									cached.getEntries().getAnropsbehorigheter()));
@@ -161,7 +179,7 @@ public class TakCacheFilePersistenceImpl implements TakCachePersistenceServices 
 		}
 		return entitys;
 	}
-	
+
 	public PersistenceEntity getEndpoint(final String endpoint) {
 		synchronized (TakCacheFilePersistenceImpl.class) {
 			final Index index = getIndex();
@@ -173,10 +191,10 @@ public class TakCacheFilePersistenceImpl implements TakCachePersistenceServices 
 							final CachedEndpoint cached = map(cacheFile.toFile());
 							if(cached != null) {
 								return new PersistenceEntity(
-										cached.getEndpoint(), 
-										cached.getSynched(), 
-										cached.getEntries().getVirtualiseringar(), 
-										cached.getEntries().getTjanstekontrakt(), 
+										cached.getEndpoint(),
+										cached.getSynched(),
+										cached.getEntries().getVirtualiseringar(),
+										cached.getEntries().getTjanstekontrakt(),
 										cached.getEntries().getAnropsbehorigheter()
 									);
 							}
@@ -203,15 +221,15 @@ class Index {
 	public void setEntrys(List<IndexEntry> entrys) {
 		this.entrys = entrys;
 	}
-	
+
 }
 
-@XmlRootElement() 
+@XmlRootElement()
 class IndexEntry {
 	private String endpoint;
 	private Date synced;
 	private String fileName;
-	
+
 	public String getEndpoint() {
 		return endpoint;
 	}
@@ -232,20 +250,20 @@ class IndexEntry {
 	}
 }
 
-@XmlRootElement() 
+@XmlRootElement()
 class CachedEndpoint {
 	private String endpoint;
 	private Date synched;
 	private CachedEntries entries;
-	
+
 	public String getEndpoint() {
 		return this.endpoint;
 	}
-	
+
 	public void setEndpoint(String endpoint) {
 		this.endpoint = endpoint;
 	}
-	
+
 	public Date getSynched() {
 		return synched;
 	}
@@ -290,4 +308,3 @@ class CachedEntries {
 		this.tjanstekontrakt = tjanstekontrakt;
 	}
 }
-

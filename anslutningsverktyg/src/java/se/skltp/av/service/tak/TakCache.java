@@ -25,27 +25,27 @@ import se.skltp.tak.vagvalsinfo.wsdl.v2.TjanstekontraktInfoType;
 import se.skltp.tak.vagvalsinfo.wsdl.v2.VirtualiseringsInfoType;
 
 final class TakCache {
-	
+
 	private static final Logger log = LoggerFactory.getLogger(TakCache.class);
-	
+
 	private static final ExecutorService worker;
-	
+
 	private static final ConcurrentHashMap<String, ConcurrentHashMap<String, AnropsBehorighetDTO>> behorighet;
 	private static final ConcurrentHashMap<String, ConcurrentHashMap<String, TjanstekontraktDTO>> tjanstekontrakt;
 	private static final ConcurrentHashMap<String, ConcurrentHashMap<String, VirtualiseringDTO>> virtualisering;
-	
+
 	private static final ConcurrentHashMap<String, Date> endpointSync;
-	
+
 	static {
 		worker = Executors.newSingleThreadExecutor();
-		
+
 		behorighet = new ConcurrentHashMap<String, ConcurrentHashMap<String, AnropsBehorighetDTO>>();
 		tjanstekontrakt = new ConcurrentHashMap<String, ConcurrentHashMap<String, TjanstekontraktDTO>>();
 		virtualisering = new ConcurrentHashMap<String, ConcurrentHashMap<String, VirtualiseringDTO>>();
-		
+
 		endpointSync = new ConcurrentHashMap<String, Date>();
 	}
-	
+
 	/**
 	 * Adds Response from HamtaAllaAnropsBehorgiheter to cache.
 	 * @param endpoint URL
@@ -77,7 +77,7 @@ final class TakCache {
 			}
 		}
 	}
-	
+
 	/**
 	 * Adds repsonse from HamtaAllaTjansterkontrakt to cache.
 	 * @param endpoint URL
@@ -109,7 +109,7 @@ final class TakCache {
 			}
 		}
 	}
-	
+
 	/**
 	 * Adds response from HamtaAllaVirtualiseringar to cache
 	 * @param endpoint
@@ -154,7 +154,7 @@ final class TakCache {
 		}
 		return Collections.emptyList();
 	}
-	
+
 	/**
 	 * Get all cached Tjanstekontrakt from provided endpoint.
 	 * @param endpoint URL
@@ -167,7 +167,7 @@ final class TakCache {
 		}
 		return Collections.emptyList();
 	}
-	
+
 	/**
 	 * Get all cached Virtualiseringar from provided endpoint.
 	 * @param endpoint URL
@@ -189,12 +189,12 @@ final class TakCache {
 	protected static Date lastSynched(final String endpoint) {
 		return endpointSync.get(endpoint);
 	}
-	
-	
+
+
 	/**
-	 * 
+	 *
 	 * Sync provided list of enpoints.
-	 * 
+	 *
 	 * @param endpoints
 	 * @param callback
 	 */
@@ -208,24 +208,24 @@ final class TakCache {
 					try {
 						jaxWs.setAddress(endpoint);
 						final SokVagvalsInfoInterface client = (SokVagvalsInfoInterface) jaxWs.create();
-						
-						//TODO: Add separate error handling for each interface? 
+
+						//TODO: Add separate error handling for each interface?
 						final List<VirtualiseringsInfoType> vInfoTypes = client.hamtaAllaVirtualiseringar(null).getVirtualiseringsInfo();
 						final List<AnropsBehorighetsInfoType> aInfoTypes = client.hamtaAllaAnropsBehorigheter(null).getAnropsBehorighetsInfo();
 						final List<TjanstekontraktInfoType> tInfoTypes = client.hamtaAllaTjanstekontrakt(null).getTjanstekontraktInfo();
-						
+
 						cacheVirtualiseringar(endpoint, vInfoTypes);
 						cacheTjanstecontract(endpoint, tInfoTypes);
 						cacheAnropsBehorighet(endpoint, aInfoTypes);
-						
+
 						final Date synched = new Date();
-						
+
 						if(endpointSync.putIfAbsent(endpoint, synched) != null) {
 							endpointSync.replace(endpoint, synched);
 						}
-						
+
 						persitencesEntitys.add(new PersistenceEntity(endpoint, synched, vInfoTypes, tInfoTypes, aInfoTypes));
-						
+
 						callback.onSyncSuccess(endpoint);
 					} catch (Exception err) {
 						callback.onSyncError(endpoint, err);
@@ -235,7 +235,7 @@ final class TakCache {
 			}
 		});
 	}
-	
+
 	/**
 	 * Load a list of entitys to cache.
 	 * @param entitys
@@ -249,6 +249,7 @@ final class TakCache {
 						cacheAnropsBehorighet(endpoint, entity.getAnropsbehorighet());
 						cacheTjanstecontract(endpoint, entity.getTjanstekontrakt());
 						cacheVirtualiseringar(endpoint, entity.getVirtualiseringar());
+						log.info("Loaded cache from persitence for endpoint: " + endpoint);
 					} catch (Exception err) {
 						log.error("Could not load persisted cache for endpont: " + endpoint, err);
 					}
@@ -256,7 +257,7 @@ final class TakCache {
 			}
 		});
 	}
-	
+
 	/**
 	 * Load specific entity into cache.
 	 * @param entity
@@ -269,6 +270,7 @@ final class TakCache {
 						cacheAnropsBehorighet(entity.getEndpoint(), entity.getAnropsbehorighet());
 						cacheTjanstecontract(entity.getEndpoint(), entity.getTjanstekontrakt());
 						cacheVirtualiseringar(entity.getEndpoint(), entity.getVirtualiseringar());
+						log.info("Loaded cache from persistence for endpoint: " + entity.getEndpoint());
 					} catch (Exception err) {
 						log.error("Could not load persisted cache for endpont: " + entity.getEndpoint(), err);
 					}
