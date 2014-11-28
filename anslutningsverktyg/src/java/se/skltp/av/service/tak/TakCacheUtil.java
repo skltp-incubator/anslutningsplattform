@@ -13,8 +13,17 @@ import se.skltp.tak.vagvalsinfo.wsdl.v2.TjanstekontraktInfoType;
 import se.skltp.tak.vagvalsinfo.wsdl.v2.VirtualiseringsInfoIdType;
 import se.skltp.tak.vagvalsinfo.wsdl.v2.VirtualiseringsInfoType;
 
+/**
+ * Utility class to ease transformation.
+ */
 public final class TakCacheUtil {
 	
+	/**
+	 * Equals function with null checks.
+	 * @param dateOne
+	 * @param dateTwo
+	 * @return
+	 */
 	public static boolean equals(final Date dateOne, final Date dateTwo) {
 		if(dateOne == null && dateTwo == null) {
 			return true;
@@ -27,6 +36,11 @@ public final class TakCacheUtil {
 		return false;
 	}
 	
+	/**
+	 * Transformation between JAXB and DTO
+	 * @param type
+	 * @return
+	 */
 	public static VirtualiseringDTO map(final VirtualiseringsInfoType type) {
 		if(type == null) {
 			return null;
@@ -41,6 +55,11 @@ public final class TakCacheUtil {
 				getId(type.getVirtualiseringsInfoId()));
 	}
 	
+	/**
+	 * Transformation between JAXB and DTO
+	 * @param type
+	 * @return
+	 */
 	public static AnropsBehorighetDTO map(final AnropsBehorighetsInfoType type) {
 		if(type == null) {
 			return null;
@@ -54,6 +73,11 @@ public final class TakCacheUtil {
 				type.getTjansteKontrakt());
 	}
 	
+	/**
+	 * Transformation between JAXB and DTO
+	 * @param type
+	 * @return
+	 */
 	public static TjanstekontraktDTO map(final TjanstekontraktInfoType type) {
 		if(type == null) {
 			return null;
@@ -61,13 +85,27 @@ public final class TakCacheUtil {
 		return new TjanstekontraktDTO(type.getBeskrivning(), type.getMajorVersion(),type.getMinorVersion(), type.getNamnrymd());
 	}
 	
+	/**
+	 * Transformation between java.Date and XMLGregorianCalendar
+	 * @param date
+	 * @return
+	 */
 	public static Date toDate(final XMLGregorianCalendar date) {
-		if(date == null) {
+		try {
+			if(date == null) {
+				return null;
+			}
+			return date.toGregorianCalendar().getTime();
+		} catch (Exception err) {
 			return null;
 		}
-		return date.toGregorianCalendar().getTime();
 	}
 	
+	/**
+	 * Util to extract id-value from type
+	 * @param type
+	 * @return
+	 */
 	public static String getId(final VirtualiseringsInfoIdType type) {
 		if(type == null) {
 			return null;
@@ -75,6 +113,11 @@ public final class TakCacheUtil {
 		return type.getValue();
 	}
 	
+	/**
+	 * Util to extract id-value from type
+	 * @param type
+	 * @return
+	 */
 	public static String getId(final AnropsBehorighetsInfoIdType type) {
 		if(type == null) {
 			return null;

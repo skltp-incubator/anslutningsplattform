@@ -1,14 +1,8 @@
 package se.skltp.av.services.dto
 
-import grails.validation.Validateable
 import groovy.transform.ToString
-import se.skltp.av.ProducentBestallning
-import se.skltp.av.User
-
-@Validateable
-@ToString
+@ToString(includeNames=true, includeFields = true)
 class TjansteKomponentDTO {
-    long id
     String hsaId
     String namn
     String huvudAnsvarigNamn

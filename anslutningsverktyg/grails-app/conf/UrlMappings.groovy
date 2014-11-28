@@ -22,7 +22,7 @@ class UrlMappings {
                 action = [GET:"query"]
                 format = "json"
                 "/serviceComponents/$id"(version: '1.0', controller: 'tjansteKomponentApi') {
-                    action = [GET:"get"]
+                    action = [GET:"get",PUT:"put"]
                     format = "json"
                 }
             }

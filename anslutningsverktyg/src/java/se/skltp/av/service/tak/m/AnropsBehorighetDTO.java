@@ -3,7 +3,7 @@ package se.skltp.av.service.tak.m;
 import java.util.Date;
 
 
-public class AnropsBehorighetDTO {
+public class AnropsBehorighetDTO implements CacheableDTO {
 
 	private final String id; //PK
 	private final Date fromTidpunkt;
@@ -46,4 +46,11 @@ public class AnropsBehorighetDTO {
 		return this.tjanstekontrakt;
 	}
 
+	@Override
+	public String toString() {
+		return "AnropsBehorighetDTO [id=" + id + ", fromTidpunkt="
+				+ fromTidpunkt + ", tomTidpunkt=" + tomTidpunkt
+				+ ", reciverId=" + reciverId + ", senderId=" + senderId
+				+ ", tjanstekontrakt=" + tjanstekontrakt + "]";
+	}
 }

@@ -57,6 +57,9 @@ class BootStrap {
                 def tk1 = new TjansteKomponent(
                         hsaId: "SE165565594230-0016",
                         namn: "NPÖ 2",
+                        huvudAnsvarigNamn: "Kapo Kapo",
+                        huvudAnsvarigEpost: "kapo@kapo.com",
+                        huvudAnsvarigTelefon: "1234",
                         tekniskKontaktEpost: "kontakten@lorumipsum.nu",
                         tekniskKontaktNamn: "Tolvan Tolvansson",
                         tekniskKontaktTelefon: "1234567890",
@@ -68,6 +71,9 @@ class BootStrap {
                 def tk2 = new TjansteKomponent(
                         hsaId: "SE5565594230-B3B",
                         namn: "Tieto Lifecare",
+                        huvudAnsvarigNamn: "Hlava Hlava",
+                        huvudAnsvarigEpost: "hlava@hlava.com",
+                        huvudAnsvarigTelefon: "1234",
                         tekniskKontaktEpost: "kontakten@lorumipsum.nu",
                         tekniskKontaktNamn: "Tolvan Tolvansson",
                         tekniskKontaktTelefon: "1234567890",
@@ -79,6 +85,9 @@ class BootStrap {
                 def tk3 = new TjansteKomponent(
                         hsaId: "SE2321000016-532S",
                         namn: "MVK",
+                        huvudAnsvarigNamn: "Cabeza Cabeza",
+                        huvudAnsvarigEpost: "cabeza@cabeza.com",
+                        huvudAnsvarigTelefon: "1234",
                         tekniskKontaktEpost: "kontakten@lorumipsum.nu",
                         tekniskKontaktNamn: "Tolvan Tolvansson",
                         tekniskKontaktTelefon: "1234567890",
@@ -90,6 +99,9 @@ class BootStrap {
                 def tk4 = new TjansteKomponent(
                         hsaId: "SE2321000016-6SW1",
                         namn: "L - Remittera",
+                        huvudAnsvarigNamn: "머리",
+                        huvudAnsvarigEpost: "meoli@meoli.com",
+                        huvudAnsvarigTelefon: "1234",
                         tekniskKontaktEpost: "kontakten@lorumipsum.nu",
                         tekniskKontaktNamn: "Tolvan Tolvansson",
                         tekniskKontaktTelefon: "1234567890",

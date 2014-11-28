@@ -1,12 +1,15 @@
 package se.skltp.av
 
-import groovy.transform.ToString;
+import groovy.transform.ToString
 
-@ToString
+@ToString(includeNames=true, includeFields = true)
 class TjansteKomponent {
 
     String hsaId
     String namn
+    String huvudAnsvarigNamn
+    String huvudAnsvarigEpost
+    String huvudAnsvarigTelefon
 	String tekniskKontaktEpost
 	String tekniskKontaktNamn
 	String tekniskKontaktTelefon
