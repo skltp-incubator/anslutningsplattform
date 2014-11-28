@@ -2,17 +2,17 @@
 <index>
     <entrys>
         <endpoint>http://TODO-TEST</endpoint>
-        <fileName>test.tec</fileName>
+        <fileName>ntjp-test.tec</fileName>
         <synced>2014-11-28T08:16:29.438+01:00</synced>
     </entrys>
     <entrys>
         <endpoint>http://TODO-QA</endpoint>
-        <fileName>qa.tec</fileName>
+        <fileName>ntjp-qa.tec</fileName>
         <synced>2014-11-28T08:16:29.438+01:00</synced>
     </entrys>
     <entrys>
         <endpoint>http://TODO-PROD</endpoint>
-        <fileName>prod.tec</fileName>
+        <fileName>ntjp-prod.tec</fileName>
         <synced>2014-11-28T08:16:29.438+01:00</synced>
     </entrys>
 </index>
