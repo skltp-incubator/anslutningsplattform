@@ -9,6 +9,7 @@ import se.skltp.av.service.tak.TakCacheServices
 import se.skltp.av.service.tak.m.AnropsBehorighetDTO;
 import se.skltp.av.service.tak.m.TjanstekontraktDTO;
 import se.skltp.av.service.tak.m.VirtualiseringDTO;
+import se.skltp.av.services.dto.LogiskAdressDTO;
 import se.skltp.av.services.dto.TakRoutingEntryDTO
 import grails.transaction.Transactional
 
@@ -120,14 +121,25 @@ class TakService {
 	}
 	
 // BEGIN: PUBLIC METHODS
-	def getTakRoutingEntriesList() {
+	List<TakRoutingEntryDTO> getTakRoutingEntriesList() {
 		new ArrayList(takRoutingMap.values())
 	}
 
-	// TODO: impl method for AV-45
+	List<String> getLogicalAddressByServiceDomainNS(String takId, String serviceDomainNS) {
+		TakCacheServices tak = takCacheMap.get(takId)  
+		List<VirtualiseringDTO> virtualiseringar = tak.getAllVirtualiseringar()
+		List logicalAddressForDomain = new ArrayList()
+		virtualiseringar.each {
+			if (it.tjanstekontrakt.contains(serviceDomainNS)) {
+				logicalAddressForDomain.add(it.reciverId)
+			}
+		}
+		logicalAddressForDomain
+	}
+	
 	
 // END: PUBLIC METHODS
-	
+		
 	// TODO: tmp mock during cache-impl - replace !
 	class TakCacheServicesMock implements TakCacheServices {
 		def takId
@@ -162,8 +174,18 @@ class TakService {
 
 		@Override
 		public List<VirtualiseringDTO> getAllVirtualiseringar() {
-			// TODO Auto-generated method stub
-			return null;
+			List list = new ArrayList()
+			//list.add(new VirtualiseringDTO(tjanstekontrakt: "hd.1-tk", reciverId: "hd.1-id"))
+			
+// public VirtualiseringDTO(final String address, final Date fromTidpunkt, final String reciverId,
+//   final String rivProfil, final String tjanstekontrakt, final Date tomTidpunkt, final String id) {
+			
+			list.add(new VirtualiseringDTO(null, null , "hsaId-not-in-hsaCache", null, "tk.mock-domain.1", null, null))
+			list.add(new VirtualiseringDTO(null, null , "SE2321000115-O97121", null, "tk.mock-domain.1", null, null))
+			list.add(new VirtualiseringDTO(null, null , "SE2321000040-59QM", null, "tk.mock-domain.2", null, null))
+			list.add(new VirtualiseringDTO(null, null , "SE2321000115-O77706", null, "tk.mock-domain.2", null, null))
+			list.add(new VirtualiseringDTO(null, null , "SE2321000131-F000000000810", null, "tk.mock-domain.3", null, null))
+			return list;
 		}
 		
 	}
