@@ -20,8 +20,8 @@ if(getProperty(SYS_VAR_CONFIG_DIR)){
     EXT_RESOURCES_DIR = getProperty(SYS_VAR_CONFIG_DIR)
     println "System variable ${SYS_VAR_CONFIG_DIR} is set! External Resources will be loaded from ${EXT_RESOURCES_DIR}"
 
-    grails.config.locations = [  "file:${getProperty(EXT_RESOURCES_DIR)}/${appName}-config-override.properties",
-                                 "file:${getProperty(EXT_RESOURCES_DIR)}/${appName}-config-override.groovy"]
+    grails.config.locations = [  "file:${EXT_RESOURCES_DIR}/${appName}-config-override.properties",
+                                 "file:${EXT_RESOURCES_DIR}/${appName}-config-override.groovy"]
 
 }else{
     println "NOTE! System variable ${SYS_VAR_CONFIG_DIR} is NOT set! External Resources will be loaded from ${EXT_RESOURCES_DIR}"
