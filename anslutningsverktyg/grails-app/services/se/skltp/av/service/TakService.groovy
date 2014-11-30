@@ -45,7 +45,7 @@ class TakService {
 
 		takRoutingMap.values().each {
 			takCacheMap.putAt(it.id, new TakCacheServicesImpl(it.url, it.id))
-			takCacheEndpoints.add(it.id);
+			takCacheEndpoints.add(it.url);
 		}
 
 		/**
