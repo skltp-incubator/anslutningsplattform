@@ -119,26 +119,28 @@ class ProducentBestallningService {
 			
 			tjansteKomponent = new TjansteKomponent()
 		}
-		
-		tjansteKomponent.setUser(user)
-		tjansteKomponent.setHsaId(serviceComponent.hsaId)
-		tjansteKomponent.setNamn(serviceComponent.namn)
-		tjansteKomponent.setTekniskKontaktEpost(serviceComponent.tekniskKontaktEpost)
-		tjansteKomponent.setTekniskKontaktNamn(serviceComponent.tekniskKontaktNamn)
-		tjansteKomponent.setTekniskKontaktTelefon(serviceComponent.tekniskKontaktTelefon)
-		tjansteKomponent.setFunktionsBrevladaEpost(serviceComponent.funktionsBrevladaEpost)
-		tjansteKomponent.setFunktionsBrevladaTelefon(serviceComponent.funktionsBrevladaTelefon)
-		tjansteKomponent.setHuvudAnsvarigEpost(serviceComponent.huvudAnsvarigEpost)
-		tjansteKomponent.setHuvudAnsvarigNamn(serviceComponent.huvudAnsvarigNamn)
-		tjansteKomponent.setHuvudAnsvarigTelefon(serviceComponent.huvudAnsvarigTelefon)
-		tjansteKomponent.setIpadress(serviceComponent.ipadress)
-			
+
+		tjansteKomponent.with {
+			it.user = user
+			hsaId = serviceComponent.hsaId
+			it.namn = serviceComponent.namn
+			tekniskKontaktEpost = serviceComponent.tekniskKontaktEpost
+			tekniskKontaktNamn = serviceComponent.tekniskKontaktNamn
+			tekniskKontaktTelefon = serviceComponent.tekniskKontaktTelefon
+			funktionsBrevladaEpost = serviceComponent.funktionsBrevladaEpost
+			funktionsBrevladaTelefon = serviceComponent.funktionsBrevladaTelefon
+			huvudAnsvarigEpost = serviceComponent.huvudAnsvarigEpost
+			huvudAnsvarigNamn = serviceComponent.huvudAnsvarigNamn
+			huvudAnsvarigTelefon = serviceComponent.huvudAnsvarigTelefon
+			ipadress = serviceComponent.ipadress
+		}
+
 		if(!tjansteKomponent.validate()){
 			log.error "Tjanstekomponent does not contain all mandatory attributes!"
 			log.error tjansteKomponent.errors
 		}
 		
-		return tjansteKomponent.save(flush:true)
+		return tjansteKomponent.save()
 	}
 	
 	private User upsertUser(producentBestallningDTO){
@@ -152,13 +154,13 @@ class ProducentBestallningService {
 			
 			user = new User(username: ansvarig.email, passwordHash: new Sha256Hash("changeme").toHex())
 		}
-		
-		user.namn = ansvarig.name
-		user.epost = ansvarig.email
-		user.telefonNummer = ansvarig.phone
-		user.datumSkapad = new Date() //TODO look over datumSkapad and datumUppdaterad...these code be done in hibernate event handlers instead
-		user.datumUppdaterad = new Date()
-		
+
+		user.with {
+			namn = ansvarig.name
+			epost = ansvarig.email
+			telefonNummer = ansvarig.phone
+		}
+
 		if(!user.validate()){
 			log.error "User does not contain all mandatory attributes!"
 			log.error user.errors

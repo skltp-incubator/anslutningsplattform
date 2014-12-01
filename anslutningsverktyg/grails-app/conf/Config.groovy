@@ -129,6 +129,7 @@ environments {
             error stdout:'stackTrace'
 
             debug 'grails.app', 'se.skltp.av', 'se.skltp.ap'
+            fatal 'org.hibernate.tool.hbm2ddl.SchemaExport' //Removing background noise
         }
 		
 		// SMTP config
@@ -270,7 +271,7 @@ environments {
 		// TAK cache location
 		tak.cache.location = "${EXT_RESOURCES_DIR}/tak"
 
-		grails.mail.disabled = true //Disable sending mail in production for now
+		grails.mail.disabled = false
 
         // Token used by client to invoke backend
         api.auth.token = 'secret-token'

@@ -31,14 +31,12 @@ class User {
 	}
 
 	def beforeInsert() {
-		if (datumSkapad == NULL_DATE) {
+		if (!datumSkapad) {
 			datumSkapad = new Date()
 		}
 	}
 	
 	def beforeUpdate() {
-		if (datumUppdaterad == NULL_DATE) {
-			datumUppdaterad = new Date()
-		}
+		datumUppdaterad = new Date()
 	}
 }
