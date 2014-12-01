@@ -36,7 +36,7 @@ class User {
 		}
 	}
 	
-	def beforeUpdated() {
+	def beforeUpdate() {
 		if (datumUppdaterad == NULL_DATE) {
 			datumUppdaterad = new Date()
 		}

@@ -240,41 +240,43 @@ environments {
 
         grails.gorm.failOnError = true //Lets fail for anything so we catch it in dev
 		
-		grails.mail.disabled=true //Disable sending mail in local dev for now
+		grails.mail.disabled = true //Disable sending mail in local dev for now
+
+        // Token used by client to invoke backend
+        api.auth.token = 'secret-token'
 	}
 	test{
 		// HSA cache
 		hsa.hsacache.files = ["${EXT_RESOURCES_DIR}/hsacache-test.xml", "${EXT_RESOURCES_DIR}/hsacachecomplementary-test.xml"]
-		
+
 		// RIV TA cache
 		rivta.cache.file = "${EXT_RESOURCES_DIR}/domains.xml"
-		
+
 		// TAK cache location
 		tak.cache.location = "${EXT_RESOURCES_DIR}/tak"
-		
-		grails.mail.disabled=true //Disable sending mail in test for now
 
+		grails.mail.disabled = true //Disable sending mail in test for now
+
+        // Token used by client to invoke backend
+        api.auth.token = 'secret-token'
 	}
 	production{
 		// HSA cache
 		hsa.hsacache.files = ["${EXT_RESOURCES_DIR}/hsacache.xml", "${EXT_RESOURCES_DIR}/hsacachecomplementary.xml"]
-		
+
 		// RIV TA cache
 		rivta.cache.file = "${EXT_RESOURCES_DIR}/domains.xml"
-		
+
 		// TAK cache location
 		tak.cache.location = "${EXT_RESOURCES_DIR}/tak"
-		
-		grails.mail.disabled=true //Disable sending mail in production for now
 
+		grails.mail.disabled = true //Disable sending mail in production for now
+
+        // Token used by client to invoke backend
+        api.auth.token = 'secret-token'
 	}
 }
 
-//TAK cache
-
-
-// Token used by client to invoke backend
-api.auth.token = 'secret-token'
 
 //grails.mail.default.from = 'noreply.anslutningsplattform@ntjp.se'
 //grails.mail.default.from = 'hakan.dahl.demo1@gmail.com'

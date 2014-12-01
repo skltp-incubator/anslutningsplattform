@@ -35,7 +35,7 @@ class ProducentBestallningServiceSpec extends Specification {
 			def producentBestallningDTO = new ProducentBestallningDTO(serviceDomain: serviceDomain, serviceComponent: 
 				serviceComponent, serviceConsumer: serviceConsumer, targetEnvironment: miljo, client: client)
 			
-			producentBestallningService.updateProducentBestallning(producentBestallningDTO)
+			producentBestallningService.createProducentBestallning(producentBestallningDTO)
 
 		when:
 			def size = User.list().size

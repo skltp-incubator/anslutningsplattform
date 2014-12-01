@@ -59,7 +59,7 @@ class ProducentBestallningService {
     }
 
     @Transactional
-    def updateProducentBestallning(producentBestallningDTO) {
+    def createProducentBestallning(producentBestallningDTO) {
 
 		User user = upsertUser(producentBestallningDTO)
 		

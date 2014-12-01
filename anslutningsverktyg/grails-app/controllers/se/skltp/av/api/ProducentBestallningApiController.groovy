@@ -1,7 +1,6 @@
 package se.skltp.av.api
 
 import se.skltp.av.ProducentBestallning
-import grails.rest.RestfulController
 import se.skltp.av.services.dto.ProducentBestallningDTO
 
 class ProducentBestallningApiController{
@@ -45,7 +44,7 @@ class ProducentBestallningApiController{
 		
 		log.debug "API, a save requested for producentbestallning: $producentBestallningDTO"
 
-		producentBestallningService.updateProducentBestallning(producentBestallningDTO)
+		producentBestallningService.createProducentBestallning(producentBestallningDTO)
 		
 
 		//NOT: testing with gmail requires:
