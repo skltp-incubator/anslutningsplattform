@@ -25,6 +25,24 @@
             <ns2:beskrivning>Tidbokning - GetSubjectOfCareSchedule</ns2:beskrivning>
         </tjanstekontrakt>
         <tjanstekontrakt>
+            <ns2:namnrymd>urn:riv:crm:scheduling:GetSubjectOfCareSchedule:99:rivtabp21</ns2:namnrymd>
+            <ns2:majorVersion>99</ns2:majorVersion>
+            <ns2:minorVersion>7</ns2:minorVersion>
+            <ns2:beskrivning>Tidbokning - GetSubjectOfCareSchedule</ns2:beskrivning>
+        </tjanstekontrakt>
+        <tjanstekontrakt>
+            <ns2:namnrymd>urn:riv:crm:scheduling:MakeBooking:1:rivtabp21</ns2:namnrymd>
+            <ns2:majorVersion>1</ns2:majorVersion>
+            <ns2:minorVersion>1</ns2:minorVersion>
+            <ns2:beskrivning>Tidbokning - MakeBooking</ns2:beskrivning>
+        </tjanstekontrakt>
+        <tjanstekontrakt>
+            <ns2:namnrymd>urn:riv:crm:scheduling:UpdateBooking:1:rivtabp21</ns2:namnrymd>
+            <ns2:majorVersion>1</ns2:majorVersion>
+            <ns2:minorVersion>1</ns2:minorVersion>
+            <ns2:beskrivning>Tidbokning - UpdateBooking</ns2:beskrivning>
+        </tjanstekontrakt>
+        <tjanstekontrakt>
             <ns2:namnrymd>urn:riv:itinfra:tp:Ping:1:rivtabp20</ns2:namnrymd>
             <ns2:majorVersion>1</ns2:majorVersion>
             <ns2:minorVersion>0</ns2:minorVersion>
@@ -89,6 +107,15 @@
             <ns2:fromTidpunkt>2001-01-01T10:00:00</ns2:fromTidpunkt>
             <ns2:tomTidpunkt>2002-02-02T12:00:00</ns2:tomTidpunkt>
             <ns2:adress>http://test.address.com</ns2:adress>
+        </virtualiseringar>
+        <virtualiseringar>
+            <ns2:virtualiseringsInfoId>27</ns2:virtualiseringsInfoId>
+            <ns2:receiverId>SE1234-FAKE_HSA_ID</ns2:receiverId>
+            <ns2:rivProfil>RIVTABP21</ns2:rivProfil>
+            <ns2:tjansteKontrakt>urn:riv:crm:scheduling:GetSubjectOfCareSchedule:1:rivtabp21</ns2:tjansteKontrakt>
+            <ns2:fromTidpunkt>2001-01-01T10:00:00</ns2:fromTidpunkt>
+            <ns2:tomTidpunkt>2002-02-02T12:00:00</ns2:tomTidpunkt>
+            <ns2:adress>http://test.address.com/</ns2:adress>
         </virtualiseringar>
     </entries>
     <synched>2014-11-28T09:33:45.739+01:00</synched>
