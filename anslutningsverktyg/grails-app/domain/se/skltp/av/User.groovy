@@ -15,8 +15,9 @@ class User {
 	String passwordHash
 	String epost
 	String telefonNummer
-	Date datumSkapad
+	Date datumSkapad = NULL_DATE
 	Date datumUppdaterad
+	private static final Date NULL_DATE = new Date(0)
 
 	static hasMany = [ roles: Role, permissions: String, tjansteKomponenter: TjansteKomponent ]
 
@@ -31,7 +32,7 @@ class User {
 	}
 
 	def beforeInsert() {
-		if (!datumSkapad) {
+		if (datumSkapad == NULL_DATE) {
 			datumSkapad = new Date()
 		}
 	}

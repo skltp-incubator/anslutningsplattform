@@ -55,7 +55,7 @@ class ProducentBestallningApiController{
 		// 3. fromAddress to be your own address for the gmail account you are using
 		// 4. config in Config.groovy grails{ mail{: username/password 
 		//def fromAddress = "hakan.dahl.demo1@gmail.com"
-		def fromAddress = "noreply.anslutningsplattform@ntjp.se"		
+		def fromAddress = "johanna.essen@callistaenterprise.se"
 		def subjectField = "AP TEST subject"
 		//def bodyPlainText = "AP TEST body"
 		// TODO: prettify this!

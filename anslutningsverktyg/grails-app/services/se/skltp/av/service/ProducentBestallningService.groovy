@@ -143,7 +143,7 @@ class ProducentBestallningService {
 		return tjansteKomponent.save()
 	}
 	
-	private User upsertUser(producentBestallningDTO){
+	private User upsertUser(producentBestallningDTO){	
 		
 		AnsvarigDTO ansvarig = producentBestallningDTO.client
 		
@@ -174,7 +174,7 @@ class ProducentBestallningService {
 			status: producentBestallning.status,
 			producentBestallning: producentBestallning,
 			senastUppdateradAv: epost,
-			datum: new Date() //TODO look over datumSkapad and datumUppdaterad...these code be done in hibernate event handlers instead
+			datum: new Date() //TODO look over datumSkapad and datumUppdaterad...these could be done in hibernate event handlers instead
 		)
 		
 		if(!history.validate()){

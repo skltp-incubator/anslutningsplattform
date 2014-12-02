@@ -12,9 +12,17 @@ import static java.lang.System.getProperty
 
 //System variable holding info about config dir for external resources
 def SYS_VAR_CONFIG_DIR = 'se.skltp.ap.config.dir'
+def EXT_RESOURCES_DIR = ''
 
+environments {
+    development {
+        EXT_RESOURCES_DIR = 'grails-app/conf'
+    }
+    production {
+        EXT_RESOURCES_DIR = '/www/inera/home/hhunberg/anslutningsplattform/'
+    }
+}
 //Dir where external resources as override properties and caches are placed
-def EXT_RESOURCES_DIR = 'grails-app/conf'
 
 if(getProperty(SYS_VAR_CONFIG_DIR)){
     EXT_RESOURCES_DIR = getProperty(SYS_VAR_CONFIG_DIR)
@@ -273,13 +281,15 @@ environments {
 
 		grails.mail.disabled = false
 
+        //grails.mail.default.from = 'noreply.anslutningsplattform@ntjp.se'
+
         // Token used by client to invoke backend
         api.auth.token = 'secret-token'
 	}
 }
 
 
-//grails.mail.default.from = 'noreply.anslutningsplattform@ntjp.se'
+
 //grails.mail.default.from = 'hakan.dahl.demo1@gmail.com'
 //smtp.to.address = 'hakan.dahl.demo1@gmail.com'
 smtp.to.address = 'johanna.essen@callistaenterprise.se'
