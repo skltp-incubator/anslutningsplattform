@@ -83,6 +83,8 @@ class ProducentBestallningService {
 		createProducentBestallningHistorik(producentBestallning, user.epost)
 
 		log.debug "Producentbestallning updated in database, lets return success"
+
+		return producentBestallning
     }
 
 	private ProducentBestallning upsertProducentBestallning(producentBestallningDTO, tjansteKomponent){

@@ -21,3 +21,5 @@ stacktrace.log
 .classpath
 .project
 */plugins
+anslutningsplattform.log
+anslutningsplattform-audit.log
